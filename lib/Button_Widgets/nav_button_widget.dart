@@ -242,7 +242,7 @@ class StaticNavBarButton extends StatelessWidget {
                 backgroundColor: badgeColor,
                 child:Padding(
                   padding: const EdgeInsets.all(1.0),
-                  child: Text(getValueForIndex(currentIndex,badgeData),style: badgeTextStyle),
+                  child: Text(getValueForIndex(index,badgeData),style: badgeTextStyle),
                 ),
               ),
             )

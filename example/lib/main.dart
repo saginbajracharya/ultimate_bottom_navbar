@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:ultimate_bottom_navbar/ultimate_bottom_navbar.dart';
 import 'BottomNavPages/page_1.dart';
@@ -31,13 +33,18 @@ class BottomNavigationPage extends StatefulWidget {
 }
 
 class _BottomNavigationPageState extends State<BottomNavigationPage> {
-  bool staticCurve             = false;
-  bool useForeGroundGradient   = false;
-  bool showForeGround          = true;
-  bool useShaderStroke         = false;
-  bool underCurve              = true;
-  bool showCircleStaticMidItem = true;   
-  int currentIndex             = 0;
+  Random random                      = Random();
+  int currentIndex                   = 0;
+  bool staticCurve                   = false;
+  bool useForeGroundGradient         = false;
+  bool showForeGround                = true;
+  bool useShaderStroke               = false;
+  bool underCurve                    = true;
+  bool showCircleStaticMidItem       = true;
+  Color backgroundColor              = transparent; 
+  double backgroundStrokeBorderWidth = 0.0;  
+  var badgeVal1                      = '5';
+  var badgeVal2                      = '55';
 
   final List<String> title = [
     "",
@@ -106,26 +113,69 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
+      extendBody: true,
       backgroundColor: grey,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Flexible(
-            child: pages[currentIndex]
+          Container(
+            width: MediaQuery.of(context).size.width,
+            height: kBottomNavigationBarHeight+50,
+            alignment: Alignment.center,
+            padding: const EdgeInsets.only(top:kBottomNavigationBarHeight),
+            child: pages[currentIndex],
           ),
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.only(left:10.0,right:10.0),
+          Container(
+            height: MediaQuery.of(context).size.height-kBottomNavigationBarHeight-kBottomNavigationBarHeight,
+            padding: const EdgeInsets.only(left:10.0,right:10.0),
+            child: SingleChildScrollView(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  const Padding(
-                    padding: EdgeInsets.symmetric(vertical:40.0),
-                    child: Text('Check out Additional Properties for Additional Customization',textAlign: TextAlign.center,style: TextStyle(fontSize: 18.0),),
+                  //Random Background Color
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical :8.0),
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        minimumSize: const Size.fromHeight(50),
+                      ),
+                      onPressed: ()async{
+                        setState(() {
+                          backgroundColor = Color.fromARGB(
+                            255,
+                            random.nextInt(256),
+                            random.nextInt(256),
+                            random.nextInt(256),
+                          );
+                        });
+                      }, 
+                      child: const Text('Random Background Color',style: TextStyle(color: white))
+                    ),
                   ),
-                  Flexible(
+                  //Show Hide Background Stroke
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical :8.0),
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        minimumSize: const Size.fromHeight(50),
+                      ),
+                      onPressed: ()async{
+                        setState(() {
+                          if(backgroundStrokeBorderWidth==0.0){
+                            backgroundStrokeBorderWidth=2.0;
+                          }else{
+                            backgroundStrokeBorderWidth=0.0;
+                          }
+                        });
+                      }, 
+                      child: Text(backgroundStrokeBorderWidth==0.0?'Show Background Stroke':'Hide Background Stroke',style: const TextStyle(color: white))
+                    ),
+                  ),
+                  //ForeGround Gradient / Solod Color
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical :8.0),
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         minimumSize: const Size.fromHeight(50),
@@ -140,11 +190,12 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
                           }
                         });
                       }, 
-                      child: Text(useForeGroundGradient?'Use ForeGround Solid Colors':'Use ForeGround Gradient',style: const TextStyle(color: white))
+                      child: Text(useForeGroundGradient?'ForeGround Solid Color':'ForeGround Gradient Color',style: const TextStyle(color: white))
                     ),
                   ),
-                  const SizedBox(height: 10),
-                  Flexible(
+                  //Show Hide ForeGround
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical :8.0),
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         minimumSize: const Size.fromHeight(50),
@@ -162,8 +213,9 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
                       child: Text(showForeGround?'Hide ForeGround':'Show ForeGround',style: const TextStyle(color: white))
                     ),
                   ),
-                  const SizedBox(height: 10),
-                  Flexible(
+                  //Foreground Shader Stroke
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical :8.0),
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         minimumSize: const Size.fromHeight(50),
@@ -178,11 +230,12 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
                           }
                         });
                       }, 
-                      child: Text(useShaderStroke?'Dont Use Shader Stroke Foreground':'Use Shader Stroke Foreground',style: const TextStyle(color: white))
+                      child: Text(useShaderStroke?'ForeGround Solid Color Stroke':'ForeGround Shader Gradient Stroke',style: const TextStyle(color: white))
                     ),
                   ),
-                  const SizedBox(height: 10),
-                  Flexible(
+                  //Under Upper Curve
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical :8.0),
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         minimumSize: const Size.fromHeight(50),
@@ -200,8 +253,9 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
                       child: Text(underCurve?'Upper Curve':'Under Curve',style: const TextStyle(color: white))
                     ),
                   ),
-                  const SizedBox(height: 10),
-                  Flexible(
+                  //Static Dynamic Curve
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical :8.0),
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         minimumSize: const Size.fromHeight(50),
@@ -219,54 +273,125 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
                       child: Text(staticCurve?'Dynamic Curve':'Static Curve',style: const TextStyle(color: white))
                     ),
                   ),
-                  const SizedBox(height: 10),
+                  //Change Badge value 1
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical :8.0),
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        minimumSize: const Size.fromHeight(50),
+                      ),
+                      onPressed: ()async{
+                        setState(() {
+                          badgeVal1 = (int.parse(badgeVal1)+1).toString();
+                        });
+                      }, 
+                      child: const Text('Change Badge value 1',style: TextStyle(color: white))
+                    ),
+                  ),
+                  //Change Badge value 2
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical :8.0),
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        minimumSize: const Size.fromHeight(50),
+                      ),
+                      onPressed: ()async{
+                        setState(() {
+                          badgeVal2 = (int.parse(badgeVal2)+1).toString();
+                        });
+                      }, 
+                      child: const Text('Change Badge value 2',style: TextStyle(color: white))
+                    ),
+                  ),
+                  //Reset Badge value 1
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical :8.0),
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        minimumSize: const Size.fromHeight(50),
+                      ),
+                      onPressed: ()async{
+                        setState(() {
+                          badgeVal1 = '0';
+                        });
+                      }, 
+                      child: const Text('Reset Badge value 1',style: TextStyle(color: white))
+                    ),
+                  ),
+                  //Reset Badge value 2
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical :8.0),
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        minimumSize: const Size.fromHeight(50),
+                      ),
+                      onPressed: ()async{
+                        setState(() {
+                          badgeVal2 = '0';
+                        });
+                      }, 
+                      child: const Text('Reset Badge value 2',style: TextStyle(color: white))
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 50,
+                  )
                 ],
               ),
-            )
+            ),
           ),
         ],
       ),
       bottomNavigationBar: UltimateBottomNavBar(
-        icons                              : icons,                                // Icon list<Widget>
-        titles                             : title,                                // Title list<String>
-        currentIndex                       : currentIndex,                         // Current selected index
-        backgroundColor                    : transparent,                          // NavBar BackGround Color [backgroundGradient ovrerides color]
-        foregroundColor                    : white,                                // NavBar ForeGround Color with Curve 
-        foregroundStrokeBorderColor        : black,                                // Nav Stroke Border Color [useShaderStroke = false , strokeBorderWidth != 0]
-        backgroundStrokeBorderColor        : black,                                // nav background stroke color [seems like when border width is 0.0 still shows the color but transparent solves it]
-        backgroundStrokeBorderWidth        : 0.0,                                  // Nav BackGround Stroke Border Width
-        foregroundStrokeBorderWidth        : 2.0,                                  // Nav ForeGround Stroke Border Width  
-        backgroundGradient                 : null,                                 // Nav background Gradient [No Gradient if Null Overrides backgroundColor if given]
-        foreGroundGradientShader           : foreGroundGradientShader,             // Nav ForeGround Gradient Shader [foregroundColor or foreGroundGradientShader determined by Bool useForeGroundGradient]
+        icons                              : icons,                                                                       // Icon list<Widget>
+        titles                             : title,                                                                       // Title list<String>
+        currentIndex                       : currentIndex,                                                                // Current selected index
+        backgroundColor                    : backgroundColor,                                                             // NavBar BackGround Color [backgroundGradient ovrerides color]
+        foregroundColor                    : white,                                                                       // NavBar ForeGround Color with Curve 
+        foregroundStrokeBorderColor        : black,                                                                       // Nav Stroke Border Color [useShaderStroke = false , strokeBorderWidth != 0]
+        backgroundStrokeBorderColor        : black,                                                                       // nav background stroke color [seems like when border width is 0.0 still shows the color but transparent solves it]
+        backgroundStrokeBorderWidth        : backgroundStrokeBorderWidth,                                                 // Nav BackGround Stroke Border Width
+        foregroundStrokeBorderWidth        : 2.0,                                                                         // Nav ForeGround Stroke Border Width  
+        backgroundGradient                 : null,                                                                        // Nav background Gradient [No Gradient if Null Overrides backgroundColor if given]
+        foreGroundGradientShader           : foreGroundGradientShader,                                                    // Nav ForeGround Gradient Shader [foregroundColor or foreGroundGradientShader determined by Bool useForeGroundGradient]
         
-        selectedIconColor                  : red,                                  // Selected Item Icon Color
-        selectedIconSize                   : 25,                                   // Selected Item Icon Size
-        selectedTextSize                   : 10,                                   // Selected Item Text Size
-        selectedTextColor                  : red,                                  // Selected Item Text Color
-        unselectedIconColor                : black,                                // UnSelected Item Icon Color
-        unselectedIconSize                 : 25,                                   // UnSelected Item Icon Size
-        unselectedTextSize                 : 10,                                   // UnSelected Item Text Size
-        unselectedTextColor                : black,                                // UnSelected Item Text Color
+        selectedIconColor                  : red,                                                                         // Selected Item Icon Color
+        selectedIconSize                   : 25,                                                                          // Selected Item Icon Size
+        selectedTextSize                   : 10,                                                                          // Selected Item Text Size
+        selectedTextColor                  : red,                                                                         // Selected Item Text Color
+        unselectedIconColor                : black,                                                                       // UnSelected Item Icon Color
+        unselectedIconSize                 : 25,                                                                          // UnSelected Item Icon Size
+        unselectedTextSize                 : 10,                                                                          // UnSelected Item Text Size
+        unselectedTextColor                : black,                                                                       // UnSelected Item Text Color
 
-        strokeGradientShader               : strokeGradientShader,                 // ForeGround Stroke border Gradient Shader
-        useForeGroundGradient              : useForeGroundGradient,                // Gradient for ForeGround or Not
-        showForeGround                     : showForeGround,                       // Show ForeGround or Not
-        useShaderStroke                    : useShaderStroke,                      // Use Shadered Stroke Border or Not
-        underCurve                         : underCurve,                           // Under Curve or Upper Curve
-        staticCurve                        : staticCurve,                          // Static Curve or Dynamic Curve
-        showCircleStaticMidItemStatic      : showCircleStaticMidItem,              // Show or Not Show Circle for Mid Item If Static Curve
+        strokeGradientShader               : strokeGradientShader,                                                        // ForeGround Stroke border Gradient Shader
+        useForeGroundGradient              : useForeGroundGradient,                                                       // Gradient for ForeGround or Not
+        showForeGround                     : showForeGround,                                                              // Show ForeGround or Not
+        useShaderStroke                    : useShaderStroke,                                                             // Use Shadered Stroke Border or Not
+        underCurve                         : underCurve,                                                                  // Under Curve or Upper Curve
+        staticCurve                        : staticCurve,                                                                 // Static Curve or Dynamic Curve
+        showCircleStaticMidItemStatic      : showCircleStaticMidItem,                                                     // Show or Not Show Circle for Mid Item If Static Curve
 
-        midItemCircleColorStatic           : white,                                // Color of a Mid item circle for static item  
-        midItemCircleBorderColorStatic     : black,                                // Color of a Mid item border circle for static item
-        showMidCircleStatic                : false,                                 // Show/Hide Mid item circle for static item
-        midCircleRadiusStatic              : 20.0,                                 // Radius for Mid Circle
-        midCircleBorderRadiusStatic        : 2.0,                                  // Radius for Mid Circle Border
-        customSelectedItemDecor            : customSelecteditem(),                 // Custom Selected Item Decor
-        customUnSelectedItemDecor          : customUnselectedItem(),               // Custom UnSelected Item Decor
+        midItemCircleColorStatic           : white,                                                                       // Color of a Mid item circle for static item  
+        midItemCircleBorderColorStatic     : black,                                                                       // Color of a Mid item border circle for static item
+        showMidCircleStatic                : false,                                                                       // Show/Hide Mid item circle for static item
+        midCircleRadiusStatic              : 20.0,                                                                        // Radius for Mid Circle
+        midCircleBorderRadiusStatic        : 2.0,                                                                         // Radius for Mid Circle Border
+        customSelectedItemDecor            : customSelecteditem(),                                                        // Custom Selected Item Decor
+        customUnSelectedItemDecor          : customUnselectedItem(),                                                      // Custom UnSelected Item Decor
 
-        animationType                      : Curves.ease,                          // Index change animation curves
-        animationDuration                  : const Duration(milliseconds: 500),    // Index Change Animation duration for curve only
-        onTap                              : (index) async => onItemTapped(index), // Custom OnTap CallBacks
+        badgeData                          : [{'index': 1, 'value': badgeVal1},{'index': 4, 'value': badgeVal2}],         //Badge Data for Each Index with value
+        badgeColor                         : red,                                                                         // Badge Color 
+        badgeTextStyle                     : const TextStyle(color: white,fontSize: 8.0,overflow: TextOverflow.ellipsis), // Badge Text Style
+        badgeCircleRadius                  : 8.0,                                                                         // Badge Circle Radius
+        badgeTopPosition                   : 10.0,                                                                        // Badge Top Position
+        badgeRightPosition                 : 16.0,                                                                        // Badge Right Position
+        badgeBottomPosition                : null,                                                                        // Badge Bottom Position
+        badgeLeftPosition                  : null,                                                                        // Badge Left Position
+
+        animationType                      : Curves.ease,                                                                 // Index change animation curves
+        animationDuration                  : const Duration(milliseconds: 500),                                           // Index Change Animation duration for curve only
+        onTap                              : (index) async => onItemTapped(index),                                        // Custom OnTap CallBacks
       ),
     );
   }
@@ -298,6 +423,10 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
   void onItemTapped(int index) async{
     setState(() {
       currentIndex = index;
+      //reset on Tap Badge Value
+      // if(index==1){
+      //   badgeVal1='0';
+      // }
     });
   }
 }

@@ -68,6 +68,7 @@ class DynamicNavBarButton extends StatelessWidget {
           onTap(index);
         },
         child: Stack(
+          alignment: Alignment.center,
           children: [
             isSelected
             ?SelectedButtonWidget(

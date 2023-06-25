@@ -42,6 +42,15 @@ class UltimateBottomNavBar extends StatefulWidget {
   final Widget? customSelectedItemDecor;
   final Widget? customUnSelectedItemDecor;
 
+  final List<Map<String,dynamic>>? badgeData;
+  final Color? badgeColor;
+  final TextStyle? badgeTextStyle;
+  final double? badgeCircleRadius;
+  final double? badgeTopPosition;
+  final double? badgeBottomPosition;
+  final double? badgeLeftPosition;
+  final double? badgeRightPosition;
+
   final Curve animationType;
   final Duration animationDuration;
   final ValueChanged<int>? onTap;
@@ -83,6 +92,15 @@ class UltimateBottomNavBar extends StatefulWidget {
     this.midCircleBorderRadiusStatic       = 2.0,                               // Default 2.0
     this.customSelectedItemDecor,                                               // Default Null
     this.customUnSelectedItemDecor,                                             // Default Null
+
+    this.badgeData,
+    this.badgeColor                        = red,                               // Default red
+    this.badgeTextStyle                    = const TextStyle(),                 // Default TextStyle 
+    this.badgeCircleRadius                 = 8.0,                               // Default 8.0
+    this.badgeTopPosition                  = 10.0,                              // Default 10.0
+    this.badgeBottomPosition               = 16.0,                              // Default 16.0
+    this.badgeLeftPosition,                                                     // Default Null
+    this.badgeRightPosition,                                                    // Default Null
     
     this.animationType                     = Curves.easeOut,                    // Default easeOut
     this.animationDuration                 = const Duration(milliseconds: 500), // Default 500ms

@@ -34,7 +34,15 @@ class NavForeGroundCurvePainterUpper extends CustomPainter {
     final span = 1.0 / itemsLength;
     s = 0.16;
     double l = startingLoc + (span - s) / 2;
-    loc = textDirection == TextDirection.rtl ? 0.8 - l : l;
+
+    if (textDirection == TextDirection.rtl) {
+      loc = 0.84 - l;
+    } else if (textDirection == TextDirection.ltr) {
+      loc = l;
+    } else {
+      // Handle other text directions if needed
+      loc = l; // Default to LTR if the text direction is not specified
+    }
   }
 
   @override
@@ -107,7 +115,15 @@ class NavForeGroundUpperStrokeBorderPainter extends CustomPainter {
     final span = 1.0 / itemsLength;
     s = 0.16;
     double l = startingLoc + (span - s) / 2;
-    loc = textDirection == TextDirection.rtl ? 0.8 - l : l;
+
+    if (textDirection == TextDirection.rtl) {
+      loc = 0.84 - l;
+    } else if (textDirection == TextDirection.ltr) {
+      loc = l;
+    } else {
+      // Handle other text directions if needed
+      loc = l; // Default to LTR if the text direction is not specified
+    }
   }
 
   @override

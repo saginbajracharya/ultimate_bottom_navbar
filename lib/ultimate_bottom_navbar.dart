@@ -1,5 +1,6 @@
 library ultimate_bottom_navbar;
 import 'package:flutter/material.dart';
+import 'Background_Curves_Painter_Widget/nav_background_stroke_border.dart';
 import 'Button_Widgets/nav_button_widget.dart';
 import 'Foreground_Curves_Under_Upper_Painter_Widget/nav_foreground_curve_under.dart';
 import 'Foreground_Curves_Under_Upper_Painter_Widget/nav_foreground_curve_upper.dart';
@@ -18,6 +19,7 @@ class UltimateBottomNavBar extends StatefulWidget {
   final Gradient? backgroundGradient;
   final Shader? foreGroundGradientShader;
   final Shader? foregroundStrokeGradientShader;
+  final Shader? backgroundStrokeGradientShader;
 
   final EdgeInsetsGeometry? backgroundMargin;
   final BorderRadiusGeometry? backgroundBorderRadius;
@@ -32,6 +34,7 @@ class UltimateBottomNavBar extends StatefulWidget {
   final Color? unselectedTextColor;
 
   final bool showForeGroundStrokeAllSide;
+  final bool showBackGroundStrokeAllSide;
   final bool useForeGroundGradient;
   final bool showForeGround;
   final bool useShaderStroke;
@@ -72,6 +75,7 @@ class UltimateBottomNavBar extends StatefulWidget {
     this.backgroundGradient,                                                    // Default background Gradient Null
     this.foreGroundGradientShader,                                              // Default foreGround Gradient Shader Null
     this.foregroundStrokeGradientShader,                                        // Default foreground Stroke Gradient Shader Null
+    this.backgroundStrokeGradientShader,                                        // Default background Stroke Gradient Shader Null
 
     this.backgroundMargin                  = EdgeInsets.zero,                   // Default Background Margin Zero
     this.backgroundBorderRadius            = BorderRadius.zero,                 // Default Background Border Radius Zero
@@ -86,6 +90,7 @@ class UltimateBottomNavBar extends StatefulWidget {
     this.unselectedTextColor               = black,                             // Default unselectedTextColor black
 
     this.showForeGroundStrokeAllSide       = false,                             // Default showForeGroundStrokeAllSide False
+    this.showBackGroundStrokeAllSide       = false,                             // Default showForeGroundStrokeAllSide False
     this.useForeGroundGradient             = false,                             // Default useForeGroundGradient false
     this.showForeGround                    = true,                              // Default showForeGround true
     this.useShaderStroke                   = false,                             // Default useShaderStroke false
@@ -172,41 +177,32 @@ class UltimateBottomNavBarState extends State<UltimateBottomNavBar> with TickerP
   Widget build(BuildContext context) {
     return Container(
       margin: widget.backgroundMargin,
-      decoration: BoxDecoration(
-        color: widget.backgroundColor,
-        borderRadius: widget.backgroundBorderRadius,
-        border: widget.backgroundStrokeBorderWidth==0.0
+      child: CustomPaint(
+        painter: widget.backgroundStrokeBorderWidth==0.0
         ?null
-        :Border(
-          top: BorderSide(
-            color : widget.backgroundStrokeBorderColor,
-            width : widget.backgroundStrokeBorderWidth,
-            style : BorderStyle.solid,
-          ),
-          bottom: BorderSide(
-            color : widget.backgroundStrokeBorderColor,
-            width : widget.backgroundStrokeBorderWidth,
-            style : BorderStyle.solid,
-          ),
-          left: BorderSide(
-            color : widget.backgroundStrokeBorderColor,
-            width : widget.backgroundStrokeBorderWidth,
-            style : BorderStyle.solid,
-          ),
-          right: BorderSide(
-            color : widget.backgroundStrokeBorderColor,
-            width : widget.backgroundStrokeBorderWidth,
-            style : BorderStyle.solid,
-          ),
+        :NavBackgroundStrokeBorderPainter(
+          _pos, 
+          _length, 
+          widget.backgroundStrokeBorderWidth,
+          widget.useShaderStroke,
+          widget.showBackGroundStrokeAllSide,
+          widget.backgroundStrokeBorderColor, 
+          widget.backgroundStrokeGradientShader,
+          Directionality.of(context),
         ),
-        gradient:widget.backgroundGradient,
+        child: Container(
+          decoration: BoxDecoration(
+            color: widget.backgroundColor,
+            gradient:widget.backgroundGradient,
+          ),
+          height: kBottomNavigationBarHeight,
+          width: MediaQuery.of(context).size.width,
+          padding: EdgeInsets.zero,
+          child: widget.staticCurve
+          ?staticBottomNavWidget(context)
+          :dynamicBottomNavWidget(context),
+        ),
       ),
-      height: kBottomNavigationBarHeight,
-      width: MediaQuery.of(context).size.width,
-      padding: EdgeInsets.zero,
-      child: widget.staticCurve
-      ?staticBottomNavWidget(context)
-      :dynamicBottomNavWidget(context),
     );
   }
 

@@ -41,8 +41,9 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
   bool underCurve                    = true;
   bool showCircleStaticMidItem       = true;
   bool showForeGroundStrokeAllSide   = false;
+  bool showBackGroundStrokeAllSide   = false;
   Color backgroundColor              = transparent; 
-  double backgroundStrokeBorderWidth = 0.0;  
+  double backgroundStrokeBorderWidth = 5.0;  
   var badgeVal1                      = '5';
   var badgeVal2                      = '55';
   var textDirection                  = TextDirection.ltr;
@@ -243,6 +244,27 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
                           child: Text(showForeGroundStrokeAllSide?'hide ForeGround Stroke AllSide':'show ForeGround Stroke AllSide',style: const TextStyle(color: white))
                         ),
                       ),
+                      //BackGround show hide all Side Stroke
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical :8.0),
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            primary: black,
+                            minimumSize: const Size.fromHeight(50),
+                          ),
+                          onPressed: ()async{
+                            setState(() {
+                              if(showBackGroundStrokeAllSide==false)
+                              {
+                                showBackGroundStrokeAllSide=true;
+                              }else{
+                                showBackGroundStrokeAllSide=false;
+                              }
+                            });
+                          }, 
+                          child: Text(showBackGroundStrokeAllSide?'hide BackGround Stroke AllSide':'show BackGround Stroke AllSide',style: const TextStyle(color: white))
+                        ),
+                      ),
                       //Show Hide ForeGround
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical :8.0),
@@ -408,14 +430,14 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
           backgroundColor                    : backgroundColor,                                                             // NavBar BackGround Color [backgroundGradient ovrerides color]
           foregroundColor                    : black,                                                                       // NavBar ForeGround Color with Curve 
           foregroundStrokeBorderColor        : red,                                                                         // Nav Stroke Border Color [useShaderStroke = false , strokeBorderWidth != 0]
-          backgroundStrokeBorderColor        : black,                                                                       // nav background stroke color [seems like when border width is 0.0 still shows the color but transparent solves it]
+          backgroundStrokeBorderColor        : white,                                                                       // nav background stroke color [seems like when border width is 0.0 still shows the color but transparent solves it]
           backgroundStrokeBorderWidth        : backgroundStrokeBorderWidth,                                                 // Nav BackGround Stroke Border Width
           foregroundStrokeBorderWidth        : 2.0,                                                                         // Nav ForeGround Stroke Border Width  
-          backgroundGradient                 : backgroundGradientColor,                                                     // Nav background Gradient [No Gradient if Null Overrides backgroundColor if given]
+          backgroundGradient                 : null,                                                     // Nav background Gradient [No Gradient if Null Overrides backgroundColor if given]
           foreGroundGradientShader           : foreGroundGradientShader,                                                    // Nav ForeGround Gradient Shader [foregroundColor or foreGroundGradientShader determined by Bool useForeGroundGradient]
           foregroundStrokeGradientShader     : foregroundStrokeGradientShader,                                              // ForeGround Stroke border Gradient Shader
           
-          backgroundMargin                   : const EdgeInsets.only(left: 0.0,right: 0.0,bottom: 0.0),                  // Nav Background Margin
+          backgroundMargin                   : const EdgeInsets.only(left: 10.0,right: 10.0,bottom: 10.0),                  // Nav Background Margin
           backgroundBorderRadius             : BorderRadius.circular(10.0),                                                 // Nav Background Border Radius
 
           selectedIconColor                  : red,                                                                         // Selected Item Icon Color
@@ -427,7 +449,8 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
           unselectedTextSize                 : 10,                                                                          // UnSelected Item Text Size
           unselectedTextColor                : white,                                                                       // UnSelected Item Text Color
 
-          showForeGroundStrokeAllSide        : showForeGroundStrokeAllSide,                                                 //
+          showForeGroundStrokeAllSide        : showForeGroundStrokeAllSide, 
+          showBackGroundStrokeAllSide        : showBackGroundStrokeAllSide,                                                 //
           useForeGroundGradient              : useForeGroundGradient,                                                       // Gradient for ForeGround or Not
           showForeGround                     : showForeGround,                                                              // Show ForeGround or Not
           useShaderStroke                    : useShaderStroke,                                                             // Use Shadered Stroke Border or Not

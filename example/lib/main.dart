@@ -431,14 +431,14 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
           foregroundColor                    : black,                                                                       // NavBar ForeGround Color with Curve 
           foregroundStrokeBorderColor        : red,                                                                         // Nav Stroke Border Color [useShaderStroke = false , strokeBorderWidth != 0]
           backgroundStrokeBorderColor        : white,                                                                       // nav background stroke color [seems like when border width is 0.0 still shows the color but transparent solves it]
-          backgroundStrokeBorderWidth        : backgroundStrokeBorderWidth,                                                 // Nav BackGround Stroke Border Width
+          backgroundStrokeBorderWidth        : 2.0,                                                                         // Nav BackGround Stroke Border Width
           foregroundStrokeBorderWidth        : 2.0,                                                                         // Nav ForeGround Stroke Border Width  
-          backgroundGradient                 : null,                                                     // Nav background Gradient [No Gradient if Null Overrides backgroundColor if given]
+          backgroundGradient                 : null,                                                                        // Nav background Gradient [No Gradient if Null Overrides backgroundColor if given]
           foreGroundGradientShader           : foreGroundGradientShader,                                                    // Nav ForeGround Gradient Shader [foregroundColor or foreGroundGradientShader determined by Bool useForeGroundGradient]
           foregroundStrokeGradientShader     : foregroundStrokeGradientShader,                                              // ForeGround Stroke border Gradient Shader
           
           backgroundMargin                   : const EdgeInsets.only(left: 10.0,right: 10.0,bottom: 10.0),                  // Nav Background Margin
-          backgroundBorderRadius             : BorderRadius.circular(10.0),                                                 // Nav Background Border Radius
+          backgroundBorderRadius             : BorderRadius.circular(0.0),                                                  // Nav Background Border Radius
 
           selectedIconColor                  : red,                                                                         // Selected Item Icon Color
           selectedIconSize                   : 25,                                                                          // Selected Item Icon Size
@@ -460,7 +460,7 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
 
           midItemCircleColorStatic           : white,                                                                       // Color of a Mid item circle for static item  
           midItemCircleBorderColorStatic     : black,                                                                       // Color of a Mid item border circle for static item
-          showMidCircleStatic                : true,                                                                        // Show/Hide Mid item circle for static item
+          showMidCircleStatic                : false,                                                                       // Show/Hide Mid item circle for static item
           midCircleRadiusStatic              : 20.0,                                                                        // Radius for Mid Circle
           midCircleBorderRadiusStatic        : 2.0,                                                                         // Radius for Mid Circle Border
           customSelectedItemDecor            : customSelecteditem(),                                                        // Custom Selected Item Decor

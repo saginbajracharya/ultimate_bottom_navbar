@@ -189,11 +189,13 @@ class UltimateBottomNavBarState extends State<UltimateBottomNavBar> with TickerP
           widget.backgroundStrokeBorderColor, 
           widget.backgroundStrokeGradientShader,
           Directionality.of(context),
+          widget.backgroundBorderRadius
         ),
         child: Container(
           decoration: BoxDecoration(
             color: widget.backgroundColor,
             gradient:widget.backgroundGradient,
+            borderRadius: widget.backgroundBorderRadius,
           ),
           height: kBottomNavigationBarHeight,
           width: MediaQuery.of(context).size.width,

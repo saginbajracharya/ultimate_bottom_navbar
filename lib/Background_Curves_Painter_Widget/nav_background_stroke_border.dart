@@ -22,6 +22,7 @@ class NavBackgroundStrokeBorderPainter extends CustomPainter {
   Shader? foregroundStrokeGradientShader; // Shader for the stroke gradient
   Color color; // Color used if not using the shader
   TextDirection textDirection; // Direction of the text
+  BorderRadiusGeometry? borderRadius;
 
   NavBackgroundStrokeBorderPainter(
     double startingLoc,
@@ -32,6 +33,7 @@ class NavBackgroundStrokeBorderPainter extends CustomPainter {
     this.color,
     this.foregroundStrokeGradientShader,
     this.textDirection,
+    this.borderRadius,
   ) {
     final span = 1.0 / itemsLength;
     s = 0.18;
@@ -56,24 +58,35 @@ class NavBackgroundStrokeBorderPainter extends CustomPainter {
     } else {
       paint.shader = foregroundStrokeGradientShader ?? defaultGradientShader;
     }
-    final path = Path()
-      ..moveTo(0, 0) // Moves to the top-left corner of the path
-      ..lineTo((loc - 0.0) * size.width, 0) // Draws a line from the previous point to the left side of the shape
-      ..lineTo((loc + s) * size.width, 0) // Draws a line to the right side of the shape
-      ..lineTo(size.width, 0); // Draws a line to the top-right corner
 
-    if (showBackGroundStrokeAllSide) {
+    final bGborderRadius = borderRadius??BorderRadius.circular(0); // Provide the desired radius value here
+
+    final path = Path();
+    if(borderRadius==null){
       path
-        ..lineTo(size.width, size.height) // Draws a line from the previous point to the bottom-right corner
-        ..lineTo(0, size.height) // Draws a line from the previous point to the bottom-left corner
-        ..close(); // Closes the path
-    } else {
-      path
-        ..moveTo(0, size.height) // Moves to the bottom-left corner of the path
-        ..close(); // Closes the path
+        ..moveTo(0, 0) // Moves to the top-left corner of the path
+        ..lineTo((loc - 0.0) * size.width, 0) // Draws a line from the previous point to the left side of the shape
+        ..lineTo((loc + s) * size.width, 0) // Draws a line to the right side of the shape
+        ..lineTo(size.width, 0); // Draws a line to the top-right corner
+      if (showBackGroundStrokeAllSide) {
+        path
+          ..lineTo(size.width, size.height) // Draws a line from the previous point to the bottom-right corner
+          ..lineTo(0, size.height) // Draws a line from the previous point to the bottom-left corner
+          ..close(); // Closes the path
+      } else {
+        path
+          ..moveTo(0, size.height) // Moves to the bottom-left corner of the path
+          ..close(); // Closes the path
+      }
+      canvas.drawPath(path,paint);
+    }
+    else{
+      final roundedPath = Path()
+        ..addRRect(bGborderRadius.resolve(TextDirection.ltr).toRRect(Rect.fromLTWH(0, 0, size.width, size.height)))
+        ..addPath(path, Offset.zero);
+      canvas.drawPath(roundedPath, paint); // Draws the path on the canvas
     }
 
-    canvas.drawPath(path, paint); // Draws the path on the canvas
   }
 
   @override

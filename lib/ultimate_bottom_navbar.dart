@@ -17,6 +17,10 @@ class UltimateBottomNavBar extends StatefulWidget {
   final double backgroundStrokeBorderWidth;
   final Gradient? backgroundGradient;
   final Shader? foreGroundGradientShader;
+  final Shader? foregroundStrokeGradientShader;
+
+  final EdgeInsetsGeometry? backgroundMargin;
+  final BorderRadiusGeometry? backgroundBorderRadius;
 
   final Color? selectedIconColor;
   final double? selectedIconSize;   
@@ -27,7 +31,7 @@ class UltimateBottomNavBar extends StatefulWidget {
   final double? unselectedTextSize;  
   final Color? unselectedTextColor;
 
-  final Shader? strokeGradientShader;
+  final bool showForeGroundStrokeAllSide;
   final bool useForeGroundGradient;
   final bool showForeGround;
   final bool useShaderStroke;
@@ -54,7 +58,6 @@ class UltimateBottomNavBar extends StatefulWidget {
   final Curve animationType;
   final Duration animationDuration;
   final ValueChanged<int>? onTap;
-
   
   const UltimateBottomNavBar({Key? key,
     required this.icons,                                                        // Required
@@ -66,45 +69,49 @@ class UltimateBottomNavBar extends StatefulWidget {
     this.backgroundStrokeBorderColor       = black,                             // Default background Stroke Border Color White
     this.backgroundStrokeBorderWidth       = 0.0,                               // Default Nav BackGround Stroke Border Width
     this.foregroundStrokeBorderWidth       = 1.0,                               // Default Nav ForeGround Stroke Border Width
-    this.backgroundGradient,                                                    // Default Null
-    this.foreGroundGradientShader,                                              // Default Null
+    this.backgroundGradient,                                                    // Default background Gradient Null
+    this.foreGroundGradientShader,                                              // Default foreGround Gradient Shader Null
+    this.foregroundStrokeGradientShader,                                        // Default foreground Stroke Gradient Shader Null
 
-    this.selectedIconColor                 = white,                             // Default white
-    this.selectedIconSize                  = 26.0,                              // Default 26.0
-    this.selectedTextSize                  = 11.0,                              // Default 11.0
-    this.selectedTextColor                 = white,                             // Default white
-    this.unselectedIconColor               = black,                             // Default black
-    this.unselectedIconSize                = 24.0,                              // Default 24.0
-    this.unselectedTextSize                = 10.0,                              // Default 10.0
-    this.unselectedTextColor               = black,                             // Default black
+    this.backgroundMargin                  = EdgeInsets.zero,                   // Default Background Margin Zero
+    this.backgroundBorderRadius            = BorderRadius.zero,                 // Default Background Border Radius Zero
 
-    this.strokeGradientShader,                                                  // Default Null
-    this.useForeGroundGradient             = false,                             // Default false
-    this.showForeGround                    = true,                              // Default true
-    this.useShaderStroke                   = false,                             // Default false
-    this.underCurve                        = true,                              // Default true
-    this.staticCurve                       = false,                             // Default false
-    this.showCircleStaticMidItemStatic     = true,                              // Default true
-    this.midItemCircleColorStatic          = white,                             // Default white
-    this.midItemCircleBorderColorStatic    = black,                             // Default black
-    this.showMidCircleStatic               = true,                              // Default true
-    this.midCircleRadiusStatic             = 25.0,                              // Default 25.0
-    this.midCircleBorderRadiusStatic       = 2.0,                               // Default 2.0
-    this.customSelectedItemDecor,                                               // Default Null
-    this.customUnSelectedItemDecor,                                             // Default Null
+    this.selectedIconColor                 = white,                             // Default selectedIconColor white
+    this.selectedIconSize                  = 26.0,                              // Default selectedIconSize 26.0
+    this.selectedTextSize                  = 11.0,                              // Default selectedTextSize 11.0
+    this.selectedTextColor                 = white,                             // Default selectedTextColor white
+    this.unselectedIconColor               = black,                             // Default unselectedIconColor black
+    this.unselectedIconSize                = 24.0,                              // Default unselectedIconSize 24.0
+    this.unselectedTextSize                = 10.0,                              // Default unselectedTextSize 10.0
+    this.unselectedTextColor               = black,                             // Default unselectedTextColor black
+
+    this.showForeGroundStrokeAllSide       = false,                             // Default showForeGroundStrokeAllSide False
+    this.useForeGroundGradient             = false,                             // Default useForeGroundGradient false
+    this.showForeGround                    = true,                              // Default showForeGround true
+    this.useShaderStroke                   = false,                             // Default useShaderStroke false
+    this.underCurve                        = true,                              // Default underCurve true
+    this.staticCurve                       = false,                             // Default staticCurve false
+    this.showCircleStaticMidItemStatic     = true,                              // Default showCircleStaticMidItemStatic true
+    this.midItemCircleColorStatic          = white,                             // Default midItemCircleColorStatic white
+    this.midItemCircleBorderColorStatic    = black,                             // Default midItemCircleBorderColorStatic black
+    this.showMidCircleStatic               = true,                              // Default showMidCircleStatic true
+    this.midCircleRadiusStatic             = 25.0,                              // Default midCircleRadiusStatic 25.0
+    this.midCircleBorderRadiusStatic       = 2.0,                               // Default midCircleBorderRadiusStatic 2.0
+    this.customSelectedItemDecor,                                               // Default customSelectedItemDecor Null
+    this.customUnSelectedItemDecor,                                             // Default customUnSelectedItemDecor Null
 
     this.badgeData,
-    this.badgeColor                        = red,                               // Default red
-    this.badgeTextStyle                    = const TextStyle(),                 // Default TextStyle 
-    this.badgeCircleRadius                 = 8.0,                               // Default 8.0
-    this.badgeTopPosition                  = 10.0,                              // Default 10.0
-    this.badgeBottomPosition               = 16.0,                              // Default 16.0
-    this.badgeLeftPosition,                                                     // Default Null
-    this.badgeRightPosition,                                                    // Default Null
+    this.badgeColor                        = red,                               // Default badgeColor red
+    this.badgeTextStyle                    = const TextStyle(),                 // Default badgeTextStyle TextStyle 
+    this.badgeCircleRadius                 = 8.0,                               // Default badgeCircleRadius 8.0
+    this.badgeTopPosition                  = 10.0,                              // Default badgeTopPosition 10.0
+    this.badgeBottomPosition               = 16.0,                              // Default badgeBottomPosition 16.0
+    this.badgeLeftPosition,                                                     // Default badgeLeftPosition Null
+    this.badgeRightPosition,                                                    // Default badgeRightPosition Null
     
-    this.animationType                     = Curves.easeOut,                    // Default easeOut
-    this.animationDuration                 = const Duration(milliseconds: 500), // Default 500ms
-    this.onTap,                                                                 // Default Null
+    this.animationType                     = Curves.easeOut,                    // Default animationType easeOut
+    this.animationDuration                 = const Duration(milliseconds: 500), // Default animationDuration 500ms
+    this.onTap,                                                                 // Default onTap Null
   }) : super(key: key);
 
   @override
@@ -164,12 +171,29 @@ class UltimateBottomNavBarState extends State<UltimateBottomNavBar> with TickerP
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: widget.backgroundMargin,
       decoration: BoxDecoration(
         color: widget.backgroundColor,
+        borderRadius: widget.backgroundBorderRadius,
         border: widget.backgroundStrokeBorderWidth==0.0
         ?null
         :Border(
           top: BorderSide(
+            color : widget.backgroundStrokeBorderColor,
+            width : widget.backgroundStrokeBorderWidth,
+            style : BorderStyle.solid,
+          ),
+          bottom: BorderSide(
+            color : widget.backgroundStrokeBorderColor,
+            width : widget.backgroundStrokeBorderWidth,
+            style : BorderStyle.solid,
+          ),
+          left: BorderSide(
+            color : widget.backgroundStrokeBorderColor,
+            width : widget.backgroundStrokeBorderWidth,
+            style : BorderStyle.solid,
+          ),
+          right: BorderSide(
             color : widget.backgroundStrokeBorderColor,
             width : widget.backgroundStrokeBorderWidth,
             style : BorderStyle.solid,
@@ -332,20 +356,22 @@ class UltimateBottomNavBarState extends State<UltimateBottomNavBar> with TickerP
       ?NavForeGroundUnderStrokeBorderPainterStatic(
         _pos, 
         _length, 
-        widget.foregroundStrokeBorderColor, 
-        Directionality.of(context),
         widget.foregroundStrokeBorderWidth,
-        widget.strokeGradientShader,
-        widget.useShaderStroke
+        widget.useShaderStroke,
+        widget.showForeGroundStrokeAllSide,
+        widget.foregroundStrokeBorderColor, 
+        widget.foregroundStrokeGradientShader,
+        Directionality.of(context),
       )
       :NavForeGroundUpperStrokeBorderPainterStatic(
         _pos, 
         _length, 
-        widget.foregroundStrokeBorderColor, 
-        Directionality.of(context),
         widget.foregroundStrokeBorderWidth,
-        widget.strokeGradientShader,
-        widget.useShaderStroke
+        widget.useShaderStroke,
+        widget.showForeGroundStrokeAllSide,
+        widget.foregroundStrokeBorderColor, 
+        widget.foregroundStrokeGradientShader,
+        Directionality.of(context),
       )
       :null,
       child: Container(
@@ -357,7 +383,7 @@ class UltimateBottomNavBarState extends State<UltimateBottomNavBar> with TickerP
   CustomPaint dynamicCurve(BuildContext context) {
     return CustomPaint(
       painter: widget.underCurve
-      ?NavForeGroundCurvePainterUnder(
+      ?NavForeGroundCurvePainterUnderDynamic(
         _pos, 
         _length, 
         widget.useForeGroundGradient,
@@ -365,7 +391,7 @@ class UltimateBottomNavBarState extends State<UltimateBottomNavBar> with TickerP
         widget.foregroundColor, 
         Directionality.of(context)
       )
-      :NavForeGroundCurvePainterUpper(
+      :NavForeGroundCurvePainterUpperDynamic(
         _pos, 
         _length, 
         widget.useForeGroundGradient,
@@ -375,23 +401,25 @@ class UltimateBottomNavBarState extends State<UltimateBottomNavBar> with TickerP
       ),
       foregroundPainter: widget.foregroundStrokeBorderWidth!=0 
       ?widget.underCurve
-      ?NavForeGroundUnderStrokeBorderPainter(
+      ?NavForeGroundUnderStrokeBorderPainterDynamic(
         _pos, 
         _length, 
-        widget.foregroundStrokeBorderColor, 
-        Directionality.of(context),
         widget.foregroundStrokeBorderWidth,
-        widget.strokeGradientShader,
-        widget.useShaderStroke
+        widget.useShaderStroke,
+        widget.showForeGroundStrokeAllSide,
+        widget.foregroundStrokeBorderColor, 
+        widget.foregroundStrokeGradientShader,
+        Directionality.of(context),
       )
-      :NavForeGroundUpperStrokeBorderPainter(
+      :NavForeGroundUpperStrokeBorderPainterDynamic(
         _pos, 
         _length, 
-        widget.foregroundStrokeBorderColor, 
-        Directionality.of(context),
         widget.foregroundStrokeBorderWidth,
-        widget.strokeGradientShader,
-        widget.useShaderStroke
+        widget.useShaderStroke,
+        widget.showForeGroundStrokeAllSide,
+        widget.foregroundStrokeBorderColor, 
+        widget.foregroundStrokeGradientShader,
+        Directionality.of(context),
       )
       :null,
       child: Container(

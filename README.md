@@ -17,10 +17,12 @@ Ultimate Bottom Navigation Bar is a customizable bottom navigation bar for your 
 ## Static Curve
 
 ![Alt text](image-4.png)
+![Alt text](image-15.png)
 
 ## Dynamic Curve
 
 ![Alt text](image-13.png)
+![Alt text](image-14.png)
 
 ## lt
 

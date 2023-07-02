@@ -162,4 +162,4 @@ Check Out example project @ [example](example).
 
 ## FAQ
 
-Create a feature requests or bugs @ [issue tracker](https://github.com/saginbajracharya/ultimate_bottom_navbar/issues).
+Create a feature requests or bugs @ [Feature Request / issue tracker](https://github.com/saginbajracharya/ultimate_bottom_navbar/issues).

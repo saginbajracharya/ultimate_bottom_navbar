@@ -24,17 +24,11 @@ Ultimate Bottom Navigation Bar is a customizable bottom navigation bar for your 
 ![Alt text](image-13.png)
 ![Alt text](image-14.png)
 
-## lt
-
-![Alt text](image-5.png)
+## Other Customiztions
 
 ![Alt text](image-6.png)
 ![Alt text](image-7.png)
 ![Alt text](image-8.png)
-![Alt text](image-9.png)
 ![Alt text](image-10.png)
-![Alt text](image.png)
- Border Radius Background , Gradient Color
 ![Alt text](image-11.png)
- Custom Selected Item
 ![Alt text](image-12.png)

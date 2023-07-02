@@ -78,7 +78,7 @@ class UltimateBottomNavBar extends StatefulWidget {
     this.foregroundStrokeGradientShader,                                        // Default foreground Stroke Gradient Shader Null
     this.backgroundStrokeGradientShader,                                        // Default background Stroke Gradient Shader Null
 
-    this.navMargin                  = EdgeInsets.zero,                   // Default Background Margin Zero
+    this.navMargin                         = EdgeInsets.zero,                   // Default Background Margin Zero
     this.backgroundBorderRadius            = BorderRadius.zero,                 // Default Background Border Radius Zero
 
     this.selectedIconColor                 = white,                             // Default selectedIconColor white

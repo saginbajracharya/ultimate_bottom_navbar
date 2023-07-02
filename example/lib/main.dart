@@ -1,3 +1,4 @@
+import 'package:example/widgets/property_table_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:ultimate_bottom_navbar/ultimate_bottom_navbar.dart';
 import 'BottomNavPages/page_1.dart';
@@ -162,8 +163,10 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
+                      const Divider(thickness: 2),
                       // Nav Properties for Icons and margins
-                      const Text('Nav Properties'),
+                      Text('Nav Properties',style: heading1Style,textAlign: TextAlign.center),
+                      const Divider(thickness: 2),
                       //TextDirection LTR / RTL
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical :8.0),
@@ -186,7 +189,7 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
                               }
                             });
                           }, 
-                          child: Text(textDirection == TextDirection.ltr?'Text Direction RTL':'Text Direction LTR',style: const TextStyle(color: white),textAlign: TextAlign.center)
+                          child: Text(textDirection == TextDirection.ltr?'Text Direction RTL':'Text Direction LTR',style: buttonTextStyle,textAlign: TextAlign.center)
                         ),
                       ),
                       //Add Margin to Bottom Nav
@@ -210,7 +213,7 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
                               }
                             });
                           }, 
-                          child: Text(navBarMargin==null||navBarMargin==EdgeInsets.zero?'Add Margin':'Remove Margin',style: const TextStyle(color: white),textAlign: TextAlign.center)
+                          child: Text(navBarMargin==null||navBarMargin==EdgeInsets.zero?'Add Margin':'Remove Margin',style: buttonTextStyle,textAlign: TextAlign.center)
                         ),
                       ),
                       //Custom Selected Item Decor
@@ -234,7 +237,7 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
                               }
                             });
                           }, 
-                          child: const Text('Custom Selected Item Decor',style: TextStyle(color: white),textAlign: TextAlign.center)
+                          child: Text('Custom Selected Item Decor',style: buttonTextStyle,textAlign: TextAlign.center)
                         ),
                       ),
                       //Custom Selected Item Decor
@@ -258,7 +261,7 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
                               }
                             });
                           }, 
-                          child: const Text('Custom UnSelected Item Decor',style: TextStyle(color: white),textAlign: TextAlign.center)
+                          child: Text('Custom UnSelected Item Decor',style: buttonTextStyle,textAlign: TextAlign.center)
                         ),
                       ),
                       //Change Badge value 1
@@ -277,7 +280,7 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
                               badgeVal1 = (int.parse(badgeVal1)+1).toString();
                             });
                           }, 
-                          child: const Text('Change Badge value 1',style: TextStyle(color: white),textAlign: TextAlign.center)
+                          child: Text('Change Badge value 1',style: buttonTextStyle,textAlign: TextAlign.center)
                         ),
                       ),
                       //Change Badge value 2
@@ -296,7 +299,7 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
                               badgeVal2 = (int.parse(badgeVal2)+1).toString();
                             });
                           }, 
-                          child: const Text('Change Badge value 2',style: TextStyle(color: white),textAlign: TextAlign.center)
+                          child: Text('Change Badge value 2',style: buttonTextStyle,textAlign: TextAlign.center)
                         ),
                       ),
                       //Reset Badge value 1
@@ -315,7 +318,7 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
                               badgeVal1 = '0';
                             });
                           }, 
-                          child: const Text('Reset Badge value 1',style: TextStyle(color: white),textAlign: TextAlign.center)
+                          child: Text('Reset Badge value 1',style: buttonTextStyle,textAlign: TextAlign.center)
                         ),
                       ),
                       //Reset Badge value 2
@@ -334,11 +337,13 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
                               badgeVal2 = '0';
                             });
                           }, 
-                          child: const Text('Reset Badge value 2',style: TextStyle(color: white),textAlign: TextAlign.center)
+                          child: Text('Reset Badge value 2',style: buttonTextStyle,textAlign: TextAlign.center)
                         ),
                       ),
+                      const Divider(thickness: 2),
                       //BackGround Properties
-                      const Text('Back Ground Properties'),
+                      Text('Back Ground Properties',style: heading1Style,textAlign: TextAlign.center),
+                      const Divider(thickness: 2),
                       //Background Gradient or Solid Color
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical :8.0),
@@ -360,7 +365,7 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
                               }
                             });
                           }, 
-                          child: Text(backgroundGradientColors==null?'Show Background Gradient Color':'Show Background Solid Color',style: const TextStyle(color: white),textAlign: TextAlign.center)
+                          child: Text(backgroundGradientColors==null?'Show Background Gradient Color':'Show Background Solid Color',style: buttonTextStyle,textAlign: TextAlign.center)
                         ),
                       ),
                       //Show Hide Background Stroke
@@ -383,7 +388,7 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
                               }
                             });
                           }, 
-                          child: Text(backgroundStrokeBorderWidth==0.0?'Show Background Stroke':'Hide Background Stroke',style: const TextStyle(color: white),textAlign: TextAlign.center)
+                          child: Text(backgroundStrokeBorderWidth==0.0?'Show Background Stroke':'Hide Background Stroke',style: buttonTextStyle,textAlign: TextAlign.center)
                         ),
                       ),
                       //Background Shader Stroke or Solid Color Stroke
@@ -407,7 +412,7 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
                               }
                             });
                           }, 
-                          child: Text(useBackgroundShaderStroke?'BackGround Solid Color Stroke':'BackGround Shader Gradient Stroke',style: const TextStyle(color: white),textAlign: TextAlign.center)
+                          child: Text(useBackgroundShaderStroke?'BackGround Solid Color Stroke':'BackGround Shader Gradient Stroke',style: buttonTextStyle,textAlign: TextAlign.center)
                         ),
                       ),
                       //BackGround show hide all Side Stroke
@@ -431,7 +436,7 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
                               }
                             });
                           }, 
-                          child: Text(showBackGroundStrokeAllSide?'Hide BackGround Stroke AllSide':'Show BackGround Stroke AllSide\n Add Padding to view \n Work only when circular property is Zero',style: const TextStyle(color: white),textAlign: TextAlign.center)
+                          child: Text(showBackGroundStrokeAllSide?'Hide BackGround Stroke AllSide':'Show BackGround Stroke AllSide\n Add Padding to view \n Work only when circular property is Zero',style: buttonTextStyle,textAlign: TextAlign.center)
                         ),
                       ),
                       //BackGround border Radius Stroke
@@ -455,11 +460,13 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
                               }
                             });
                           }, 
-                          child: Text(backgroundBorderRadius==null||backgroundBorderRadius==BorderRadius.zero?'Show BackGround Circular Radius Stroke\n for all Sides':'Hide BackGround Circular Radius Stroke',style: const TextStyle(color: white),textAlign: TextAlign.center)
+                          child: Text(backgroundBorderRadius==null||backgroundBorderRadius==BorderRadius.zero?'Show BackGround Circular Radius Stroke\n for all Sides':'Hide BackGround Circular Radius Stroke',style: buttonTextStyle,textAlign: TextAlign.center)
                         ),
                       ),
+                      const Divider(thickness: 2),
                       //ForeGround Properties
-                      const Text('Fore Ground Properties'),
+                      Text('Fore Ground Properties',style: heading1Style,textAlign: TextAlign.center),
+                      const Divider(thickness: 2),
                       //Show Hide ForeGround
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical :8.0),
@@ -481,7 +488,7 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
                               }
                             });
                           }, 
-                          child: Text(showForeGround?'Hide ForeGround':'Show ForeGround',style: const TextStyle(color: white),textAlign: TextAlign.center)
+                          child: Text(showForeGround?'Hide ForeGround':'Show ForeGround',style: buttonTextStyle,textAlign: TextAlign.center)
                         ),
                       ),
                       //ForeGround Gradient / Solod Color
@@ -505,7 +512,7 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
                               }
                             });
                           }, 
-                          child: Text(useForeGroundGradient?'ForeGround Solid Color':'ForeGround Gradient Color',style: const TextStyle(color: white),textAlign: TextAlign.center)
+                          child: Text(useForeGroundGradient?'ForeGround Solid Color':'ForeGround Gradient Color',style: buttonTextStyle,textAlign: TextAlign.center)
                         ),
                       ),
                       //Foreground Shader Stroke
@@ -529,7 +536,7 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
                               }
                             });
                           }, 
-                          child: Text(useForegroundShaderStroke?'ForeGround Solid Color Stroke':'ForeGround Shader Gradient Stroke',style: const TextStyle(color: white),textAlign: TextAlign.center)
+                          child: Text(useForegroundShaderStroke?'ForeGround Solid Color Stroke':'ForeGround Shader Gradient Stroke',style: buttonTextStyle,textAlign: TextAlign.center)
                         ),
                       ),
                       //ForeGround show hide all Side Stroke
@@ -553,7 +560,7 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
                               }
                             });
                           }, 
-                          child: Text(showForeGroundStrokeAllSide?'Hide ForeGround Stroke AllSide':'Show ForeGround Stroke AllSide\n Add Padding to view',style: const TextStyle(color: white),textAlign: TextAlign.center)
+                          child: Text(showForeGroundStrokeAllSide?'Hide ForeGround Stroke AllSide':'Show ForeGround Stroke AllSide\n Add Padding to view',style: buttonTextStyle,textAlign: TextAlign.center)
                         ),
                       ),
                       //Under Upper Curve
@@ -577,7 +584,7 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
                               }
                             });
                           }, 
-                          child: Text(underCurve?'Upper Curve':'Under Curve',style: const TextStyle(color: white),textAlign: TextAlign.center)
+                          child: Text(underCurve?'Upper Curve':'Under Curve',style: buttonTextStyle,textAlign: TextAlign.center)
                         ),
                       ),
                       //Static Dynamic Curve
@@ -601,7 +608,7 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
                               }
                             });
                           }, 
-                          child: Text(staticCurve?'Dynamic Curve':'Static Curve',style: const TextStyle(color: white),textAlign: TextAlign.center)
+                          child: Text(staticCurve?'Dynamic Curve':'Static Curve',style: buttonTextStyle,textAlign: TextAlign.center)
                         ),
                       ),
                       //Mid Item Decor Static Curves
@@ -625,68 +632,14 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
                               }
                             });
                           }, 
-                          child: Text(showMidCircleStatic?'Hide Mid Item Decor For Static Curve':'Show Mid Item Decor For Static Curve\nMust Be Static Curve and Selected,Unselected Decor overrides',style: const TextStyle(color: white),textAlign: TextAlign.center)
+                          child: Text(showMidCircleStatic?'Hide Mid Item Decor For Static Curve':'Show Mid Item Decor For Static Curve\nMust Be Static Curve and Selected,Unselected Decor overrides',style: buttonTextStyle,textAlign: TextAlign.center)
                         ),
                       ),
-                      const Text('List Of All Available Properties'),
-                      RichText(
-                        textAlign: TextAlign.start,
-                        text:  TextSpan(
-                          children: [
-                            TextSpan(text:'icons'.padRight(40)                             +'Required\n'),
-                            TextSpan(text:'titles'.padRight(36)                            +'Required\n'),
-                            TextSpan(text:'currentIndex'.padRight(40)                      +'Required\n'),
-                            TextSpan(text:'backgroundColor'.padRight(40)                   +'Default background Color Null\n'),
-                            TextSpan(text:'foregroundColor'.padRight(40)                   +'Default foreground Color White\n'),
-                            TextSpan(text:'foregroundStrokeBorderColor'.padRight(40)       +'Default foreground Stroke Border Color White\n'),
-                            TextSpan(text:'backgroundStrokeBorderColor'.padRight(40)       +'Default background Stroke Border Color White\n'),
-                            TextSpan(text:'backgroundStrokeBorderWidth'.padRight(40)       +'Default Nav BackGround Stroke Border Width\n'),
-                            TextSpan(text:'foregroundStrokeBorderWidth'.padRight(40)       +'Default Nav ForeGround Stroke Border Width\n'),
-                            TextSpan(text:'backgroundGradient'.padRight(40)                +'Default background Gradient Null\n'),
-                            TextSpan(text:'foreGroundGradientShader'.padRight(40)          +'Default foreGround Gradient Shader Null\n'),
-                            TextSpan(text:'foregroundStrokeGradientShader'.padRight(40)    +'Default foreground Stroke Gradient Shader Null\n'),
-                            TextSpan(text:'backgroundStrokeGradientShader'.padRight(40)    +'Default background Stroke Gradient Shader Null\n'),
-                            TextSpan(text:'navMargin'.padRight(40)                         +'Default Background Margin Zero\n'),
-                            TextSpan(text:'backgroundBorderRadius'.padRight(40)            +'Default Background Border Radius Zero\n'),
-                            TextSpan(text:'selectedIconColor'.padRight(40)                 +'Default selectedIconColor white\n'),
-                            TextSpan(text:'selectedIconSize'.padRight(40)                  +'Default selectedIconSize 26.0\n'),
-                            TextSpan(text:'selectedTextSize'.padRight(40)                  +'Default selectedTextSize 11.0\n'),
-                            TextSpan(text:'selectedTextColor'.padRight(40)                 +'Default selectedTextColor white\n'),
-                            TextSpan(text:'unselectedIconColor'.padRight(40)               +'Default unselectedIconColor black\n'),
-                            TextSpan(text:'unselectedIconSize'.padRight(40)                +'Default unselectedIconSize 24.0\n'),
-                            TextSpan(text:'unselectedTextSize'.padRight(40)                +'Default unselectedTextSize 10.0\n'),
-                            TextSpan(text:'unselectedTextColor'.padRight(40)               +'Default unselectedTextColor black\n'),
-                            TextSpan(text:'showForeGroundStrokeAllSide'.padRight(40)       +'Default showForeGroundStrokeAllSide False\n'),
-                            TextSpan(text:'showBackGroundStrokeAllSide'.padRight(40)       +'Default showForeGroundStrokeAllSide False\n'),
-                            TextSpan(text:'useForeGroundGradient'.padRight(40)             +'Default useForeGroundGradient false\n'),
-                            TextSpan(text:'showForeGround'.padRight(40)                    +'Default showForeGround true\n'),
-                            TextSpan(text:'useForegroundShaderStroke'.padRight(40)         +'Default useForegroundShaderStroke false\n'),
-                            TextSpan(text:'useBackgroundShaderStroke'.padRight(40)         +'Default useBackgroundShaderStroke false\n'),
-                            TextSpan(text:'underCurve'.padRight(40)                        +'Default underCurve true\n'),
-                            TextSpan(text:'staticCurve'.padRight(40)                       +'Default staticCurve false\n'),
-                            TextSpan(text:'showCircleStaticMidItemStatic'.padRight(40)     +'Default showCircleStaticMidItemStatic true\n'),
-                            TextSpan(text:'midItemCircleColorStatic'.padRight(40)          +'Default midItemCircleColorStatic white\n'),
-                            TextSpan(text:'midItemCircleBorderColorStatic'.padRight(40)    +'Default midItemCircleBorderColorStatic black\n'),
-                            TextSpan(text:'showMidCircleStatic'.padRight(40)               +'Default showMidCircleStatic true\n'),
-                            TextSpan(text:'midCircleRadiusStatic'.padRight(40)             +'Default midCircleRadiusStatic 25.0\n'),
-                            TextSpan(text:'midCircleBorderRadiusStatic'.padRight(40)       +'Default midCircleBorderRadiusStatic 2.0\n'),
-                            TextSpan(text:'customSelectedItemDecor'.padRight(40)           +'Default customSelectedItemDecor Null\n'),
-                            TextSpan(text:'customUnSelectedItemDecor'.padRight(40)         +'Default customUnSelectedItemDecor Null\n'),
-                            TextSpan(text:'badgeData'.padRight(40)                         +'Badge Data for individual item\n'),
-                            TextSpan(text:'badgeColor'.padRight(40)                        +'Default badgeColor red\n'),
-                            TextSpan(text:'badgeTextStyle'.padRight(40)                    +'Default badgeTextStyle TextStyle\n'),
-                            TextSpan(text:'badgeCircleRadius'.padRight(40)                 +'Default badgeCircleRadius 8.0\n'),
-                            TextSpan(text:'badgeTopPosition'.padRight(40)                  +'Default badgeTopPosition 10.0\n'),
-                            TextSpan(text:'badgeBottomPosition'.padRight(40)               +'Default badgeBottomPosition 16.0\n'),
-                            TextSpan(text:'badgeLeftPosition'.padRight(40)                 +'Default badgeLeftPosition Null\n'),
-                            TextSpan(text:'badgeRightPosition'.padRight(40)                +'Default badgeRightPosition Null\n'),
-                            TextSpan(text:'animationType'.padRight(40)                     +'Default animationType easeOut\n'),
-                            TextSpan(text:'animationDuration'.padRight(40)                 +'Default animationDuration 500ms\n'),
-                            TextSpan(text:'onTap'.padRight(40)                             +'Default onTap Null\n'),
-                          ],
-                        ),
-                        
-                      ),
+                      const Divider(thickness: 2),
+                      //List Of All Available Properties
+                      Text('Available Properties',style: heading1Style,textAlign: TextAlign.center),
+                      const Divider(thickness: 2),
+                      const PropertyTable(),
                       const SizedBox(
                         height: 100,
                       )

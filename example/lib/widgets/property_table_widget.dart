@@ -147,7 +147,7 @@ class PropertyTable extends StatelessWidget {
           ]),
           DataRow(cells: [
             DataCell(Text('showForeGround',style: heading2Style,textAlign: TextAlign.center)),
-            DataCell(Text('Show Foreground',style: heading2Style,textAlign: TextAlign.center)),
+            DataCell(Text('Show Hide Foreground',style: heading2Style,textAlign: TextAlign.center)),
             DataCell(Text('True',style: heading2Style,textAlign: TextAlign.center)),
           ]),
           DataRow(cells: [

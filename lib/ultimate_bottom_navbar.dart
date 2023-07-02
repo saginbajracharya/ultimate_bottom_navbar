@@ -21,7 +21,7 @@ class UltimateBottomNavBar extends StatefulWidget {
   final Shader? foregroundStrokeGradientShader;
   final Shader? backgroundStrokeGradientShader;
 
-  final EdgeInsetsGeometry? backgroundMargin;
+  final EdgeInsetsGeometry? navMargin;
   final BorderRadiusGeometry? backgroundBorderRadius;
 
   final Color? selectedIconColor;
@@ -37,7 +37,8 @@ class UltimateBottomNavBar extends StatefulWidget {
   final bool showBackGroundStrokeAllSide;
   final bool useForeGroundGradient;
   final bool showForeGround;
-  final bool useShaderStroke;
+  final bool useForegroundShaderStroke;
+  final bool useBackgroundShaderStroke;
   final bool underCurve;
   final bool staticCurve;
   final bool showCircleStaticMidItemStatic;
@@ -70,14 +71,14 @@ class UltimateBottomNavBar extends StatefulWidget {
     this.foregroundColor                   = grey,                              // Default foreground Color White
     this.foregroundStrokeBorderColor       = black,                             // Default foreground Stroke Border Color White
     this.backgroundStrokeBorderColor       = black,                             // Default background Stroke Border Color White
-    this.backgroundStrokeBorderWidth       = 0.0,                               // Default Nav BackGround Stroke Border Width
+    this.backgroundStrokeBorderWidth       = 1.0,                               // Default Nav BackGround Stroke Border Width
     this.foregroundStrokeBorderWidth       = 1.0,                               // Default Nav ForeGround Stroke Border Width
     this.backgroundGradient,                                                    // Default background Gradient Null
     this.foreGroundGradientShader,                                              // Default foreGround Gradient Shader Null
     this.foregroundStrokeGradientShader,                                        // Default foreground Stroke Gradient Shader Null
     this.backgroundStrokeGradientShader,                                        // Default background Stroke Gradient Shader Null
 
-    this.backgroundMargin                  = EdgeInsets.zero,                   // Default Background Margin Zero
+    this.navMargin                  = EdgeInsets.zero,                   // Default Background Margin Zero
     this.backgroundBorderRadius            = BorderRadius.zero,                 // Default Background Border Radius Zero
 
     this.selectedIconColor                 = white,                             // Default selectedIconColor white
@@ -93,7 +94,8 @@ class UltimateBottomNavBar extends StatefulWidget {
     this.showBackGroundStrokeAllSide       = false,                             // Default showForeGroundStrokeAllSide False
     this.useForeGroundGradient             = false,                             // Default useForeGroundGradient false
     this.showForeGround                    = true,                              // Default showForeGround true
-    this.useShaderStroke                   = false,                             // Default useShaderStroke false
+    this.useForegroundShaderStroke         = false,                             // Default useForegroundShaderStroke false
+    this.useBackgroundShaderStroke         = false,                             // Default useBackgroundShaderStroke false
     this.underCurve                        = true,                              // Default underCurve true
     this.staticCurve                       = false,                             // Default staticCurve false
     this.showCircleStaticMidItemStatic     = true,                              // Default showCircleStaticMidItemStatic true
@@ -176,7 +178,7 @@ class UltimateBottomNavBarState extends State<UltimateBottomNavBar> with TickerP
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: widget.backgroundMargin,
+      margin: widget.navMargin,
       child: CustomPaint(
         painter: widget.backgroundStrokeBorderWidth==0.0
         ?null
@@ -184,7 +186,7 @@ class UltimateBottomNavBarState extends State<UltimateBottomNavBar> with TickerP
           _pos, 
           _length, 
           widget.backgroundStrokeBorderWidth,
-          widget.useShaderStroke,
+          widget.useBackgroundShaderStroke,
           widget.showBackGroundStrokeAllSide,
           widget.backgroundStrokeBorderColor, 
           widget.backgroundStrokeGradientShader,
@@ -355,7 +357,7 @@ class UltimateBottomNavBarState extends State<UltimateBottomNavBar> with TickerP
         _pos, 
         _length, 
         widget.foregroundStrokeBorderWidth,
-        widget.useShaderStroke,
+        widget.useForegroundShaderStroke,
         widget.showForeGroundStrokeAllSide,
         widget.foregroundStrokeBorderColor, 
         widget.foregroundStrokeGradientShader,
@@ -365,7 +367,7 @@ class UltimateBottomNavBarState extends State<UltimateBottomNavBar> with TickerP
         _pos, 
         _length, 
         widget.foregroundStrokeBorderWidth,
-        widget.useShaderStroke,
+        widget.useForegroundShaderStroke,
         widget.showForeGroundStrokeAllSide,
         widget.foregroundStrokeBorderColor, 
         widget.foregroundStrokeGradientShader,
@@ -403,7 +405,7 @@ class UltimateBottomNavBarState extends State<UltimateBottomNavBar> with TickerP
         _pos, 
         _length, 
         widget.foregroundStrokeBorderWidth,
-        widget.useShaderStroke,
+        widget.useForegroundShaderStroke,
         widget.showForeGroundStrokeAllSide,
         widget.foregroundStrokeBorderColor, 
         widget.foregroundStrokeGradientShader,
@@ -413,7 +415,7 @@ class UltimateBottomNavBarState extends State<UltimateBottomNavBar> with TickerP
         _pos, 
         _length, 
         widget.foregroundStrokeBorderWidth,
-        widget.useShaderStroke,
+        widget.useForegroundShaderStroke,
         widget.showForeGroundStrokeAllSide,
         widget.foregroundStrokeBorderColor, 
         widget.foregroundStrokeGradientShader,

@@ -46,17 +46,32 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
     tileMode: TileMode.mirror,
   );
 
-  Shader foreGroundGradientShader = const LinearGradient(
-    begin: Alignment.topCenter,
-    end: Alignment.bottomCenter,
+  Shader backgroundStrokeGradientShader = const LinearGradient(
+    begin: Alignment.centerLeft,
+    end: Alignment.centerRight,
     colors: [
       blue,
       white,
-      blue,
-      white,
       red,
+      white,
+      blue,
     ],
-    stops: [0.2, 0.4, 0.5, 0.6, 2.0],
+    stops: [0.0, 0.25, 0.5, 0.75, 1.0],
+    tileMode: TileMode.repeated,
+  ).createShader(Rect.fromCenter(center: const Offset(0.0, 0.0), height: 1.0, width: 100.0));
+
+  Shader foreGroundGradientShader = LinearGradient(
+    begin: Alignment.topCenter,
+    end: Alignment.bottomCenter,
+    colors: [
+      white,     // White
+      lightGrey, // Light Gray
+      grey,      // Gray
+      darkGrey,  // Dark Gray
+      black,     // Black
+    ],
+    stops: const [0.0, 0.25, 0.5, 0.75, 1.0],
+    tileMode: TileMode.mirror,
   ).createShader(Rect.fromCenter(center: const Offset(0.0,0.0), height: 200, width: 100));
 
   Shader foregroundStrokeGradientShader = const LinearGradient(
@@ -72,21 +87,28 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
     stops: [0.2, 0.4, 0.5, 0.6, 2.0],
   ).createShader(Rect.fromCenter(center: const Offset(0.0,0.0), height: 200, width: 100));
 
-  int currentIndex                   = 0;
-  bool staticCurve                   = false;
-  bool useForeGroundGradient         = false;
-  bool showForeGround                = true;
-  bool useShaderStroke               = false;
-  bool underCurve                    = true;
-  bool showCircleStaticMidItem       = true;
-  bool showForeGroundStrokeAllSide   = false;
-  bool showBackGroundStrokeAllSide   = false;
-  Color backgroundColor              = blue; 
+  int currentIndex                             = 0;
+  bool staticCurve                             = false;
+  bool useForeGroundGradient                   = false;
+  bool showForeGround                          = true;
+  bool useBackgroundShaderStroke               = false;
+  bool useForegroundShaderStroke               = false;
+  bool underCurve                              = true;
+  bool showCircleStaticMidItem                 = true;
+  bool showForeGroundStrokeAllSide             = false;
+  bool showBackGroundStrokeAllSide             = false;
+  bool showMidCircleStatic                     = false; 
+  Color backgroundColor                        = blue; 
+  Widget? customSelectedItemDecor;
+  Widget? customUnSelectedItemDecor;
   Gradient? backgroundGradientColors;
-  double backgroundStrokeBorderWidth = 5.0;  
-  var badgeVal1                      = '5';
-  var badgeVal2                      = '55';
-  var textDirection                  = TextDirection.ltr;
+  double backgroundStrokeBorderWidth           = 2.0; 
+  double foregroundStrokeBorderWidth           = 2.0;  
+  BorderRadiusGeometry? backgroundBorderRadius = BorderRadius.circular(0.0);
+  EdgeInsetsGeometry? navBarMargin             = const EdgeInsets.only(left: 0.0,right: 0.0,bottom: 0.0);
+  var badgeVal1                                = '5';
+  var badgeVal2                                = '55';
+  var textDirection                            = TextDirection.ltr;
 
   final List<String> title = [
     "Favourite",
@@ -140,6 +162,8 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
+                      // Nav Properties for Icons and margins
+                      const Text('Nav Properties'),
                       //TextDirection LTR / RTL
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical :8.0),
@@ -162,9 +186,159 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
                               }
                             });
                           }, 
-                          child: Text(textDirection == TextDirection.ltr?'Text Direction RTL':'Text Direction LTR',style: const TextStyle(color: white))
+                          child: Text(textDirection == TextDirection.ltr?'Text Direction RTL':'Text Direction LTR',style: const TextStyle(color: white),textAlign: TextAlign.center)
                         ),
                       ),
+                      //Add Margin to Bottom Nav
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical :8.0),
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            primary: black,
+                            minimumSize: const Size.fromHeight(50),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10), // Set the desired radius here
+                            ),
+                          ),
+                          onPressed: ()async{
+                            setState(() {
+                              if(navBarMargin==null||navBarMargin==EdgeInsets.zero)
+                              {
+                                navBarMargin=const EdgeInsets.only(left: 10.0,right: 10.0,bottom: 10.0);
+                              }else{
+                                navBarMargin=EdgeInsets.zero;
+                              }
+                            });
+                          }, 
+                          child: Text(navBarMargin==null||navBarMargin==EdgeInsets.zero?'Add Margin':'Remove Margin',style: const TextStyle(color: white),textAlign: TextAlign.center)
+                        ),
+                      ),
+                      //Custom Selected Item Decor
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical :8.0),
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            primary: black,
+                            minimumSize: const Size.fromHeight(50),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10), // Set the desired radius here
+                            ),
+                          ),
+                          onPressed: ()async{
+                            setState(() {
+                              if(customSelectedItemDecor == null){
+                                customSelectedItemDecor = customSelecteditem();
+                              } 
+                              else{
+                                customSelectedItemDecor = null;
+                              }
+                            });
+                          }, 
+                          child: const Text('Custom Selected Item Decor',style: TextStyle(color: white),textAlign: TextAlign.center)
+                        ),
+                      ),
+                      //Custom Selected Item Decor
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical :8.0),
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            primary: black,
+                            minimumSize: const Size.fromHeight(50),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10), // Set the desired radius here
+                            ),
+                          ),
+                          onPressed: ()async{
+                            setState(() {
+                              if(customUnSelectedItemDecor == null){
+                                customUnSelectedItemDecor = customUnselectedItem();
+                              } 
+                              else{
+                                customUnSelectedItemDecor = null;
+                              }
+                            });
+                          }, 
+                          child: const Text('Custom UnSelected Item Decor',style: TextStyle(color: white),textAlign: TextAlign.center)
+                        ),
+                      ),
+                      //Change Badge value 1
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical :8.0),
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            primary: black,
+                            minimumSize: const Size.fromHeight(50),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10), // Set the desired radius here
+                            ),
+                          ),
+                          onPressed: ()async{
+                            setState(() {
+                              badgeVal1 = (int.parse(badgeVal1)+1).toString();
+                            });
+                          }, 
+                          child: const Text('Change Badge value 1',style: TextStyle(color: white),textAlign: TextAlign.center)
+                        ),
+                      ),
+                      //Change Badge value 2
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical :8.0),
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            primary: black,
+                            minimumSize: const Size.fromHeight(50),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10), // Set the desired radius here
+                            ),
+                          ),
+                          onPressed: ()async{
+                            setState(() {
+                              badgeVal2 = (int.parse(badgeVal2)+1).toString();
+                            });
+                          }, 
+                          child: const Text('Change Badge value 2',style: TextStyle(color: white),textAlign: TextAlign.center)
+                        ),
+                      ),
+                      //Reset Badge value 1
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical :8.0),
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            primary: black,
+                            minimumSize: const Size.fromHeight(50),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10), // Set the desired radius here
+                            ),
+                          ),
+                          onPressed: ()async{
+                            setState(() {
+                              badgeVal1 = '0';
+                            });
+                          }, 
+                          child: const Text('Reset Badge value 1',style: TextStyle(color: white),textAlign: TextAlign.center)
+                        ),
+                      ),
+                      //Reset Badge value 2
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical :8.0),
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            primary: black,
+                            minimumSize: const Size.fromHeight(50),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10), // Set the desired radius here
+                            ),
+                          ),
+                          onPressed: ()async{
+                            setState(() {
+                              badgeVal2 = '0';
+                            });
+                          }, 
+                          child: const Text('Reset Badge value 2',style: TextStyle(color: white),textAlign: TextAlign.center)
+                        ),
+                      ),
+                      //BackGround Properties
+                      const Text('Back Ground Properties'),
                       //Background Gradient or Solid Color
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical :8.0),
@@ -186,7 +360,7 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
                               }
                             });
                           }, 
-                          child: Text(backgroundGradientColors==null?'Show Background Gradient Color':'Show Background Solid Color',style: const TextStyle(color: white))
+                          child: Text(backgroundGradientColors==null?'Show Background Gradient Color':'Show Background Solid Color',style: const TextStyle(color: white),textAlign: TextAlign.center)
                         ),
                       ),
                       //Show Hide Background Stroke
@@ -209,10 +383,10 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
                               }
                             });
                           }, 
-                          child: Text(backgroundStrokeBorderWidth==0.0?'Show Background Stroke':'Hide Background Stroke',style: const TextStyle(color: white))
+                          child: Text(backgroundStrokeBorderWidth==0.0?'Show Background Stroke':'Hide Background Stroke',style: const TextStyle(color: white),textAlign: TextAlign.center)
                         ),
                       ),
-                      //ForeGround Gradient / Solod Color
+                      //Background Shader Stroke or Solid Color Stroke
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical :8.0),
                         child: ElevatedButton(
@@ -225,39 +399,15 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
                           ),
                           onPressed: ()async{
                             setState(() {
-                              if(useForeGroundGradient==false)
+                              if(useBackgroundShaderStroke==false)
                               {
-                                useForeGroundGradient=true;
+                                useBackgroundShaderStroke=true;
                               }else{
-                                useForeGroundGradient=false;
+                                useBackgroundShaderStroke=false;
                               }
                             });
                           }, 
-                          child: Text(useForeGroundGradient?'ForeGround Solid Color':'ForeGround Gradient Color',style: const TextStyle(color: white))
-                        ),
-                      ),
-                      //ForeGround show hide all Side Stroke
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical :8.0),
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            primary: black,
-                            minimumSize: const Size.fromHeight(50),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10), // Set the desired radius here
-                            ),
-                          ),
-                          onPressed: ()async{
-                            setState(() {
-                              if(showForeGroundStrokeAllSide==false)
-                              {
-                                showForeGroundStrokeAllSide=true;
-                              }else{
-                                showForeGroundStrokeAllSide=false;
-                              }
-                            });
-                          }, 
-                          child: Text(showForeGroundStrokeAllSide?'hide ForeGround Stroke AllSide':'show ForeGround Stroke AllSide',style: const TextStyle(color: white))
+                          child: Text(useBackgroundShaderStroke?'BackGround Solid Color Stroke':'BackGround Shader Gradient Stroke',style: const TextStyle(color: white),textAlign: TextAlign.center)
                         ),
                       ),
                       //BackGround show hide all Side Stroke
@@ -281,9 +431,35 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
                               }
                             });
                           }, 
-                          child: Text(showBackGroundStrokeAllSide?'hide BackGround Stroke AllSide':'show BackGround Stroke AllSide',style: const TextStyle(color: white))
+                          child: Text(showBackGroundStrokeAllSide?'Hide BackGround Stroke AllSide':'Show BackGround Stroke AllSide\n Add Padding to view \n Work only when circular property is Zero',style: const TextStyle(color: white),textAlign: TextAlign.center)
                         ),
                       ),
+                      //BackGround border Radius Stroke
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical :8.0),
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            primary: black,
+                            minimumSize: const Size.fromHeight(50),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10), // Set the desired radius here
+                            ),
+                          ),
+                          onPressed: ()async{
+                            setState(() {
+                              if(backgroundBorderRadius==null||backgroundBorderRadius==BorderRadius.zero)
+                              {
+                                backgroundBorderRadius=BorderRadius.circular(10.0);
+                              }else{
+                                backgroundBorderRadius=BorderRadius.zero;
+                              }
+                            });
+                          }, 
+                          child: Text(backgroundBorderRadius==null||backgroundBorderRadius==BorderRadius.zero?'Show BackGround Circular Radius Stroke\n for all Sides':'Hide BackGround Circular Radius Stroke',style: const TextStyle(color: white),textAlign: TextAlign.center)
+                        ),
+                      ),
+                      //ForeGround Properties
+                      const Text('Fore Ground Properties'),
                       //Show Hide ForeGround
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical :8.0),
@@ -305,7 +481,31 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
                               }
                             });
                           }, 
-                          child: Text(showForeGround?'Hide ForeGround':'Show ForeGround',style: const TextStyle(color: white))
+                          child: Text(showForeGround?'Hide ForeGround':'Show ForeGround',style: const TextStyle(color: white),textAlign: TextAlign.center)
+                        ),
+                      ),
+                      //ForeGround Gradient / Solod Color
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical :8.0),
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            primary: black,
+                            minimumSize: const Size.fromHeight(50),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10), // Set the desired radius here
+                            ),
+                          ),
+                          onPressed: ()async{
+                            setState(() {
+                              if(useForeGroundGradient==false)
+                              {
+                                useForeGroundGradient=true;
+                              }else{
+                                useForeGroundGradient=false;
+                              }
+                            });
+                          }, 
+                          child: Text(useForeGroundGradient?'ForeGround Solid Color':'ForeGround Gradient Color',style: const TextStyle(color: white),textAlign: TextAlign.center)
                         ),
                       ),
                       //Foreground Shader Stroke
@@ -321,15 +521,39 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
                           ),
                           onPressed: ()async{
                             setState(() {
-                              if(useShaderStroke==false)
+                              if(useForegroundShaderStroke==false)
                               {
-                                useShaderStroke=true;
+                                useForegroundShaderStroke=true;
                               }else{
-                                useShaderStroke=false;
+                                useForegroundShaderStroke=false;
                               }
                             });
                           }, 
-                          child: Text(useShaderStroke?'ForeGround Solid Color Stroke':'ForeGround Shader Gradient Stroke',style: const TextStyle(color: white))
+                          child: Text(useForegroundShaderStroke?'ForeGround Solid Color Stroke':'ForeGround Shader Gradient Stroke',style: const TextStyle(color: white),textAlign: TextAlign.center)
+                        ),
+                      ),
+                      //ForeGround show hide all Side Stroke
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical :8.0),
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            primary: black,
+                            minimumSize: const Size.fromHeight(50),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10), // Set the desired radius here
+                            ),
+                          ),
+                          onPressed: ()async{
+                            setState(() {
+                              if(showForeGroundStrokeAllSide==false)
+                              {
+                                showForeGroundStrokeAllSide=true;
+                              }else{
+                                showForeGroundStrokeAllSide=false;
+                              }
+                            });
+                          }, 
+                          child: Text(showForeGroundStrokeAllSide?'Hide ForeGround Stroke AllSide':'Show ForeGround Stroke AllSide\n Add Padding to view',style: const TextStyle(color: white),textAlign: TextAlign.center)
                         ),
                       ),
                       //Under Upper Curve
@@ -353,7 +577,7 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
                               }
                             });
                           }, 
-                          child: Text(underCurve?'Upper Curve':'Under Curve',style: const TextStyle(color: white))
+                          child: Text(underCurve?'Upper Curve':'Under Curve',style: const TextStyle(color: white),textAlign: TextAlign.center)
                         ),
                       ),
                       //Static Dynamic Curve
@@ -377,10 +601,10 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
                               }
                             });
                           }, 
-                          child: Text(staticCurve?'Dynamic Curve':'Static Curve',style: const TextStyle(color: white))
+                          child: Text(staticCurve?'Dynamic Curve':'Static Curve',style: const TextStyle(color: white),textAlign: TextAlign.center)
                         ),
                       ),
-                      //Change Badge value 1
+                      //Mid Item Decor Static Curves
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical :8.0),
                         child: ElevatedButton(
@@ -393,71 +617,78 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
                           ),
                           onPressed: ()async{
                             setState(() {
-                              badgeVal1 = (int.parse(badgeVal1)+1).toString();
+                              if(showMidCircleStatic==false)
+                              {
+                                showMidCircleStatic=true;
+                              }else{
+                                showMidCircleStatic=false;
+                              }
                             });
                           }, 
-                          child: const Text('Change Badge value 1',style: TextStyle(color: white))
+                          child: Text(showMidCircleStatic?'Hide Mid Item Decor For Static Curve':'Show Mid Item Decor For Static Curve\nMust Be Static Curve and Selected,Unselected Decor overrides',style: const TextStyle(color: white),textAlign: TextAlign.center)
                         ),
                       ),
-                      //Change Badge value 2
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical :8.0),
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            primary: black,
-                            minimumSize: const Size.fromHeight(50),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10), // Set the desired radius here
-                            ),
-                          ),
-                          onPressed: ()async{
-                            setState(() {
-                              badgeVal2 = (int.parse(badgeVal2)+1).toString();
-                            });
-                          }, 
-                          child: const Text('Change Badge value 2',style: TextStyle(color: white))
+                      const Text('List Of All Available Properties'),
+                      RichText(
+                        textAlign: TextAlign.start,
+                        text:  TextSpan(
+                          children: [
+                            TextSpan(text:'icons'.padRight(40)                             +'Required\n'),
+                            TextSpan(text:'titles'.padRight(36)                            +'Required\n'),
+                            TextSpan(text:'currentIndex'.padRight(40)                      +'Required\n'),
+                            TextSpan(text:'backgroundColor'.padRight(40)                   +'Default background Color Null\n'),
+                            TextSpan(text:'foregroundColor'.padRight(40)                   +'Default foreground Color White\n'),
+                            TextSpan(text:'foregroundStrokeBorderColor'.padRight(40)       +'Default foreground Stroke Border Color White\n'),
+                            TextSpan(text:'backgroundStrokeBorderColor'.padRight(40)       +'Default background Stroke Border Color White\n'),
+                            TextSpan(text:'backgroundStrokeBorderWidth'.padRight(40)       +'Default Nav BackGround Stroke Border Width\n'),
+                            TextSpan(text:'foregroundStrokeBorderWidth'.padRight(40)       +'Default Nav ForeGround Stroke Border Width\n'),
+                            TextSpan(text:'backgroundGradient'.padRight(40)                +'Default background Gradient Null\n'),
+                            TextSpan(text:'foreGroundGradientShader'.padRight(40)          +'Default foreGround Gradient Shader Null\n'),
+                            TextSpan(text:'foregroundStrokeGradientShader'.padRight(40)    +'Default foreground Stroke Gradient Shader Null\n'),
+                            TextSpan(text:'backgroundStrokeGradientShader'.padRight(40)    +'Default background Stroke Gradient Shader Null\n'),
+                            TextSpan(text:'navMargin'.padRight(40)                         +'Default Background Margin Zero\n'),
+                            TextSpan(text:'backgroundBorderRadius'.padRight(40)            +'Default Background Border Radius Zero\n'),
+                            TextSpan(text:'selectedIconColor'.padRight(40)                 +'Default selectedIconColor white\n'),
+                            TextSpan(text:'selectedIconSize'.padRight(40)                  +'Default selectedIconSize 26.0\n'),
+                            TextSpan(text:'selectedTextSize'.padRight(40)                  +'Default selectedTextSize 11.0\n'),
+                            TextSpan(text:'selectedTextColor'.padRight(40)                 +'Default selectedTextColor white\n'),
+                            TextSpan(text:'unselectedIconColor'.padRight(40)               +'Default unselectedIconColor black\n'),
+                            TextSpan(text:'unselectedIconSize'.padRight(40)                +'Default unselectedIconSize 24.0\n'),
+                            TextSpan(text:'unselectedTextSize'.padRight(40)                +'Default unselectedTextSize 10.0\n'),
+                            TextSpan(text:'unselectedTextColor'.padRight(40)               +'Default unselectedTextColor black\n'),
+                            TextSpan(text:'showForeGroundStrokeAllSide'.padRight(40)       +'Default showForeGroundStrokeAllSide False\n'),
+                            TextSpan(text:'showBackGroundStrokeAllSide'.padRight(40)       +'Default showForeGroundStrokeAllSide False\n'),
+                            TextSpan(text:'useForeGroundGradient'.padRight(40)             +'Default useForeGroundGradient false\n'),
+                            TextSpan(text:'showForeGround'.padRight(40)                    +'Default showForeGround true\n'),
+                            TextSpan(text:'useForegroundShaderStroke'.padRight(40)         +'Default useForegroundShaderStroke false\n'),
+                            TextSpan(text:'useBackgroundShaderStroke'.padRight(40)         +'Default useBackgroundShaderStroke false\n'),
+                            TextSpan(text:'underCurve'.padRight(40)                        +'Default underCurve true\n'),
+                            TextSpan(text:'staticCurve'.padRight(40)                       +'Default staticCurve false\n'),
+                            TextSpan(text:'showCircleStaticMidItemStatic'.padRight(40)     +'Default showCircleStaticMidItemStatic true\n'),
+                            TextSpan(text:'midItemCircleColorStatic'.padRight(40)          +'Default midItemCircleColorStatic white\n'),
+                            TextSpan(text:'midItemCircleBorderColorStatic'.padRight(40)    +'Default midItemCircleBorderColorStatic black\n'),
+                            TextSpan(text:'showMidCircleStatic'.padRight(40)               +'Default showMidCircleStatic true\n'),
+                            TextSpan(text:'midCircleRadiusStatic'.padRight(40)             +'Default midCircleRadiusStatic 25.0\n'),
+                            TextSpan(text:'midCircleBorderRadiusStatic'.padRight(40)       +'Default midCircleBorderRadiusStatic 2.0\n'),
+                            TextSpan(text:'customSelectedItemDecor'.padRight(40)           +'Default customSelectedItemDecor Null\n'),
+                            TextSpan(text:'customUnSelectedItemDecor'.padRight(40)         +'Default customUnSelectedItemDecor Null\n'),
+                            TextSpan(text:'badgeData'.padRight(40)                         +'Badge Data for individual item\n'),
+                            TextSpan(text:'badgeColor'.padRight(40)                        +'Default badgeColor red\n'),
+                            TextSpan(text:'badgeTextStyle'.padRight(40)                    +'Default badgeTextStyle TextStyle\n'),
+                            TextSpan(text:'badgeCircleRadius'.padRight(40)                 +'Default badgeCircleRadius 8.0\n'),
+                            TextSpan(text:'badgeTopPosition'.padRight(40)                  +'Default badgeTopPosition 10.0\n'),
+                            TextSpan(text:'badgeBottomPosition'.padRight(40)               +'Default badgeBottomPosition 16.0\n'),
+                            TextSpan(text:'badgeLeftPosition'.padRight(40)                 +'Default badgeLeftPosition Null\n'),
+                            TextSpan(text:'badgeRightPosition'.padRight(40)                +'Default badgeRightPosition Null\n'),
+                            TextSpan(text:'animationType'.padRight(40)                     +'Default animationType easeOut\n'),
+                            TextSpan(text:'animationDuration'.padRight(40)                 +'Default animationDuration 500ms\n'),
+                            TextSpan(text:'onTap'.padRight(40)                             +'Default onTap Null\n'),
+                          ],
                         ),
-                      ),
-                      //Reset Badge value 1
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical :8.0),
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            primary: black,
-                            minimumSize: const Size.fromHeight(50),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10), // Set the desired radius here
-                            ),
-                          ),
-                          onPressed: ()async{
-                            setState(() {
-                              badgeVal1 = '0';
-                            });
-                          }, 
-                          child: const Text('Reset Badge value 1',style: TextStyle(color: white))
-                        ),
-                      ),
-                      //Reset Badge value 2
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical :8.0),
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            primary: black,
-                            minimumSize: const Size.fromHeight(50),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10), // Set the desired radius here
-                            ),
-                          ),
-                          onPressed: ()async{
-                            setState(() {
-                              badgeVal2 = '0';
-                            });
-                          }, 
-                          child: const Text('Reset Badge value 2',style: TextStyle(color: white))
-                        ),
+                        
                       ),
                       const SizedBox(
-                        height: 50,
+                        height: 100,
                       )
                     ],
                   ),
@@ -472,16 +703,17 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
           currentIndex                       : currentIndex,                                                                // Current selected index
           backgroundColor                    : backgroundColor,                                                             // NavBar BackGround Color [backgroundGradient ovrerides color]
           foregroundColor                    : black,                                                                       // NavBar ForeGround Color with Curve 
-          foregroundStrokeBorderColor        : red,                                                                         // Nav Stroke Border Color [useShaderStroke = false , strokeBorderWidth != 0]
+          foregroundStrokeBorderColor        : red,                                                                         // Nav Stroke Border Color [useForegroundShaderStroke = false , strokeBorderWidth != 0]
           backgroundStrokeBorderColor        : white,                                                                       // nav background stroke color [seems like when border width is 0.0 still shows the color but transparent solves it]
-          backgroundStrokeBorderWidth        : 2.0,                                                                         // Nav BackGround Stroke Border Width
-          foregroundStrokeBorderWidth        : 2.0,                                                                         // Nav ForeGround Stroke Border Width  
+          backgroundStrokeBorderWidth        : backgroundStrokeBorderWidth,                                                 // Nav BackGround Stroke Border Width
+          foregroundStrokeBorderWidth        : foregroundStrokeBorderWidth,                                                 // Nav ForeGround Stroke Border Width  
           backgroundGradient                 : backgroundGradientColors,                                                    // Nav background Gradient [No Gradient if Null Overrides backgroundColor if given]
           foreGroundGradientShader           : foreGroundGradientShader,                                                    // Nav ForeGround Gradient Shader [foregroundColor or foreGroundGradientShader determined by Bool useForeGroundGradient]
           foregroundStrokeGradientShader     : foregroundStrokeGradientShader,                                              // ForeGround Stroke border Gradient Shader
-          
-          backgroundMargin                   : const EdgeInsets.only(left: 0.0,right: 0.0,bottom: 0.0),                     // Nav Background Margin
-          backgroundBorderRadius             : BorderRadius.circular(0.0),                                                  // Nav Background Border Radius
+          backgroundStrokeGradientShader     : backgroundStrokeGradientShader,                                              // BackGround Stroke border Gradient Shader                       
+
+          navMargin                          : navBarMargin,                                                                // Nav Margin
+          backgroundBorderRadius             : backgroundBorderRadius,                                                      // Nav Background Border Radius
 
           selectedIconColor                  : red,                                                                         // Selected Item Icon Color
           selectedIconSize                   : 25,                                                                          // Selected Item Icon Size
@@ -496,18 +728,19 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
           showBackGroundStrokeAllSide        : showBackGroundStrokeAllSide,                                                 // Show BackGround Stroke All Side [works when borderRadius is zero or null]
           useForeGroundGradient              : useForeGroundGradient,                                                       // Gradient for ForeGround or Not
           showForeGround                     : showForeGround,                                                              // Show ForeGround or Not
-          useShaderStroke                    : useShaderStroke,                                                             // Use Shadered Stroke Border or Not
+          useForegroundShaderStroke          : useForegroundShaderStroke,                                                   // Use ForeGround Shadered Stroke Border or Not
+          useBackgroundShaderStroke          : useBackgroundShaderStroke,                                                   // Use BackGround Shadered Stroke Border or Not
           underCurve                         : underCurve,                                                                  // Under Curve or Upper Curve
           staticCurve                        : staticCurve,                                                                 // Static Curve or Dynamic Curve
           showCircleStaticMidItemStatic      : showCircleStaticMidItem,                                                     // Show or Not Show Circle for Mid Item If Static Curve
 
           midItemCircleColorStatic           : black,                                                                       // Color of a Mid item circle for static item  
           midItemCircleBorderColorStatic     : white,                                                                       // Color of a Mid item border circle for static item
-          showMidCircleStatic                : false,                                                                       // Show/Hide Mid item circle for static item
+          showMidCircleStatic                : showMidCircleStatic,                                                                       // Show/Hide Mid item circle for static item
           midCircleRadiusStatic              : 20.0,                                                                        // Radius for Mid Circle
           midCircleBorderRadiusStatic        : 2.0,                                                                         // Radius for Mid Circle Border
-          customSelectedItemDecor            : customSelecteditem(),                                                        // Custom Selected Item Decor
-          customUnSelectedItemDecor          : customUnselectedItem(),                                                      // Custom UnSelected Item Decor
+          customSelectedItemDecor            : customSelectedItemDecor,                                                     // Custom Selected Item Decor
+          customUnSelectedItemDecor          : customUnSelectedItemDecor,                                                   // Custom UnSelected Item Decor
 
           badgeData                          : [{'index': 1, 'value': badgeVal1},{'index': 4, 'value': badgeVal2}],         //Badge Data for Each Index with value
           badgeColor                         : red,                                                                         // Badge Color 

@@ -4,8 +4,6 @@ Ultimate Bottom Navigation Bar is a customizable bottom navigation bar for your 
 
 ## Under Curve
 
-![Alt text](images/image-2.png)
-
 ## Upper Curve
 
 ![Alt text](images/image-3.png)

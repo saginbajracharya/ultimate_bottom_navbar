@@ -62,7 +62,7 @@ class NavBackgroundStrokeBorderPainter extends CustomPainter {
     final bGborderRadius = borderRadius??BorderRadius.circular(0); // Provide the desired radius value here
 
     final path = Path();
-    if(borderRadius==null){
+    if(borderRadius==null || borderRadius == BorderRadius.zero){
       path
         ..moveTo(0, 0) // Moves to the top-left corner of the path
         ..lineTo((loc - 0.0) * size.width, 0) // Draws a line from the previous point to the left side of the shape

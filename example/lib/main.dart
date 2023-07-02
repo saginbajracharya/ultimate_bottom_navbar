@@ -1,4 +1,3 @@
-import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:ultimate_bottom_navbar/ultimate_bottom_navbar.dart';
 import 'BottomNavPages/page_1.dart';
@@ -32,57 +31,19 @@ class BottomNavigationPage extends StatefulWidget {
 }
 
 class _BottomNavigationPageState extends State<BottomNavigationPage> {
-  Random random                      = Random();
-  int currentIndex                   = 0;
-  bool staticCurve                   = false;
-  bool useForeGroundGradient         = false;
-  bool showForeGround                = true;
-  bool useShaderStroke               = false;
-  bool underCurve                    = true;
-  bool showCircleStaticMidItem       = true;
-  bool showForeGroundStrokeAllSide   = false;
-  bool showBackGroundStrokeAllSide   = false;
-  Color backgroundColor              = transparent; 
-  double backgroundStrokeBorderWidth = 5.0;  
-  var badgeVal1                      = '5';
-  var badgeVal2                      = '55';
-  var textDirection                  = TextDirection.ltr;
 
-  final List<String> title = [
-    "",
-    "",
-    "",
-    "",
-    ""
-  ];
-
-  final List<IconData> icons = [
-    Icons.favorite, 
-    Icons.wallet_giftcard_sharp, 
-    Icons.home, 
-    Icons.ac_unit_outlined, 
-    Icons.access_alarm_rounded, 
-  ];
-
-  final List pages = [
-    const Page1(),
-    const Page2(),
-    const Page3(),
-    const Page4(),
-    const Page5(),
-  ];
-  
-  Gradient backgroundGradientColor = const LinearGradient(
+  final backgroundGradientColor = LinearGradient(
     begin: Alignment.topCenter,
     end: Alignment.bottomCenter,
     colors: [
-      green,
-      green,
-      green,
-      green,
-      red,
+      black,     // Black
+      darkGrey,  // Dark Gray
+      grey,      // Gray
+      lightGrey, // Light Gray
+      white,     // White
     ],
-    stops: [0.1, 0.3, 0.5, 0.7, 1.0],
+    stops: const [0.0, 0.25, 0.5, 0.75, 1.0],
+    tileMode: TileMode.mirror,
   );
 
   Shader foreGroundGradientShader = const LinearGradient(
@@ -110,6 +71,46 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
     ],
     stops: [0.2, 0.4, 0.5, 0.6, 2.0],
   ).createShader(Rect.fromCenter(center: const Offset(0.0,0.0), height: 200, width: 100));
+
+  int currentIndex                   = 0;
+  bool staticCurve                   = false;
+  bool useForeGroundGradient         = false;
+  bool showForeGround                = true;
+  bool useShaderStroke               = false;
+  bool underCurve                    = true;
+  bool showCircleStaticMidItem       = true;
+  bool showForeGroundStrokeAllSide   = false;
+  bool showBackGroundStrokeAllSide   = false;
+  Color backgroundColor              = blue; 
+  Gradient? backgroundGradientColors;
+  double backgroundStrokeBorderWidth = 5.0;  
+  var badgeVal1                      = '5';
+  var badgeVal2                      = '55';
+  var textDirection                  = TextDirection.ltr;
+
+  final List<String> title = [
+    "Favourite",
+    "Wallet",
+    "Home",
+    "Freeze",
+    "Alarm"
+  ];
+
+  final List<IconData> icons = [
+    Icons.favorite, 
+    Icons.wallet_giftcard_sharp, 
+    Icons.home, 
+    Icons.ac_unit_outlined, 
+    Icons.access_alarm_rounded, 
+  ];
+
+  final List pages = [
+    const Page1(),
+    const Page2(),
+    const Page3(),
+    const Page4(),
+    const Page5(),
+  ];
   
   @override
   Widget build(BuildContext context) {
@@ -146,6 +147,9 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
                           style: ElevatedButton.styleFrom(
                             primary: black,
                             minimumSize: const Size.fromHeight(50),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10), // Set the desired radius here
+                            ),
                           ),
                           onPressed: ()async{
                             setState(() {
@@ -158,28 +162,31 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
                               }
                             });
                           }, 
-                          child: Text(textDirection == TextDirection.ltr?'RTL Text Direction':'LTR Text Direction',style: const TextStyle(color: white))
+                          child: Text(textDirection == TextDirection.ltr?'Text Direction RTL':'Text Direction LTR',style: const TextStyle(color: white))
                         ),
                       ),
-                      //Random Background Color
+                      //Background Gradient or Solid Color
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical :8.0),
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
                             primary: black,
                             minimumSize: const Size.fromHeight(50),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10), // Set the desired radius here
+                            ),
                           ),
                           onPressed: ()async{
                             setState(() {
-                              backgroundColor = Color.fromARGB(
-                                255,
-                                random.nextInt(256),
-                                random.nextInt(256),
-                                random.nextInt(256),
-                              );
+                              if(backgroundGradientColors == null){
+                                backgroundGradientColors = backgroundGradientColor;
+                              }
+                              else{
+                                backgroundGradientColors = null;
+                              }
                             });
                           }, 
-                          child: const Text('Random Background Color',style: TextStyle(color: white))
+                          child: Text(backgroundGradientColors==null?'Show Background Gradient Color':'Show Background Solid Color',style: const TextStyle(color: white))
                         ),
                       ),
                       //Show Hide Background Stroke
@@ -189,6 +196,9 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
                           style: ElevatedButton.styleFrom(
                             primary: black,
                             minimumSize: const Size.fromHeight(50),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10), // Set the desired radius here
+                            ),
                           ),
                           onPressed: ()async{
                             setState(() {
@@ -209,6 +219,9 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
                           style: ElevatedButton.styleFrom(
                             primary: black,
                             minimumSize: const Size.fromHeight(50),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10), // Set the desired radius here
+                            ),
                           ),
                           onPressed: ()async{
                             setState(() {
@@ -230,6 +243,9 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
                           style: ElevatedButton.styleFrom(
                             primary: black,
                             minimumSize: const Size.fromHeight(50),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10), // Set the desired radius here
+                            ),
                           ),
                           onPressed: ()async{
                             setState(() {
@@ -251,6 +267,9 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
                           style: ElevatedButton.styleFrom(
                             primary: black,
                             minimumSize: const Size.fromHeight(50),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10), // Set the desired radius here
+                            ),
                           ),
                           onPressed: ()async{
                             setState(() {
@@ -272,6 +291,9 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
                           style: ElevatedButton.styleFrom(
                             primary: black,
                             minimumSize: const Size.fromHeight(50),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10), // Set the desired radius here
+                            ),
                           ),
                           onPressed: ()async{
                             setState(() {
@@ -293,6 +315,9 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
                           style: ElevatedButton.styleFrom(
                             primary: black,
                             minimumSize: const Size.fromHeight(50),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10), // Set the desired radius here
+                            ),
                           ),
                           onPressed: ()async{
                             setState(() {
@@ -314,6 +339,9 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
                           style: ElevatedButton.styleFrom(
                             primary: black,
                             minimumSize: const Size.fromHeight(50),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10), // Set the desired radius here
+                            ),
                           ),
                           onPressed: ()async{
                             setState(() {
@@ -335,6 +363,9 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
                           style: ElevatedButton.styleFrom(
                             primary: black,
                             minimumSize: const Size.fromHeight(50),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10), // Set the desired radius here
+                            ),
                           ),
                           onPressed: ()async{
                             setState(() {
@@ -356,6 +387,9 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
                           style: ElevatedButton.styleFrom(
                             primary: black,
                             minimumSize: const Size.fromHeight(50),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10), // Set the desired radius here
+                            ),
                           ),
                           onPressed: ()async{
                             setState(() {
@@ -372,6 +406,9 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
                           style: ElevatedButton.styleFrom(
                             primary: black,
                             minimumSize: const Size.fromHeight(50),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10), // Set the desired radius here
+                            ),
                           ),
                           onPressed: ()async{
                             setState(() {
@@ -388,6 +425,9 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
                           style: ElevatedButton.styleFrom(
                             primary: black,
                             minimumSize: const Size.fromHeight(50),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10), // Set the desired radius here
+                            ),
                           ),
                           onPressed: ()async{
                             setState(() {
@@ -404,6 +444,9 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
                           style: ElevatedButton.styleFrom(
                             primary: black,
                             minimumSize: const Size.fromHeight(50),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10), // Set the desired radius here
+                            ),
                           ),
                           onPressed: ()async{
                             setState(() {
@@ -433,11 +476,11 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
           backgroundStrokeBorderColor        : white,                                                                       // nav background stroke color [seems like when border width is 0.0 still shows the color but transparent solves it]
           backgroundStrokeBorderWidth        : 2.0,                                                                         // Nav BackGround Stroke Border Width
           foregroundStrokeBorderWidth        : 2.0,                                                                         // Nav ForeGround Stroke Border Width  
-          backgroundGradient                 : null,                                                                        // Nav background Gradient [No Gradient if Null Overrides backgroundColor if given]
+          backgroundGradient                 : backgroundGradientColors,                                                    // Nav background Gradient [No Gradient if Null Overrides backgroundColor if given]
           foreGroundGradientShader           : foreGroundGradientShader,                                                    // Nav ForeGround Gradient Shader [foregroundColor or foreGroundGradientShader determined by Bool useForeGroundGradient]
           foregroundStrokeGradientShader     : foregroundStrokeGradientShader,                                              // ForeGround Stroke border Gradient Shader
           
-          backgroundMargin                   : const EdgeInsets.only(left: 10.0,right: 10.0,bottom: 10.0),                  // Nav Background Margin
+          backgroundMargin                   : const EdgeInsets.only(left: 0.0,right: 0.0,bottom: 0.0),                     // Nav Background Margin
           backgroundBorderRadius             : BorderRadius.circular(0.0),                                                  // Nav Background Border Radius
 
           selectedIconColor                  : red,                                                                         // Selected Item Icon Color
@@ -449,8 +492,8 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
           unselectedTextSize                 : 10,                                                                          // UnSelected Item Text Size
           unselectedTextColor                : white,                                                                       // UnSelected Item Text Color
 
-          showForeGroundStrokeAllSide        : showForeGroundStrokeAllSide, 
-          showBackGroundStrokeAllSide        : showBackGroundStrokeAllSide,                                                 //
+          showForeGroundStrokeAllSide        : showForeGroundStrokeAllSide,                                                 // Show Foreground Strok All Side
+          showBackGroundStrokeAllSide        : showBackGroundStrokeAllSide,                                                 // Show BackGround Stroke All Side [works when borderRadius is zero or null]
           useForeGroundGradient              : useForeGroundGradient,                                                       // Gradient for ForeGround or Not
           showForeGround                     : showForeGround,                                                              // Show ForeGround or Not
           useShaderStroke                    : useShaderStroke,                                                             // Use Shadered Stroke Border or Not
@@ -458,8 +501,8 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
           staticCurve                        : staticCurve,                                                                 // Static Curve or Dynamic Curve
           showCircleStaticMidItemStatic      : showCircleStaticMidItem,                                                     // Show or Not Show Circle for Mid Item If Static Curve
 
-          midItemCircleColorStatic           : white,                                                                       // Color of a Mid item circle for static item  
-          midItemCircleBorderColorStatic     : black,                                                                       // Color of a Mid item border circle for static item
+          midItemCircleColorStatic           : black,                                                                       // Color of a Mid item circle for static item  
+          midItemCircleBorderColorStatic     : white,                                                                       // Color of a Mid item border circle for static item
           showMidCircleStatic                : false,                                                                       // Show/Hide Mid item circle for static item
           midCircleRadiusStatic              : 20.0,                                                                        // Radius for Mid Circle
           midCircleBorderRadiusStatic        : 2.0,                                                                         // Radius for Mid Circle Border

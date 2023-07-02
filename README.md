@@ -103,6 +103,10 @@ Directionality(
 )
 ```
 
+Check Out example project @ [example](example).
+
+## Properties
+
 | Property                         | Description                                                                          |
 |----------------------------------|--------------------------------------------------------------------------------------|
 | icons                            | Required Icons                                                                       |
@@ -155,3 +159,7 @@ Directionality(
 | animationType                    | Animation Type                                                                       |
 | animationDuration                | Animation Duration                                                                   |
 | onTap                            | Item Tap Function                                                                    |
+
+## FAQ
+
+Create a feature requests or bugs @ [issue tracker](https://github.com/saginbajracharya/ultimate_bottom_navbar/issues).

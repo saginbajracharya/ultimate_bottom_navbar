@@ -112,11 +112,11 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
   var textDirection                            = TextDirection.ltr;
 
   final List<String> title = [
-    "Favourite",
-    "Wallet",
-    "Home",
-    "Freeze",
-    "Alarm"
+    "",
+    "",
+    "",
+    "",
+    ""
   ];
 
   final List<IconData> icons = [

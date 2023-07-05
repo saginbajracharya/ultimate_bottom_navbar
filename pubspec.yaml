@@ -1,6 +1,6 @@
 name: ultimate_bottom_navbar
-description: Ultimate Bottom Navigation Bar Package.
-version: 0.0.3
+description: Ultimate Bottom Navigation Bar is a customizable bottom navigation bar for your Flutter applications. It allows you to easily create a navigation bar with icons and titles, and customize various aspects of its appearance and behaviors.
+version: 0.0.4
 homepage: https://github.com/saginbajracharya/ultimate_bottom_navbar
 
 environment:
@@ -16,10 +16,26 @@ dev_dependencies:
     sdk: flutter
   flutter_lints: ^1.0.0
 
-# For information on the generic Dart part of this file, see the
-# following page: https://dart.dev/tools/pub/pubspec
+screenshots:
+  - description: 'Examples For All Types Of Ultimate Bottom NavBar.'
+    path: doc/screenshots/All.png
+  - description: 'Examples For Under Curve Bottom NavBar.'
+    path: doc/screenshots/1.png
+  - description: 'Examples For Under Curve with Gradient Background Bottom NavBar.'
+    path: doc/screenshots/2.png
+  - description: 'Examples For Upper Curve Bottom NavBar.'
+    path: doc/screenshots/3.png
+  - description: 'Examples For No Curve/No ForeGround Bottom NavBar.'
+    path: doc/screenshots/4.png
+  - description: 'Examples For No Curve/No ForeGround With Margin Bottom NavBar.'
+    path: doc/screenshots/5.png
+  - description: 'Examples For Under Curve With Custom Selected Decor Bottom NavBar.'
+    path: doc/screenshots/6.png
+  - description: 'Examples For No Curve, Custom Selected Decor And Gradient Background and Stroke Border Bottom NavBar.'
+    path: doc/screenshots/7.png
+  - description: 'Examples of the Under Curve With Margin Bottom NavBar.'
+    path: doc/screenshots/8.png
 
-# The following section is specific to Flutter.
 flutter:
 
   # To add assets to your package, add an assets section, like this:

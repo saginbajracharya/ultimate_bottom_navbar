@@ -9,3 +9,7 @@
 ## [0.0.3]
 
 * Fixed Bugs
+
+## [0.0.4]
+
+* Added Screenshots and fixed pubspec description

@@ -13,3 +13,7 @@
 ## [0.0.4]
 
 * Added Screenshots and fixed pubspec description
+
+## [0.0.5]
+
+* Package description

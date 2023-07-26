@@ -251,6 +251,16 @@ class PropertyTable extends StatelessWidget {
             DataCell(Text('Null',style: heading2Style,textAlign: TextAlign.center)),
           ]),
           DataRow(cells: [
+            DataCell(Text('backgroundHeight',style: heading2Style,textAlign: TextAlign.center)),
+            DataCell(Text('Height for Backgound Container',style: heading2Style,textAlign: TextAlign.center)),
+            DataCell(Text('kBottomNavigationBarHeight',style: heading2Style,textAlign: TextAlign.center)),
+          ]),
+          DataRow(cells: [
+            DataCell(Text('foregroundHeight',style: heading2Style,textAlign: TextAlign.center)),
+            DataCell(Text('Height for Foregound Container',style: heading2Style,textAlign: TextAlign.center)),
+            DataCell(Text('kBottomNavigationBarHeight',style: heading2Style,textAlign: TextAlign.center)),
+          ]),
+          DataRow(cells: [
             DataCell(Text('animationType',style: heading2Style,textAlign: TextAlign.center)),
             DataCell(Text('Animation Type',style: heading2Style,textAlign: TextAlign.center)),
             DataCell(Text('easeOut',style: heading2Style,textAlign: TextAlign.center)),

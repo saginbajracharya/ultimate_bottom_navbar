@@ -59,6 +59,9 @@ class UltimateBottomNavBar extends StatefulWidget {
   final double? badgeLeftPosition;
   final double? badgeRightPosition;
 
+  final double? backgroundHeight;
+  final double? foregroundHeight;
+
   final Curve animationType;
   final Duration animationDuration;
   final ValueChanged<int>? onTap;
@@ -115,6 +118,8 @@ class UltimateBottomNavBar extends StatefulWidget {
     this.badgeBottomPosition               = 16.0,                              // Default badgeBottomPosition 16.0
     this.badgeLeftPosition,                                                     // Default badgeLeftPosition Null
     this.badgeRightPosition,                                                    // Default badgeRightPosition Null
+    this.backgroundHeight                  = kBottomNavigationBarHeight,
+    this.foregroundHeight                  = kBottomNavigationBarHeight, 
     
     this.animationType                     = Curves.easeOut,                    // Default animationType easeOut
     this.animationDuration                 = const Duration(milliseconds: 500), // Default animationDuration 500ms
@@ -178,6 +183,7 @@ class UltimateBottomNavBarState extends State<UltimateBottomNavBar> with TickerP
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: widget.backgroundHeight,
       margin: widget.navMargin,
       child: CustomPaint(
         painter: widget.backgroundStrokeBorderWidth==0.0
@@ -199,7 +205,7 @@ class UltimateBottomNavBarState extends State<UltimateBottomNavBar> with TickerP
             gradient:widget.backgroundGradient,
             borderRadius: widget.backgroundBorderRadius,
           ),
-          height: kBottomNavigationBarHeight,
+          height: 20.0 + (widget.foregroundHeight ?? 0.0),
           width: MediaQuery.of(context).size.width,
           padding: EdgeInsets.zero,
           child: widget.staticCurve
@@ -375,7 +381,7 @@ class UltimateBottomNavBarState extends State<UltimateBottomNavBar> with TickerP
       )
       :null,
       child: Container(
-        height: 75.0,
+        height: 20.0 + (widget.foregroundHeight ?? 0.0),
       ),
     );
   } 
@@ -423,7 +429,7 @@ class UltimateBottomNavBarState extends State<UltimateBottomNavBar> with TickerP
       )
       :null,
       child: Container(
-        height: 75.0,
+        height: 20.0 + (widget.foregroundHeight ?? 0.0),
       ),
     );
   }

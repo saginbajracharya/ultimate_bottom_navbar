@@ -702,7 +702,10 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
           badgeTopPosition                   : 10.0,                                                                        // Badge Top Position
           badgeRightPosition                 : 16.0,                                                                        // Badge Right Position
           badgeBottomPosition                : null,                                                                        // Badge Bottom Position
-          badgeLeftPosition                  : null,                                                                        // Badge Left Position
+          badgeLeftPosition                  : null,    
+          
+          backgroundHeight                   : kBottomNavigationBarHeight,                                                                    // Badge Left Position
+          foregroundHeight                   : kBottomNavigationBarHeight,
 
           animationType                      : Curves.ease,                                                                 // Index change animation curves
           animationDuration                  : const Duration(milliseconds: 500),                                           // Index Change Animation duration for curve only

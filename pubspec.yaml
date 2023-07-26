@@ -4,7 +4,7 @@ version: 0.0.6
 homepage: https://github.com/saginbajracharya/ultimate_bottom_navbar
 
 environment:
-  sdk: ">=2.12.2 <3.0.0"
+  sdk: ">=2.12.2 <4.0.0"
   flutter: ">=1.17.0"
 
 dependencies:

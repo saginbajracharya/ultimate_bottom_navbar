@@ -17,3 +17,7 @@
 ## [0.0.5]
 
 * Package description
+
+## [0.0.6]
+
+* Added backgroundHeight & foreGroundHeight

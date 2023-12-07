@@ -50,6 +50,31 @@ class UltimateBottomNavBar extends StatefulWidget {
   final Widget? customSelectedItemDecor;
   final Widget? customUnSelectedItemDecor;
 
+  //New
+  final double? upperCurveWidth;
+  final double? upperCurveHeight;
+  final double? underTopCurveRadiusLeft;
+  final double? underTopCurveRadiusRight;
+  final double? underMidCurveWidthLeft;
+  final double? underMidCurveWidthRight;
+  final double? underBottomCurveRadiusLeft;
+  final double? underBottomCurveRadiusRight;
+
+  final double? upperStrokeCurveWidth;
+  final double? upperStrokeCurveHeight;
+  final double? underStrokeTopCurveRadiusLeft;
+  final double? underStrokeTopCurveRadiusRight;
+  final double? underStrokeMidCurveWidthLeft;
+  final double? underStrokeMidCurveWidthRight;
+  final double? underStrokeBottomCurveRadiusLeft;
+  final double? underStrokeBottomCurveRadiusRight;
+
+  final double? underCurveWidth;
+  final double? underCurveHeight;
+  final double? underStrokeCurveWidth;
+  final double? underStrokeCurveHeight;
+  //
+
   final List<Map<String,dynamic>>? badgeData;
   final Color? badgeColor;
   final TextStyle? badgeTextStyle;
@@ -109,6 +134,32 @@ class UltimateBottomNavBar extends StatefulWidget {
     this.midCircleBorderRadiusStatic       = 2.0,                               // Default midCircleBorderRadiusStatic 2.0
     this.customSelectedItemDecor,                                               // Default customSelectedItemDecor Null
     this.customUnSelectedItemDecor,                                             // Default customUnSelectedItemDecor Null
+    
+    //new
+    this.upperCurveWidth,
+    this.upperCurveHeight,
+    this.upperStrokeCurveWidth,
+    this.upperStrokeCurveHeight,
+
+    this.underCurveWidth,
+    this.underCurveHeight,
+    this.underTopCurveRadiusLeft,
+    this.underTopCurveRadiusRight,
+    this.underMidCurveWidthLeft,
+    this.underMidCurveWidthRight,
+    this.underBottomCurveRadiusLeft,
+    this.underBottomCurveRadiusRight,
+
+    this.underStrokeCurveWidth,
+    this.underStrokeCurveHeight,
+    this.underStrokeTopCurveRadiusLeft,
+    this.underStrokeTopCurveRadiusRight,
+    this.underStrokeMidCurveWidthLeft,
+    this.underStrokeMidCurveWidthRight,
+    this.underStrokeBottomCurveRadiusLeft,
+    this.underStrokeBottomCurveRadiusRight,
+
+    //
 
     this.badgeData,
     this.badgeColor                        = red,                               // Default badgeColor red
@@ -185,6 +236,7 @@ class UltimateBottomNavBarState extends State<UltimateBottomNavBar> with TickerP
     return Container(
       height: widget.backgroundHeight,
       margin: widget.navMargin,
+      color: transparent,
       child: CustomPaint(
         painter: widget.backgroundStrokeBorderWidth==0.0
         ?null
@@ -347,7 +399,15 @@ class UltimateBottomNavBarState extends State<UltimateBottomNavBar> with TickerP
         widget.useForeGroundGradient,
         widget.foreGroundGradientShader,
         widget.foregroundColor, 
-        Directionality.of(context)
+        Directionality.of(context),
+        widget.underCurveWidth,
+        widget.underCurveHeight,
+        widget.underTopCurveRadiusLeft,
+        widget.underTopCurveRadiusRight,
+        widget.underMidCurveWidthLeft,
+        widget.underMidCurveWidthRight,
+        widget.underBottomCurveRadiusLeft,
+        widget.underBottomCurveRadiusRight
       )
       :NavForeGroundCurvePainterUpperStatic(
         _pos, 
@@ -355,7 +415,9 @@ class UltimateBottomNavBarState extends State<UltimateBottomNavBar> with TickerP
         widget.useForeGroundGradient,
         widget.foreGroundGradientShader,
         widget.foregroundColor, 
-        Directionality.of(context)
+        Directionality.of(context),
+        widget.upperCurveWidth,
+        widget.upperCurveHeight,
       ),
       foregroundPainter: widget.foregroundStrokeBorderWidth!=0 
       ?widget.underCurve
@@ -368,6 +430,14 @@ class UltimateBottomNavBarState extends State<UltimateBottomNavBar> with TickerP
         widget.foregroundStrokeBorderColor, 
         widget.foregroundStrokeGradientShader,
         Directionality.of(context),
+        widget.underStrokeCurveWidth,
+        widget.underStrokeCurveHeight,
+        widget.underStrokeTopCurveRadiusLeft,
+        widget.underStrokeTopCurveRadiusRight,
+        widget.underStrokeMidCurveWidthLeft,
+        widget.underStrokeMidCurveWidthRight,
+        widget.underStrokeBottomCurveRadiusLeft,
+        widget.underStrokeBottomCurveRadiusRight
       )
       :NavForeGroundUpperStrokeBorderPainterStatic(
         _pos, 
@@ -378,6 +448,8 @@ class UltimateBottomNavBarState extends State<UltimateBottomNavBar> with TickerP
         widget.foregroundStrokeBorderColor, 
         widget.foregroundStrokeGradientShader,
         Directionality.of(context),
+        widget.upperStrokeCurveWidth,
+        widget.upperStrokeCurveHeight
       )
       :null,
       child: Container(
@@ -395,7 +467,15 @@ class UltimateBottomNavBarState extends State<UltimateBottomNavBar> with TickerP
         widget.useForeGroundGradient,
         widget.foreGroundGradientShader,
         widget.foregroundColor, 
-        Directionality.of(context)
+        Directionality.of(context),
+        widget.underCurveWidth,
+        widget.underCurveHeight,
+        widget.underTopCurveRadiusLeft,
+        widget.underTopCurveRadiusRight,
+        widget.underMidCurveWidthLeft,
+        widget.underMidCurveWidthRight,
+        widget.underBottomCurveRadiusLeft,
+        widget.underBottomCurveRadiusRight
       )
       :NavForeGroundCurvePainterUpperDynamic(
         _pos, 
@@ -403,7 +483,9 @@ class UltimateBottomNavBarState extends State<UltimateBottomNavBar> with TickerP
         widget.useForeGroundGradient,
         widget.foreGroundGradientShader,
         widget.foregroundColor, 
-        Directionality.of(context)
+        Directionality.of(context),
+        widget.upperCurveWidth,
+        widget.upperCurveHeight
       ),
       foregroundPainter: widget.foregroundStrokeBorderWidth!=0 
       ?widget.underCurve
@@ -416,6 +498,14 @@ class UltimateBottomNavBarState extends State<UltimateBottomNavBar> with TickerP
         widget.foregroundStrokeBorderColor, 
         widget.foregroundStrokeGradientShader,
         Directionality.of(context),
+        widget.underStrokeCurveWidth,
+        widget.underStrokeCurveHeight,
+        widget.underStrokeTopCurveRadiusLeft,
+        widget.underStrokeTopCurveRadiusRight,
+        widget.underStrokeMidCurveWidthLeft,
+        widget.underStrokeMidCurveWidthRight,
+        widget.underStrokeBottomCurveRadiusLeft,
+        widget.underStrokeBottomCurveRadiusRight
       )
       :NavForeGroundUpperStrokeBorderPainterDynamic(
         _pos, 
@@ -426,6 +516,8 @@ class UltimateBottomNavBarState extends State<UltimateBottomNavBar> with TickerP
         widget.foregroundStrokeBorderColor, 
         widget.foregroundStrokeGradientShader,
         Directionality.of(context),
+        widget.upperStrokeCurveWidth,
+        widget.upperStrokeCurveHeight
       )
       :null,
       child: Container(

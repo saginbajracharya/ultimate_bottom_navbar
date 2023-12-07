@@ -141,12 +141,13 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
       textDirection: textDirection,
       child: Scaffold(
         extendBodyBehindAppBar: true,
-        extendBody: false,
+        extendBody: true,
         backgroundColor: grey,
         body: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisSize: MainAxisSize.max,
             children: [
               Container(
                 width: MediaQuery.of(context).size.width,
@@ -156,7 +157,7 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
                 child: pages[currentIndex],
               ),
               Container(
-                height: MediaQuery.of(context).size.height-kBottomNavigationBarHeight-kBottomNavigationBarHeight,
+                height: MediaQuery.of(context).size.height-kBottomNavigationBarHeight-kBottomNavigationBarHeight+10,
                 padding: const EdgeInsets.only(left:10.0,right:10.0),
                 child: SingleChildScrollView(
                   child: Column(
@@ -642,7 +643,7 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
                       const PropertyTable(),
                       const SizedBox(
                         height: 100,
-                      )
+                      ),
                     ],
                   ),
                 ),
@@ -689,27 +690,51 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
 
           midItemCircleColorStatic           : black,                                                                       // Color of a Mid item circle for static item  
           midItemCircleBorderColorStatic     : white,                                                                       // Color of a Mid item border circle for static item
-          showMidCircleStatic                : showMidCircleStatic,                                                                       // Show/Hide Mid item circle for static item
+          showMidCircleStatic                : showMidCircleStatic,                                                         // Show/Hide Mid item circle for static item
           midCircleRadiusStatic              : 20.0,                                                                        // Radius for Mid Circle
           midCircleBorderRadiusStatic        : 2.0,                                                                         // Radius for Mid Circle Border
           customSelectedItemDecor            : customSelectedItemDecor,                                                     // Custom Selected Item Decor
           customUnSelectedItemDecor          : customUnSelectedItemDecor,                                                   // Custom UnSelected Item Decor
 
-          badgeData                          : [{'index': 1, 'value': badgeVal1},{'index': 4, 'value': badgeVal2}],         //Badge Data for Each Index with value
+          badgeData                          : [{'index': 1, 'value': badgeVal1},{'index': 4, 'value': badgeVal2}],         // Badge Data for Each Index with value
           badgeColor                         : red,                                                                         // Badge Color 
           badgeTextStyle                     : const TextStyle(color: white,fontSize: 8.0,overflow: TextOverflow.ellipsis), // Badge Text Style
           badgeCircleRadius                  : 8.0,                                                                         // Badge Circle Radius
           badgeTopPosition                   : 10.0,                                                                        // Badge Top Position
           badgeRightPosition                 : 16.0,                                                                        // Badge Right Position
           badgeBottomPosition                : null,                                                                        // Badge Bottom Position
-          badgeLeftPosition                  : null,    
+          badgeLeftPosition                  : null,                                                                        // Badge Left Position
           
-          backgroundHeight                   : kBottomNavigationBarHeight,                                                                    // Badge Left Position
+          backgroundHeight                   : kBottomNavigationBarHeight,                                                  
           foregroundHeight                   : kBottomNavigationBarHeight,
 
           animationType                      : Curves.ease,                                                                 // Index change animation curves
           animationDuration                  : const Duration(milliseconds: 500),                                           // Index Change Animation duration for curve only
           onTap                              : (index) async => onItemTapped(index),                                        // Custom OnTap CallBacks
+          //New
+          underCurveWidth                    : 0.12,   // Default value is Null when null UnderCurveWidth = 0.18 else as per given value
+          underCurveHeight                   : 0.60,   // Default value is Null when null UnderCurveHeight = 0.72 else as per given value
+          underTopCurveRadiusLeft            : 0.60,   // Default value is Null when null UnderTopCurveRadiusLeft = 0.20 else as per given value
+          underTopCurveRadiusRight           : 0.60,   // Default value is Null when null UnderTopCurveRadiusRight = 0.20 else as per given value
+          underMidCurveWidthLeft             : 18,     // Default value is Null when null UnderMidCurveWidthLeft = 10 else as per given value
+          underMidCurveWidthRight            : 18,     // Default value is Null when null UnderMidCurveWidthRight = 10 else as per given value
+          underBottomCurveRadiusLeft         : 0.05,   // Default value is Null when null UnderBottomCurveRadiusLeft = 0.05 else as per given value
+          underBottomCurveRadiusRight        : 0.05,   // Default value is Null when null UnderBottomCurveRadiusRight = 0.05 else as per given value
+          
+          underStrokeCurveWidth              : 0.12,   // Default value is Null when null UnderStrokeCurveWidth = 0.18 else as per given value
+          underStrokeCurveHeight             : 0.60,   // Default value is Null when null UnderStrokeCurveHeight = 0.72 else as per given value
+          underStrokeTopCurveRadiusLeft      : 0.60,   // Default value is Null when null UnderStrokeTopCurveRadiusLeft = 0.20 else as per given value
+          underStrokeTopCurveRadiusRight     : 0.60,   // Default value is Null when null UnderStrokeTopCurveRadiusRight = 0.20 else as per given value
+          underStrokeMidCurveWidthLeft       : 18,     // Default value is Null when null UnderMidCurveWidthLeft = 10 else as per given value
+          underStrokeMidCurveWidthRight      : 18,     // Default value is Null when null UnderMidCurveWidthRight = 10 else as per given value
+          underStrokeBottomCurveRadiusLeft   : 0.05,   // Default value is Null when null UnderBottomCurveRadiusLeft = 0.05 else as per given value
+          underStrokeBottomCurveRadiusRight  : 0.05,   // Default value is Null when null UnderBottomCurveRadiusRight = 0.05 else as per given value
+
+          upperCurveWidth                    : 0.20,   // Default value is Null when null UpperCurveWidth = 0.16 else as per given value
+          upperCurveHeight                   : 0.25,   // Default value is Null when null UpperCurveHeight = 0.12 else as per given value
+          upperStrokeCurveWidth              : 0.20,   // Default value is Null when null UpperStrokeCurveWidth = 0.16 else as per given value
+          upperStrokeCurveHeight             : 0.25,   // Default value is Null when null UpperStrokeCurveHeight = 0.12 else as per given value
+          //
         ),
       ),
     );

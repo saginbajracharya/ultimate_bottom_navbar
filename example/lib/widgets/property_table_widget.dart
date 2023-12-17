@@ -17,7 +17,7 @@ class PropertyTable extends StatelessWidget {
         rows: <DataRow>[
           DataRow(cells: [
             DataCell(Text('icons',style: heading2Style,textAlign: TextAlign.center)),
-            DataCell(Text('Required',style: heading2Style,textAlign: TextAlign.center)),
+            DataCell(Text('Required',style: heading2Style,textAlign: TextAlign.center)),    
             DataCell(Text('-',style: heading2Style,textAlign: TextAlign.center)),
           ]),
           DataRow(cells: [

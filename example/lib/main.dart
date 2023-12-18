@@ -113,12 +113,12 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
   
   TextEditingController stepTxtCtrl = TextEditingController(text:'0.1');
 
-  TextEditingController upperCurveWidthTxtCtrl                   = TextEditingController(text:'0.20');
-  TextEditingController upperCurveHeightTxtCtrl                  = TextEditingController(text:'0.25');
-  TextEditingController upperStrokeCurveWidthTxtCtrl             = TextEditingController(text:'0.20');
-  TextEditingController upperStrokeCurveHeightTxtCtrl            = TextEditingController(text:'0.25');
+  TextEditingController upperCurveWidthTxtCtrl                   = TextEditingController(text:'0.10');
+  TextEditingController upperCurveHeightTxtCtrl                  = TextEditingController(text:'0.15');
+  TextEditingController upperStrokeCurveWidthTxtCtrl             = TextEditingController(text:'0.10');
+  TextEditingController upperStrokeCurveHeightTxtCtrl            = TextEditingController(text:'0.15');
 
-  TextEditingController underCurveWidthTxtCtrl                   = TextEditingController(text:'0.18');
+  TextEditingController underCurveWidthTxtCtrl                   = TextEditingController(text:'0.12');
   TextEditingController underCurveHeightTxtCtrl                  = TextEditingController(text:'0.60');
   TextEditingController underTopCurveRadiusLeftTxtCtrl           = TextEditingController(text:'0.60');
   TextEditingController underTopCurveRadiusRightTxtCtrl          = TextEditingController(text:'0.60');
@@ -677,14 +677,36 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Card(
-                              child: Container(
-                                padding:const EdgeInsets.all(5.0),
-                                width: double.infinity,
-                                child: const Text(
-                                  'Step TO INCREASE OR DECREASE',
-                                  style: TextStyle(color: black,fontSize:20),
-                                  textAlign: TextAlign.center,
-                                )
+                              child: Stack(
+                                alignment : Alignment.center,
+                                children: [
+                                  Container(
+                                    padding:const EdgeInsets.symmetric(horizontal:40.0,vertical:5.0),
+                                    width: double.infinity,
+                                    child: const Text(
+                                      'Step TO INCREASE OR DECREASE',
+                                      style: TextStyle(color: black,fontSize:18),
+                                      textAlign: TextAlign.center,
+                                    )
+                                  ),
+                                  Align(
+                                    alignment : Alignment.centerRight,
+                                    child:IconButton(
+                                      padding : EdgeInsets.zero,
+                                      icon: Container(
+                                        padding: const EdgeInsets.all(2),
+                                        decoration:BoxDecoration(
+                                          borderRadius: BorderRadius.circular(10),
+                                          color: red
+                                        ),
+                                        child: const Icon(Icons.refresh)
+                                      ),
+                                      onPressed : (){
+                                        stepTxtCtrl.text = '0.1';
+                                      }
+                                    )
+                                  )
+                                ],
                               )
                             ),
                             Card(
@@ -702,25 +724,49 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
                           ],
                         ),
 
-                        //ForeGround Properties
+                        //Upper Curve Controls
                         const Divider(thickness: 2),
                         Text('Upper Curve Controls',style: heading1Style,textAlign: TextAlign.center),
                         const Divider(thickness: 2),
 
-                        //upperCurveWidthTxtCtrl
+                        //upperCurveWidth
                         Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Card(
-                              child: Container(
-                                padding:const EdgeInsets.all(5.0),
-                                width: double.infinity,
-                                child: const Text(
-                                  'Upper Curve Width',
-                                  style: TextStyle(color: black,fontSize:20),
-                                  textAlign: TextAlign.center,
-                                )
+                              child: Stack(
+                                alignment: Alignment.center,
+                                children: [
+                                  Container(
+                                    padding: const EdgeInsets.symmetric(horizontal:40.0,vertical:5.0),
+                                    width: double.infinity,
+                                    child: const Text(
+                                      'Upper Curve Width',
+                                      style: TextStyle(color: black,fontSize:16),
+                                      textAlign: TextAlign.center,
+                                    )
+                                  ),
+                                  Align(
+                                    alignment : Alignment.centerRight,
+                                    child:IconButton(
+                                      padding : EdgeInsets.zero,
+                                      icon: Container(
+                                        padding: const EdgeInsets.all(2),
+                                        decoration:BoxDecoration(
+                                          borderRadius: BorderRadius.circular(10),
+                                          color: red
+                                        ),
+                                        child: const Icon(Icons.refresh)
+                                      ),
+                                      onPressed : (){
+                                        setState(() {
+                                          upperCurveWidthTxtCtrl.text = '0.10';
+                                        });
+                                      }
+                                    )
+                                  )
+                                ],
                               )
                             ),
                             Card(
@@ -788,20 +834,44 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
                           ],
                         ),
                         const Divider(thickness: 2),
-                        //upperCurveHeightTxtCtrl
+                        //upperCurveHeight
                         Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Card(
-                              child: Container(
-                                padding:const EdgeInsets.all(5.0),
-                                width: double.infinity,
-                                child: const Text(
-                                  'Upper Curve Height',
-                                  style: TextStyle(color: black,fontSize:20),
-                                  textAlign: TextAlign.center,
-                                )
+                              child: Stack(
+                                alignment: Alignment.center,
+                                children: [
+                                  Container(
+                                    padding: const EdgeInsets.symmetric(horizontal:40.0,vertical:5.0),
+                                    width: double.infinity,
+                                    child: const Text(
+                                      'Upper Curve Height',
+                                      style: TextStyle(color: black,fontSize:16),
+                                      textAlign: TextAlign.center,
+                                    )
+                                  ),
+                                  Align(
+                                    alignment : Alignment.centerRight,
+                                    child:IconButton(
+                                      padding : EdgeInsets.zero,
+                                      icon: Container(
+                                        padding: const EdgeInsets.all(2),
+                                        decoration:BoxDecoration(
+                                          borderRadius: BorderRadius.circular(10),
+                                          color: red
+                                        ),
+                                        child: const Icon(Icons.refresh)
+                                      ),
+                                      onPressed : (){
+                                        setState(() {
+                                          upperCurveHeightTxtCtrl.text = '0.15';
+                                        });
+                                      }
+                                    )
+                                  )
+                                ],
                               )
                             ),
                             Card(
@@ -869,20 +939,44 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
                           ],
                         ),
                         const Divider(thickness: 2),
-                        //upperStrokeCurveWidthTxtCtrl
+                        //upperStrokeCurveWidth
                         Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Card(
-                              child: Container(
-                                padding:const EdgeInsets.all(5.0),
-                                width: double.infinity,
-                                child: const Text(
-                                  'Upper Stroke Curve Width',
-                                  style: TextStyle(color: black,fontSize:20),
-                                  textAlign: TextAlign.center,
-                                )
+                              child: Stack(
+                                alignment: Alignment.center,
+                                children: [
+                                  Container(
+                                    padding: const EdgeInsets.symmetric(horizontal:40.0,vertical:5.0),
+                                    width: double.infinity,
+                                    child: const Text(
+                                      'Upper Stroke Curve Width',
+                                      style: TextStyle(color: black,fontSize:16),
+                                      textAlign: TextAlign.center,
+                                    )
+                                  ),
+                                  Align(
+                                    alignment : Alignment.centerRight,
+                                    child:IconButton(
+                                      padding : EdgeInsets.zero,
+                                      icon: Container(
+                                        padding: const EdgeInsets.all(2),
+                                        decoration:BoxDecoration(
+                                          borderRadius: BorderRadius.circular(10),
+                                          color: red
+                                        ),
+                                        child: const Icon(Icons.refresh)
+                                      ),
+                                      onPressed : (){
+                                        setState(() {
+                                          upperStrokeCurveWidthTxtCtrl.text = '0.15';
+                                        });
+                                      }
+                                    )
+                                  )
+                                ],
                               )
                             ),
                             Card(
@@ -950,20 +1044,44 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
                           ],
                         ),
                         const Divider(thickness: 2),
-                        //upperStrokeCurveHeightTxtCtrl
+                        //upperStrokeCurveHeight
                         Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Card(
-                              child: Container(
-                                padding:const EdgeInsets.all(5.0),
-                                width: double.infinity,
-                                child: const Text(
-                                  'Upper Stroke Curve Height',
-                                  style: TextStyle(color: black,fontSize:20),
-                                  textAlign: TextAlign.center,
-                                )
+                              child: Stack(
+                                alignment: Alignment.center,
+                                children: [
+                                  Container(
+                                    padding: const EdgeInsets.symmetric(horizontal:40.0,vertical:5.0),
+                                    width: double.infinity,
+                                    child: const Text(
+                                      'Upper Stroke Curve Height',
+                                      style: TextStyle(color: black,fontSize:16),
+                                      textAlign: TextAlign.center,
+                                    )
+                                  ),
+                                  Align(
+                                    alignment : Alignment.centerRight,
+                                    child:IconButton(
+                                      padding : EdgeInsets.zero,
+                                      icon: Container(
+                                        padding: const EdgeInsets.all(2),
+                                        decoration:BoxDecoration(
+                                          borderRadius: BorderRadius.circular(10),
+                                          color: red
+                                        ),
+                                        child: const Icon(Icons.refresh)
+                                      ),
+                                      onPressed : (){
+                                        setState(() {
+                                          upperStrokeCurveHeightTxtCtrl.text = '0.15';
+                                        });
+                                      }
+                                    )
+                                  )
+                                ],
                               )
                             ),
                             Card(
@@ -1030,10 +1148,8 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
                             ),
                           ],
                         ),
-                        const Divider(thickness: 2),
 
-
-                        //ForeGround Properties
+                        //Under Curve Controls
                         const Divider(thickness: 2),
                         Text('Under Curve Controls',style: heading1Style,textAlign: TextAlign.center),
                         const Divider(thickness: 2),
@@ -1044,14 +1160,38 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Card(
-                              child: Container(
-                                padding:const EdgeInsets.all(5.0),
-                                width: double.infinity,
-                                child: const Text(
-                                  'Under Curve Width',
-                                  style: TextStyle(color: black,fontSize:20),
-                                  textAlign: TextAlign.center,
-                                )
+                              child: Stack(
+                                alignment : Alignment.center,
+                                children: [
+                                  Container(
+                                    padding: const EdgeInsets.symmetric(horizontal:40.0,vertical:5.0),
+                                    width: double.infinity,
+                                    child: const Text(
+                                      'Under Curve Width',
+                                      style: TextStyle(color: black,fontSize:16),
+                                      textAlign: TextAlign.center,
+                                    )
+                                  ),
+                                  Align(
+                                    alignment : Alignment.centerRight,
+                                    child:IconButton(
+                                      padding : EdgeInsets.zero,
+                                      icon: Container(
+                                        padding: const EdgeInsets.all(2),
+                                        decoration:BoxDecoration(
+                                          borderRadius: BorderRadius.circular(10),
+                                          color: red
+                                        ),
+                                        child: const Icon(Icons.refresh)
+                                      ),
+                                      onPressed : (){
+                                        setState(() {
+                                          underCurveWidthTxtCtrl.text = '0.12';
+                                        });
+                                      }
+                                    )
+                                  )
+                                ],
                               )
                             ),
                             Card(
@@ -1125,14 +1265,38 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Card(
-                              child: Container(
-                                padding:const EdgeInsets.all(5.0),
-                                width: double.infinity,
-                                child: const Text(
-                                  'Under Curve Height',
-                                  style: TextStyle(color: black,fontSize:20),
-                                  textAlign: TextAlign.center,
-                                )
+                              child: Stack(
+                                alignment: Alignment.center,
+                                children: [
+                                  Container(
+                                    padding: const EdgeInsets.symmetric(horizontal:40.0,vertical:5.0),
+                                    width: double.infinity,
+                                    child: const Text(
+                                      'Under Curve Height',
+                                      style: TextStyle(color: black,fontSize:16),
+                                      textAlign: TextAlign.center,
+                                    )
+                                  ),
+                                  Align(
+                                    alignment : Alignment.centerRight,
+                                    child:IconButton(
+                                      padding : EdgeInsets.zero,
+                                      icon: Container(
+                                        padding: const EdgeInsets.all(2),
+                                        decoration:BoxDecoration(
+                                          borderRadius: BorderRadius.circular(10),
+                                          color: red
+                                        ),
+                                        child: const Icon(Icons.refresh)
+                                      ),
+                                      onPressed : (){
+                                        setState(() {
+                                          underCurveHeightTxtCtrl.text = '0.60';
+                                        });
+                                      }
+                                    )
+                                  )
+                                ],
                               )
                             ),
                             Card(
@@ -1206,14 +1370,38 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Card(
-                              child: Container(
-                                padding:const EdgeInsets.all(5.0),
-                                width: double.infinity,
-                                child: const Text(
-                                  'Under Curve Top Radius Left',
-                                  style: TextStyle(color: black,fontSize:20),
-                                  textAlign: TextAlign.center,
-                                )
+                              child: Stack(
+                                alignment: Alignment.center,
+                                children: [
+                                  Container(
+                                    padding: const EdgeInsets.symmetric(horizontal:40.0,vertical:5.0),
+                                    width: double.infinity,
+                                    child: const Text(
+                                      'Under Curve Top Radius Left',
+                                      style: TextStyle(color: black,fontSize:16),
+                                      textAlign: TextAlign.center,
+                                    )
+                                  ),
+                                  Align(
+                                    alignment : Alignment.centerRight,
+                                    child:IconButton(
+                                      padding : EdgeInsets.zero,
+                                      icon: Container(
+                                        padding: const EdgeInsets.all(2),
+                                        decoration:BoxDecoration(
+                                          borderRadius: BorderRadius.circular(10),
+                                          color: red
+                                        ),
+                                        child: const Icon(Icons.refresh)
+                                      ),
+                                      onPressed : (){
+                                        setState(() {
+                                          underTopCurveRadiusLeftTxtCtrl.text = '0.60';
+                                        });
+                                      }
+                                    )
+                                  )
+                                ],
                               )
                             ),
                             Card(
@@ -1287,14 +1475,38 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Card(
-                              child: Container(
-                                padding:const EdgeInsets.all(5.0),
-                                width: double.infinity,
-                                child: const Text(
-                                  'Under Curve Top Radius Right',
-                                  style: TextStyle(color: black,fontSize:20),
-                                  textAlign: TextAlign.center,
-                                )
+                              child: Stack(
+                                alignment: Alignment.center,
+                                children: [
+                                  Container(
+                                    padding: const EdgeInsets.symmetric(horizontal:40.0,vertical:5.0),
+                                    width: double.infinity,
+                                    child: const Text(
+                                      'Under Curve Top Radius Right',
+                                      style: TextStyle(color: black,fontSize:16),
+                                      textAlign: TextAlign.center,
+                                    )
+                                  ),
+                                  Align(
+                                    alignment : Alignment.centerRight,
+                                    child:IconButton(
+                                      padding : EdgeInsets.zero,
+                                      icon: Container(
+                                        padding: const EdgeInsets.all(2),
+                                        decoration:BoxDecoration(
+                                          borderRadius: BorderRadius.circular(10),
+                                          color: red
+                                        ),
+                                        child: const Icon(Icons.refresh)
+                                      ),
+                                      onPressed : (){
+                                        setState(() {
+                                          underTopCurveRadiusRightTxtCtrl.text = '0.60';
+                                        });
+                                      }
+                                    )
+                                  )
+                                ],
                               )
                             ),
                             Card(
@@ -1368,14 +1580,38 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Card(
-                              child: Container(
-                                padding:const EdgeInsets.all(5.0),
-                                width: double.infinity,
-                                child: const Text(
-                                  'Under Mid Curve Width Left',
-                                  style: TextStyle(color: black,fontSize:20),
-                                  textAlign: TextAlign.center,
-                                )
+                              child: Stack(
+                                alignment: Alignment.center,
+                                children: [
+                                  Container(
+                                    padding: const EdgeInsets.symmetric(horizontal:40.0,vertical:5.0),
+                                    width: double.infinity,
+                                    child: const Text(
+                                      'Under Mid Curve Width Left',
+                                      style: TextStyle(color: black,fontSize:16),
+                                      textAlign: TextAlign.center,
+                                    )
+                                  ),
+                                  Align(
+                                    alignment : Alignment.centerRight,
+                                    child:IconButton(
+                                      padding : EdgeInsets.zero,
+                                      icon: Container(
+                                        padding: const EdgeInsets.all(2),
+                                        decoration:BoxDecoration(
+                                          borderRadius: BorderRadius.circular(10),
+                                          color: red
+                                        ),
+                                        child: const Icon(Icons.refresh)
+                                      ),
+                                      onPressed : (){
+                                        setState(() {
+                                          underMidCurveWidthLeftTxtCtrl.text = '18';
+                                        });
+                                      }
+                                    )
+                                  )
+                                ],
                               )
                             ),
                             Card(
@@ -1449,14 +1685,38 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Card(
-                              child: Container(
-                                padding:const EdgeInsets.all(5.0),
-                                width: double.infinity,
-                                child: const Text(
-                                  'Under Mid Curve Width Right',
-                                  style: TextStyle(color: black,fontSize:20),
-                                  textAlign: TextAlign.center,
-                                )
+                              child: Stack(
+                                alignment: Alignment.center,
+                                children: [
+                                  Container(
+                                    padding: const EdgeInsets.symmetric(horizontal:40.0,vertical:5.0),
+                                    width: double.infinity,
+                                    child: const Text(
+                                      'Under Mid Curve Width Right',
+                                      style: TextStyle(color: black,fontSize:16),
+                                      textAlign: TextAlign.center,
+                                    )
+                                  ),
+                                  Align(
+                                    alignment : Alignment.centerRight,
+                                    child:IconButton(
+                                      padding : EdgeInsets.zero,
+                                      icon: Container(
+                                        padding: const EdgeInsets.all(2),
+                                        decoration:BoxDecoration(
+                                          borderRadius: BorderRadius.circular(10),
+                                          color: red
+                                        ),
+                                        child: const Icon(Icons.refresh)
+                                      ),
+                                      onPressed : (){
+                                        setState(() {
+                                          underMidCurveWidthRightTxtCtrl.text = '18';
+                                        });
+                                      }
+                                    )
+                                  )
+                                ],
                               )
                             ),
                             Card(
@@ -1530,14 +1790,38 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Card(
-                              child: Container(
-                                padding:const EdgeInsets.all(5.0),
-                                width: double.infinity,
-                                child: const Text(
-                                  'Under Bottom Curve Radius Left',
-                                  style: TextStyle(color: black,fontSize:20),
-                                  textAlign: TextAlign.center,
-                                )
+                              child: Stack(
+                                alignment: Alignment.center,
+                                children: [
+                                  Container(
+                                    padding: const EdgeInsets.symmetric(horizontal:40.0,vertical:5.0),
+                                    width: double.infinity,
+                                    child: const Text(
+                                      'Under Bottom Curve Radius Left',
+                                      style: TextStyle(color: black,fontSize:16),
+                                      textAlign: TextAlign.center,
+                                    )
+                                  ),
+                                  Align(
+                                    alignment : Alignment.centerRight,
+                                    child:IconButton(
+                                      padding : EdgeInsets.zero,
+                                      icon: Container(
+                                        padding: const EdgeInsets.all(2),
+                                        decoration:BoxDecoration(
+                                          borderRadius: BorderRadius.circular(10),
+                                          color: red
+                                        ),
+                                        child: const Icon(Icons.refresh)
+                                      ),
+                                      onPressed : (){
+                                        setState(() {
+                                          underBottomCurveRadiusLeftTxtCtrl.text = '0.05';
+                                        });
+                                      }
+                                    )
+                                  )
+                                ],
                               )
                             ),
                             Card(
@@ -1611,14 +1895,38 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Card(
-                              child: Container(
-                                padding:const EdgeInsets.all(5.0),
-                                width: double.infinity,
-                                child: const Text(
-                                  'Under Bottom Curve Radius Right',
-                                  style: TextStyle(color: black,fontSize:20),
-                                  textAlign: TextAlign.center,
-                                )
+                              child: Stack(
+                                alignment: Alignment.center,
+                                children: [
+                                  Container(
+                                    padding: const EdgeInsets.symmetric(horizontal:40.0,vertical:5.0),
+                                    width: double.infinity,
+                                    child: const Text(
+                                      'Under Bottom Curve Radius Right',
+                                      style: TextStyle(color: black,fontSize:16),
+                                      textAlign: TextAlign.center,
+                                    )
+                                  ),
+                                  Align(
+                                    alignment : Alignment.centerRight,
+                                    child:IconButton(
+                                      padding : EdgeInsets.zero,
+                                      icon: Container(
+                                        padding: const EdgeInsets.all(2),
+                                        decoration:BoxDecoration(
+                                          borderRadius: BorderRadius.circular(10),
+                                          color: red
+                                        ),
+                                        child: const Icon(Icons.refresh)
+                                      ),
+                                      onPressed : (){
+                                        setState(() {
+                                          underBottomCurveRadiusRightTxtCtrl.text = '0.05';
+                                        });
+                                      }
+                                    )
+                                  )
+                                ],
                               )
                             ),
                             Card(
@@ -1686,20 +1994,45 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
                           ],
                         ),
                         const Divider(thickness: 2),
+
                         //underStrokeCurveWidth
                         Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Card(
-                              child: Container(
-                                padding:const EdgeInsets.all(5.0),
-                                width: double.infinity,
-                                child: const Text(
-                                  'Under Stroke Curve Width',
-                                  style: TextStyle(color: black,fontSize:20),
-                                  textAlign: TextAlign.center,
-                                )
+                              child: Stack(
+                                alignment: Alignment.center,
+                                children: [
+                                  Container(
+                                    padding: const EdgeInsets.symmetric(horizontal:40.0,vertical:5.0),
+                                    width: double.infinity,
+                                    child: const Text(
+                                      'Under Stroke Curve Width',
+                                      style: TextStyle(color: black,fontSize:16),
+                                      textAlign: TextAlign.center,
+                                    )
+                                  ),
+                                  Align(
+                                    alignment : Alignment.centerRight,
+                                    child:IconButton(
+                                      padding : EdgeInsets.zero,
+                                      icon: Container(
+                                        padding: const EdgeInsets.all(2),
+                                        decoration:BoxDecoration(
+                                          borderRadius: BorderRadius.circular(10),
+                                          color: red
+                                        ),
+                                        child: const Icon(Icons.refresh)
+                                      ),
+                                      onPressed : (){
+                                        setState(() {
+                                          underStrokeCurveWidthTxtCtrl.text = '0.12';
+                                        });
+                                      }
+                                    )
+                                  )
+                                ],
                               )
                             ),
                             Card(
@@ -1773,14 +2106,38 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Card(
-                              child: Container(
-                                padding:const EdgeInsets.all(5.0),
-                                width: double.infinity,
-                                child: const Text(
-                                  'Under Stroke Curve Height',
-                                  style: TextStyle(color: black,fontSize:20),
-                                  textAlign: TextAlign.center,
-                                )
+                              child: Stack(
+                                alignment: Alignment.center,
+                                children: [
+                                  Container(
+                                    padding: const EdgeInsets.symmetric(horizontal:40.0,vertical:5.0),
+                                    width: double.infinity,
+                                    child: const Text(
+                                      'Under Stroke Curve Height',
+                                      style: TextStyle(color: black,fontSize:16),
+                                      textAlign: TextAlign.center,
+                                    )
+                                  ),
+                                  Align(
+                                    alignment : Alignment.centerRight,
+                                    child:IconButton(
+                                      padding : EdgeInsets.zero,
+                                      icon: Container(
+                                        padding: const EdgeInsets.all(2),
+                                        decoration:BoxDecoration(
+                                          borderRadius: BorderRadius.circular(10),
+                                          color: red
+                                        ),
+                                        child: const Icon(Icons.refresh)
+                                      ),
+                                      onPressed : (){
+                                        setState(() {
+                                          underStrokeCurveHeightTxtCtrl.text = '0.60';
+                                        });
+                                      }
+                                    )
+                                  )
+                                ],
                               )
                             ),
                             Card(
@@ -1854,14 +2211,38 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Card(
-                              child: Container(
-                                padding:const EdgeInsets.all(5.0),
-                                width: double.infinity,
-                                child: const Text(
-                                  'Under Stroke Top Curve Radius Left',
-                                  style: TextStyle(color: black,fontSize:20),
-                                  textAlign: TextAlign.center,
-                                )
+                              child: Stack(
+                                alignment : Alignment.center,
+                                children: [
+                                  Container(
+                                    padding: const EdgeInsets.symmetric(horizontal:40.0,vertical:5.0),
+                                    width: double.infinity,
+                                    child: const Text(
+                                      'Under Stroke Top Curve Radius Left',
+                                      style: TextStyle(color: black,fontSize:16),
+                                      textAlign: TextAlign.center,
+                                    )
+                                  ),
+                                  Align(
+                                    alignment : Alignment.centerRight,
+                                    child:IconButton(
+                                      padding : EdgeInsets.zero,
+                                      icon: Container(
+                                        padding: const EdgeInsets.all(2),
+                                        decoration:BoxDecoration(
+                                          borderRadius: BorderRadius.circular(10),
+                                          color: red
+                                        ),
+                                        child: const Icon(Icons.refresh)
+                                      ),
+                                      onPressed : (){
+                                        setState(() {
+                                          underStrokeTopCurveRadiusLeftTxtCtrl.text = '0.60';
+                                        });
+                                      }
+                                    )
+                                  )
+                                ],
                               )
                             ),
                             Card(
@@ -1935,14 +2316,38 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Card(
-                              child: Container(
-                                padding:const EdgeInsets.all(5.0),
-                                width: double.infinity,
-                                child: const Text(
-                                  'Under Stroke Top Curve Radius Right',
-                                  style: TextStyle(color: black,fontSize:20),
-                                  textAlign: TextAlign.center,
-                                )
+                              child: Stack(
+                                alignment: Alignment.center,
+                                children: [
+                                  Container(
+                                    padding: const EdgeInsets.symmetric(horizontal:40.0,vertical:5.0),
+                                    width: double.infinity,
+                                    child: const Text(
+                                      'Under Stroke Top Curve Radius Right',
+                                      style: TextStyle(color: black,fontSize:16),
+                                      textAlign: TextAlign.center,
+                                    )
+                                  ),
+                                  Align(
+                                    alignment : Alignment.centerRight,
+                                    child:IconButton(
+                                      padding : EdgeInsets.zero,
+                                      icon: Container(
+                                        padding: const EdgeInsets.all(2),
+                                        decoration:BoxDecoration(
+                                          borderRadius: BorderRadius.circular(10),
+                                          color: red
+                                        ),
+                                        child: const Icon(Icons.refresh)
+                                      ),
+                                      onPressed : (){
+                                        setState(() {
+                                          underStrokeTopCurveRadiusRightTxtCtrl.text = '0.60';
+                                        });
+                                      }
+                                    )
+                                  )
+                                ],
                               )
                             ),
                             Card(
@@ -2016,14 +2421,38 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Card(
-                              child: Container(
-                                padding:const EdgeInsets.all(5.0),
-                                width: double.infinity,
-                                child: const Text(
-                                  'Under Stroke Mid Curve Width Left',
-                                  style: TextStyle(color: black,fontSize:20),
-                                  textAlign: TextAlign.center,
-                                )
+                              child: Stack(
+                                alignment: Alignment.center,
+                                children: [
+                                  Container(
+                                    padding:const EdgeInsets.symmetric(horizontal:40.0,vertical:5.0),
+                                    width: double.infinity,
+                                    child: const Text(
+                                      'Under Stroke Mid Curve Width Left',
+                                      style: TextStyle(color: black,fontSize:16),
+                                      textAlign: TextAlign.center,
+                                    )
+                                  ),
+                                  Align(
+                                    alignment : Alignment.centerRight,
+                                    child:IconButton(
+                                      padding : EdgeInsets.zero,
+                                      icon: Container(
+                                        padding: const EdgeInsets.all(2),
+                                        decoration:BoxDecoration(
+                                          borderRadius: BorderRadius.circular(10),
+                                          color: red
+                                        ),
+                                        child: const Icon(Icons.refresh)
+                                      ),
+                                      onPressed : (){
+                                        setState(() {
+                                          underStrokeMidCurveWidthLeftTxtCtrl.text = '18';
+                                        });
+                                      }
+                                    )
+                                  )
+                                ],
                               )
                             ),
                             Card(
@@ -2097,14 +2526,38 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Card(
-                              child: Container(
-                                padding:const EdgeInsets.all(5.0),
-                                width: double.infinity,
-                                child: const Text(
-                                  'Under Stroke Mid Curve Width Right',
-                                  style: TextStyle(color: black,fontSize:20),
-                                  textAlign: TextAlign.center,
-                                )
+                              child: Stack(
+                                alignment: Alignment.center,
+                                children: [
+                                  Container(
+                                    padding:const EdgeInsets.symmetric(horizontal:40.0,vertical:5.0),
+                                    width: double.infinity,
+                                    child: const Text(
+                                      'Under Stroke Mid Curve Width Right',
+                                      style: TextStyle(color: black,fontSize:16),
+                                      textAlign: TextAlign.center,
+                                    )
+                                  ),
+                                  Align(
+                                    alignment : Alignment.centerRight,
+                                    child:IconButton(
+                                      padding : EdgeInsets.zero,
+                                      icon: Container(
+                                        padding: const EdgeInsets.all(2),
+                                        decoration:BoxDecoration(
+                                          borderRadius: BorderRadius.circular(10),
+                                          color: red
+                                        ),
+                                        child: const Icon(Icons.refresh)
+                                      ),
+                                      onPressed : (){
+                                        setState(() {
+                                          underStrokeMidCurveWidthRightTxtCtrl.text = '18';
+                                        });
+                                      }
+                                    )
+                                  )
+                                ],
                               )
                             ),
                             Card(
@@ -2178,14 +2631,38 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Card(
-                              child: Container(
-                                padding:const EdgeInsets.all(5.0),
-                                width: double.infinity,
-                                child: const Text(
-                                  'Under Stroke Bottom Curve Radius Left',
-                                  style: TextStyle(color: black,fontSize:20),
-                                  textAlign: TextAlign.center,
-                                )
+                              child: Stack(
+                                alignment: Alignment.center,
+                                children: [
+                                  Container(
+                                    padding:const EdgeInsets.symmetric(horizontal:40.0,vertical:5.0),
+                                    width: double.infinity,
+                                    child: const Text(
+                                      'Under Stroke Bottom Curve Radius Left',
+                                      style: TextStyle(color: black,fontSize:16),
+                                      textAlign: TextAlign.center,
+                                    )
+                                  ),
+                                  Align(
+                                    alignment : Alignment.centerRight,
+                                    child:IconButton(
+                                      padding : EdgeInsets.zero,
+                                      icon: Container(
+                                        padding: const EdgeInsets.all(2),
+                                        decoration:BoxDecoration(
+                                          borderRadius: BorderRadius.circular(10),
+                                          color: red
+                                        ),
+                                        child: const Icon(Icons.refresh)
+                                      ),
+                                      onPressed : (){
+                                        setState(() {
+                                          underStrokeBottomCurveRadiusLeftTxtCtrl.text = '0.05';
+                                        });
+                                      }
+                                    )
+                                  )
+                                ],
                               )
                             ),
                             Card(
@@ -2259,14 +2736,38 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Card(
-                              child: Container(
-                                padding:const EdgeInsets.all(5.0),
-                                width: double.infinity,
-                                child: const Text(
-                                  'Under Stroke Bottom Curve Radius Right',
-                                  style: TextStyle(color: black,fontSize:20),
-                                  textAlign: TextAlign.center,
-                                )
+                              child: Stack(
+                                alignment: Alignment.center,
+                                children: [
+                                  Container(
+                                    padding:const EdgeInsets.symmetric(horizontal:40.0,vertical:5.0),
+                                    width: double.infinity,
+                                    child: const Text(
+                                      'Under Stroke Bottom Curve Radius Right',
+                                      style: TextStyle(color: black,fontSize:16),
+                                      textAlign: TextAlign.center,
+                                    )
+                                  ),
+                                  Align(
+                                    alignment : Alignment.centerRight,
+                                    child:IconButton(
+                                      padding : EdgeInsets.zero,
+                                      icon: Container(
+                                        padding: const EdgeInsets.all(2),
+                                        decoration:BoxDecoration(
+                                          borderRadius: BorderRadius.circular(10),
+                                          color: red
+                                        ),
+                                        child: const Icon(Icons.refresh)
+                                      ),
+                                      onPressed : (){
+                                        setState(() {
+                                          underStrokeBottomCurveRadiusRightTxtCtrl.text = '0.05';
+                                        });
+                                      }
+                                    )
+                                  )
+                                ],
                               )
                             ),
                             Card(

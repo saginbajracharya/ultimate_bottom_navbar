@@ -111,30 +111,32 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
   var badgeVal2                                = '55';
   var textDirection                            = TextDirection.ltr;
   
-  TextEditingController stepTxtCtrl = TextEditingController(text:'0.1');
+  TextEditingController backgroundStrokeBorderWidthTxtCtrl                   = TextEditingController(text:'2.0');
+  TextEditingController foregroundStrokeBorderWidthTxtCtrl                   = TextEditingController(text:'2.0');
+  TextEditingController stepTxtCtrl                                          = TextEditingController(text:'0.1');
 
-  TextEditingController upperCurveWidthTxtCtrl                   = TextEditingController(text:'0.10');
-  TextEditingController upperCurveHeightTxtCtrl                  = TextEditingController(text:'0.15');
-  TextEditingController upperStrokeCurveWidthTxtCtrl             = TextEditingController(text:'0.10');
-  TextEditingController upperStrokeCurveHeightTxtCtrl            = TextEditingController(text:'0.15');
+  TextEditingController upperCurveWidthTxtCtrl                               = TextEditingController(text:'0.10');
+  TextEditingController upperCurveHeightTxtCtrl                              = TextEditingController(text:'0.15');
+  TextEditingController upperStrokeCurveWidthTxtCtrl                         = TextEditingController(text:'0.10');
+  TextEditingController upperStrokeCurveHeightTxtCtrl                        = TextEditingController(text:'0.15');
 
-  TextEditingController underCurveWidthTxtCtrl                   = TextEditingController(text:'0.12');
-  TextEditingController underCurveHeightTxtCtrl                  = TextEditingController(text:'0.60');
-  TextEditingController underTopCurveRadiusLeftTxtCtrl           = TextEditingController(text:'0.60');
-  TextEditingController underTopCurveRadiusRightTxtCtrl          = TextEditingController(text:'0.60');
-  TextEditingController underMidCurveWidthLeftTxtCtrl            = TextEditingController(text:'18');
-  TextEditingController underMidCurveWidthRightTxtCtrl           = TextEditingController(text:'18');
-  TextEditingController underBottomCurveRadiusLeftTxtCtrl        = TextEditingController(text:'0.05');
-  TextEditingController underBottomCurveRadiusRightTxtCtrl       = TextEditingController(text:'0.05');
+  TextEditingController underCurveWidthTxtCtrl                               = TextEditingController(text:'0.12');
+  TextEditingController underCurveHeightTxtCtrl                              = TextEditingController(text:'0.60');
+  TextEditingController underTopCurveRadiusLeftTxtCtrl                       = TextEditingController(text:'0.60');
+  TextEditingController underTopCurveRadiusRightTxtCtrl                      = TextEditingController(text:'0.60');
+  TextEditingController underMidCurveWidthLeftTxtCtrl                        = TextEditingController(text:'18');
+  TextEditingController underMidCurveWidthRightTxtCtrl                       = TextEditingController(text:'18');
+  TextEditingController underBottomCurveRadiusLeftTxtCtrl                    = TextEditingController(text:'0.05');
+  TextEditingController underBottomCurveRadiusRightTxtCtrl                   = TextEditingController(text:'0.05');
 
-  TextEditingController underStrokeCurveWidthTxtCtrl             = TextEditingController(text:'0.12');
-  TextEditingController underStrokeCurveHeightTxtCtrl            = TextEditingController(text:'0.60');
-  TextEditingController underStrokeTopCurveRadiusLeftTxtCtrl     = TextEditingController(text:'0.60');
-  TextEditingController underStrokeTopCurveRadiusRightTxtCtrl    = TextEditingController(text:'0.60');
-  TextEditingController underStrokeMidCurveWidthLeftTxtCtrl      = TextEditingController(text:'18');
-  TextEditingController underStrokeMidCurveWidthRightTxtCtrl     = TextEditingController(text:'18');
-  TextEditingController underStrokeBottomCurveRadiusLeftTxtCtrl  = TextEditingController(text:'0.05');
-  TextEditingController underStrokeBottomCurveRadiusRightTxtCtrl = TextEditingController(text:'0.05');
+  TextEditingController underStrokeCurveWidthTxtCtrl                         = TextEditingController(text:'0.12');
+  TextEditingController underStrokeCurveHeightTxtCtrl                        = TextEditingController(text:'0.60');
+  TextEditingController underStrokeTopCurveRadiusLeftTxtCtrl                 = TextEditingController(text:'0.60');
+  TextEditingController underStrokeTopCurveRadiusRightTxtCtrl                = TextEditingController(text:'0.60');
+  TextEditingController underStrokeMidCurveWidthLeftTxtCtrl                  = TextEditingController(text:'18');
+  TextEditingController underStrokeMidCurveWidthRightTxtCtrl                 = TextEditingController(text:'18');
+  TextEditingController underStrokeBottomCurveRadiusLeftTxtCtrl              = TextEditingController(text:'0.05');
+  TextEditingController underStrokeBottomCurveRadiusRightTxtCtrl             = TextEditingController(text:'0.05');
 
   final List<String> title = [
     "",
@@ -495,6 +497,110 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
                             child: Text(backgroundBorderRadius==null||backgroundBorderRadius==BorderRadius.zero?'Show BackGround Circular Radius Stroke\n for all Sides':'Hide BackGround Circular Radius Stroke',style: buttonTextStyle,textAlign: TextAlign.center)
                           ),
                         ),
+                        //Background Stroke Border Width
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Card(
+                              child: Stack(
+                                alignment : Alignment.center,
+                                children: [
+                                  Container(
+                                    padding:const EdgeInsets.symmetric(horizontal:40.0,vertical:5.0),
+                                    width: double.infinity,
+                                    child: const Text(
+                                      'Background Stroke Border Width',
+                                      style: TextStyle(color: black,fontSize:18),
+                                      textAlign: TextAlign.center,
+                                    )
+                                  ),
+                                  Align(
+                                    alignment : Alignment.centerRight,
+                                    child:IconButton(
+                                      padding : EdgeInsets.zero,
+                                      icon: Container(
+                                        padding: const EdgeInsets.all(2),
+                                        decoration:BoxDecoration(
+                                          borderRadius: BorderRadius.circular(10),
+                                          color: red
+                                        ),
+                                        child: const Icon(Icons.refresh)
+                                      ),
+                                      onPressed : (){
+                                        setState(() {
+                                          backgroundStrokeBorderWidthTxtCtrl.text = '2.0';
+                                        });
+                                      }
+                                    )
+                                  )
+                                ],
+                              )
+                            ),
+                            Card(
+                              child: Stack(
+                                children: [
+                                  TextField(
+                                    // readOnly: true,
+                                    keyboardType: const TextInputType.numberWithOptions(decimal: true),
+                                    controller: backgroundStrokeBorderWidthTxtCtrl,
+                                    textAlign: TextAlign.center,
+                                    style: const TextStyle(fontSize: 20),
+                                    decoration: const InputDecoration(
+                                      hintText: 'Background Stroke Border Width',
+                                    ),
+                                  ),
+                                  Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: IconButton(
+                                      padding: EdgeInsets.zero,
+                                      onPressed: () {
+                                        double currentValue = double.tryParse(backgroundStrokeBorderWidthTxtCtrl.text) ?? 0.0;
+                                        double newValue = currentValue - (double.tryParse(stepTxtCtrl.text)??0.0);
+                                        // Update the TextField with the new value
+                                        backgroundStrokeBorderWidthTxtCtrl.text = newValue.toStringAsFixed(2);
+                                        // Optionally, you can also update the state if needed
+                                        setState(() {
+                                        });
+                                      },
+                                      icon: Container(
+                                        padding: const EdgeInsets.all(2),
+                                        decoration:BoxDecoration(
+                                          borderRadius: BorderRadius.circular(10),
+                                          color: red
+                                        ),
+                                        child: const Icon(Icons.remove)
+                                      ),
+                                    ),
+                                  ),
+                                  Align(
+                                    alignment: Alignment.centerRight,
+                                    child: IconButton(
+                                      padding: EdgeInsets.zero,
+                                      onPressed: () {
+                                        double currentValue = double.tryParse(backgroundStrokeBorderWidthTxtCtrl.text) ?? 0.0;
+                                        double newValue = currentValue + (double.tryParse(stepTxtCtrl.text)??0.0);
+                                        // Update the TextField with the new value
+                                        backgroundStrokeBorderWidthTxtCtrl.text = newValue.toStringAsFixed(2);
+                                        // Optionally, you can also update the state if needed
+                                        setState(() {
+                                        });
+                                      },
+                                      icon: Container(
+                                        padding: const EdgeInsets.all(2),
+                                        decoration:BoxDecoration(
+                                          borderRadius: BorderRadius.circular(10),
+                                          color: red
+                                        ),
+                                        child: const Icon(Icons.add)
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
                         const Divider(thickness: 2),
                         //ForeGround Properties
                         Text('Fore Ground Properties',style: heading1Style,textAlign: TextAlign.center),
@@ -666,6 +772,110 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
                             }, 
                             child: Text(showMidCircleStatic?'Hide Mid Item Decor For Static Curve':'Show Mid Item Decor For Static Curve\nMust Be Static Curve and Selected,Unselected Decor overrides',style: buttonTextStyle,textAlign: TextAlign.center)
                           ),
+                        ),
+                        //Foreground Stroke Border Width
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Card(
+                              child: Stack(
+                                alignment : Alignment.center,
+                                children: [
+                                  Container(
+                                    padding:const EdgeInsets.symmetric(horizontal:40.0,vertical:5.0),
+                                    width: double.infinity,
+                                    child: const Text(
+                                      'Foreground Stroke Border Width',
+                                      style: TextStyle(color: black,fontSize:18),
+                                      textAlign: TextAlign.center,
+                                    )
+                                  ),
+                                  Align(
+                                    alignment : Alignment.centerRight,
+                                    child:IconButton(
+                                      padding : EdgeInsets.zero,
+                                      icon: Container(
+                                        padding: const EdgeInsets.all(2),
+                                        decoration:BoxDecoration(
+                                          borderRadius: BorderRadius.circular(10),
+                                          color: red
+                                        ),
+                                        child: const Icon(Icons.refresh)
+                                      ),
+                                      onPressed : (){
+                                        setState(() {
+                                          foregroundStrokeBorderWidthTxtCtrl.text = '2.0';
+                                        });
+                                      }
+                                    )
+                                  )
+                                ],
+                              )
+                            ),
+                            Card(
+                              child: Stack(
+                                children: [
+                                  TextField(
+                                    // readOnly: true,
+                                    keyboardType: const TextInputType.numberWithOptions(decimal: true),
+                                    controller: foregroundStrokeBorderWidthTxtCtrl,
+                                    textAlign: TextAlign.center,
+                                    style: const TextStyle(fontSize: 20),
+                                    decoration: const InputDecoration(
+                                      hintText: 'Foreground Stroke Border Width',
+                                    ),
+                                  ),
+                                  Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: IconButton(
+                                      padding: EdgeInsets.zero,
+                                      onPressed: () {
+                                        double currentValue = double.tryParse(foregroundStrokeBorderWidthTxtCtrl.text) ?? 0.0;
+                                        double newValue = currentValue - (double.tryParse(stepTxtCtrl.text)??0.0);
+                                        // Update the TextField with the new value
+                                        foregroundStrokeBorderWidthTxtCtrl.text = newValue.toStringAsFixed(2);
+                                        // Optionally, you can also update the state if needed
+                                        setState(() {
+                                        });
+                                      },
+                                      icon: Container(
+                                        padding: const EdgeInsets.all(2),
+                                        decoration:BoxDecoration(
+                                          borderRadius: BorderRadius.circular(10),
+                                          color: red
+                                        ),
+                                        child: const Icon(Icons.remove)
+                                      ),
+                                    ),
+                                  ),
+                                  Align(
+                                    alignment: Alignment.centerRight,
+                                    child: IconButton(
+                                      padding: EdgeInsets.zero,
+                                      onPressed: () {
+                                        double currentValue = double.tryParse(foregroundStrokeBorderWidthTxtCtrl.text) ?? 0.0;
+                                        double newValue = currentValue + (double.tryParse(stepTxtCtrl.text)??0.0);
+                                        // Update the TextField with the new value
+                                        foregroundStrokeBorderWidthTxtCtrl.text = newValue.toStringAsFixed(2);
+                                        // Optionally, you can also update the state if needed
+                                        setState(() {
+                                        });
+                                      },
+                                      icon: Container(
+                                        padding: const EdgeInsets.all(2),
+                                        decoration:BoxDecoration(
+                                          borderRadius: BorderRadius.circular(10),
+                                          color: red
+                                        ),
+                                        child: const Icon(Icons.add)
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
                         ),
 
                         //STEPS
@@ -2858,8 +3068,8 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
             foregroundColor                    : black,                                                                       // NavBar ForeGround Color with Curve 
             foregroundStrokeBorderColor        : red,                                                                         // Nav Stroke Border Color [useForegroundShaderStroke = false , strokeBorderWidth != 0]
             backgroundStrokeBorderColor        : white,                                                                       // nav background stroke color [seems like when border width is 0.0 still shows the color but transparent solves it]
-            backgroundStrokeBorderWidth        : backgroundStrokeBorderWidth,                                                 // Nav BackGround Stroke Border Width
-            foregroundStrokeBorderWidth        : foregroundStrokeBorderWidth,                                                 // Nav ForeGround Stroke Border Width  
+            backgroundStrokeBorderWidth        : double.tryParse(backgroundStrokeBorderWidthTxtCtrl.text)??2.0,               // Nav BackGround Stroke Border Width
+            foregroundStrokeBorderWidth        : double.tryParse(foregroundStrokeBorderWidthTxtCtrl.text)??2.0,               // Nav ForeGround Stroke Border Width  
             backgroundGradient                 : backgroundGradientColors,                                                    // Nav background Gradient [No Gradient if Null Overrides backgroundColor if given]
             foreGroundGradientShader           : foreGroundGradientShader,                                                    // Nav ForeGround Gradient Shader [foregroundColor or foreGroundGradientShader determined by Bool useForeGroundGradient]
             foregroundStrokeGradientShader     : foregroundStrokeGradientShader,                                              // ForeGround Stroke border Gradient Shader

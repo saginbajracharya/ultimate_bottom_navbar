@@ -1038,10 +1038,10 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
             icons                              : icons,                                                                       // Icon list<Widget>
             titles                             : title,                                                                       // Title list<String>
             currentIndex                       : currentIndex,                                                                // Current selected index
-            backgroundColor                    : white.withOpacity(0.8),                                                             // NavBar BackGround Color [backgroundGradient ovrerides color]
+            backgroundColor                    : white.withOpacity(0.8),                                                      // NavBar BackGround Color [backgroundGradient ovrerides color]
             foregroundColor                    : black,                                                                       // NavBar ForeGround Color with Curve 
-            foregroundStrokeBorderColor        : red.withOpacity(0.8),                                                                        // Nav Stroke Border Color [useForegroundShaderStroke = false , strokeBorderWidth != 0]
-            backgroundStrokeBorderColor        : red.withOpacity(0.8),                                                                         // nav background stroke color [seems like when border width is 0.0 still shows the color but transparent solves it]
+            foregroundStrokeBorderColor        : red.withOpacity(0.8),                                                        // Nav Stroke Border Color [useForegroundShaderStroke = false , strokeBorderWidth != 0]
+            backgroundStrokeBorderColor        : red.withOpacity(0.8),                                                        // nav background stroke color [seems like when border width is 0.0 still shows the color but transparent solves it]
             backgroundStrokeBorderWidth        : double.tryParse(backgroundStrokeBorderWidthTxtCtrl.text)??2.0,               // Nav BackGround Stroke Border Width
             foregroundStrokeBorderWidth        : double.tryParse(foregroundStrokeBorderWidthTxtCtrl.text)??2.0,               // Nav ForeGround Stroke Border Width  
             backgroundGradient                 : backgroundGradientColors,                                                    // Nav background Gradient [No Gradient if Null Overrides backgroundColor if given]

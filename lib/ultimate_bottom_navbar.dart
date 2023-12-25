@@ -52,27 +52,60 @@ class UltimateBottomNavBar extends StatefulWidget {
 
   //New
   final double? upperCurveWidth;
-  final double? upperCurveHeight;
-  final double? underTopCurveRadiusLeft;
-  final double? underTopCurveRadiusRight;
-  final double? underMidCurveWidthLeft;
-  final double? underMidCurveWidthRight;
-  final double? underBottomCurveRadiusLeft;
-  final double? underBottomCurveRadiusRight;
+  final double? leftX1UpperCurveCtrl;
+  final double? leftY1UpperCurveCtrl;
+  final double? leftX2UpperCurveCtrl;
+  final double? leftY2UpperCurveCtrl;
+  final double? leftX3UpperCurveCtrl;
+  final double? leftY3UpperCurveCtrl;
+  final double? rightX1UpperCurveCtrl;
+  final double? rightY1UpperCurveCtrl;
+  final double? rightX2UpperCurveCtrl;
+  final double? rightY2UpperCurveCtrl;
+  final double? rightX3UpperCurveCtrl;
+  final double? rightY3UpperCurveCtrl;
 
   final double? upperStrokeCurveWidth;
-  final double? upperStrokeCurveHeight;
-  final double? underStrokeTopCurveRadiusLeft;
-  final double? underStrokeTopCurveRadiusRight;
-  final double? underStrokeMidCurveWidthLeft;
-  final double? underStrokeMidCurveWidthRight;
-  final double? underStrokeBottomCurveRadiusLeft;
-  final double? underStrokeBottomCurveRadiusRight;
+  final double? leftStrokeX1UpperCurveCtrl;
+  final double? leftStrokeY1UpperCurveCtrl;
+  final double? leftStrokeX2UpperCurveCtrl;
+  final double? leftStrokeY2UpperCurveCtrl;
+  final double? leftStrokeX3UpperCurveCtrl;
+  final double? leftStrokeY3UpperCurveCtrl;
+  final double? rightStrokeX1UpperCurveCtrl;
+  final double? rightStrokeY1UpperCurveCtrl;
+  final double? rightStrokeX2UpperCurveCtrl;
+  final double? rightStrokeY2UpperCurveCtrl;
+  final double? rightStrokeX3UpperCurveCtrl;
+  final double? rightStrokeY3UpperCurveCtrl;
 
   final double? underCurveWidth;
-  final double? underCurveHeight;
+  final double? leftX1UnderCurveCtrl;
+  final double? leftY1UnderCurveCtrl;
+  final double? leftX2UnderCurveCtrl;
+  final double? leftY2UnderCurveCtrl;
+  final double? leftX3UnderCurveCtrl;
+  final double? leftY3UnderCurveCtrl;
+  final double? rightX1UnderCurveCtrl;
+  final double? rightY1UnderCurveCtrl;
+  final double? rightX2UnderCurveCtrl;
+  final double? rightY2UnderCurveCtrl;
+  final double? rightX3UnderCurveCtrl;
+  final double? rightY3UnderCurveCtrl;
+
   final double? underStrokeCurveWidth;
-  final double? underStrokeCurveHeight;
+  final double? leftStrokeX1UnderCurveCtrl;
+  final double? leftStrokeY1UnderCurveCtrl;
+  final double? leftStrokeX2UnderCurveCtrl;
+  final double? leftStrokeY2UnderCurveCtrl;
+  final double? leftStrokeX3UnderCurveCtrl;
+  final double? leftStrokeY3UnderCurveCtrl;
+  final double? rightStrokeX1UnderCurveCtrl;
+  final double? rightStrokeY1UnderCurveCtrl;
+  final double? rightStrokeX2UnderCurveCtrl;
+  final double? rightStrokeY2UnderCurveCtrl;
+  final double? rightStrokeX3UnderCurveCtrl;
+  final double? rightStrokeY3UnderCurveCtrl;
   //
 
   final List<Map<String,dynamic>>? badgeData;
@@ -135,30 +168,63 @@ class UltimateBottomNavBar extends StatefulWidget {
     this.customSelectedItemDecor,                                               // Default customSelectedItemDecor Null
     this.customUnSelectedItemDecor,                                             // Default customUnSelectedItemDecor Null
     
-    //new
+    //Upper Curve Controls New
     this.upperCurveWidth,
-    this.upperCurveHeight,
+    this.leftX1UpperCurveCtrl,
+    this.leftY1UpperCurveCtrl,
+    this.leftX2UpperCurveCtrl,
+    this.leftY2UpperCurveCtrl,
+    this.leftX3UpperCurveCtrl,
+    this.leftY3UpperCurveCtrl,
+    this.rightX1UpperCurveCtrl,
+    this.rightY1UpperCurveCtrl,
+    this.rightX2UpperCurveCtrl,
+    this.rightY2UpperCurveCtrl,
+    this.rightX3UpperCurveCtrl,
+    this.rightY3UpperCurveCtrl,
     this.upperStrokeCurveWidth,
-    this.upperStrokeCurveHeight,
+    this.leftStrokeX1UpperCurveCtrl,
+    this.leftStrokeY1UpperCurveCtrl,
+    this.leftStrokeX2UpperCurveCtrl,
+    this.leftStrokeY2UpperCurveCtrl,
+    this.leftStrokeX3UpperCurveCtrl,
+    this.leftStrokeY3UpperCurveCtrl,
+    this.rightStrokeX1UpperCurveCtrl,
+    this.rightStrokeY1UpperCurveCtrl,
+    this.rightStrokeX2UpperCurveCtrl,
+    this.rightStrokeY2UpperCurveCtrl,
+    this.rightStrokeX3UpperCurveCtrl,
+    this.rightStrokeY3UpperCurveCtrl,
 
+
+    //Under Curve Controls New
     this.underCurveWidth,
-    this.underCurveHeight,
-    this.underTopCurveRadiusLeft,
-    this.underTopCurveRadiusRight,
-    this.underMidCurveWidthLeft,
-    this.underMidCurveWidthRight,
-    this.underBottomCurveRadiusLeft,
-    this.underBottomCurveRadiusRight,
+    this.leftX1UnderCurveCtrl,
+    this.leftY1UnderCurveCtrl,
+    this.leftX2UnderCurveCtrl,
+    this.leftY2UnderCurveCtrl,
+    this.leftX3UnderCurveCtrl,
+    this.leftY3UnderCurveCtrl,
+    this.rightX1UnderCurveCtrl,
+    this.rightY1UnderCurveCtrl,
+    this.rightX2UnderCurveCtrl,
+    this.rightY2UnderCurveCtrl,
+    this.rightX3UnderCurveCtrl,
+    this.rightY3UnderCurveCtrl,
 
     this.underStrokeCurveWidth,
-    this.underStrokeCurveHeight,
-    this.underStrokeTopCurveRadiusLeft,
-    this.underStrokeTopCurveRadiusRight,
-    this.underStrokeMidCurveWidthLeft,
-    this.underStrokeMidCurveWidthRight,
-    this.underStrokeBottomCurveRadiusLeft,
-    this.underStrokeBottomCurveRadiusRight,
-
+    this.leftStrokeX1UnderCurveCtrl,
+    this.leftStrokeY1UnderCurveCtrl,
+    this.leftStrokeX2UnderCurveCtrl,
+    this.leftStrokeY2UnderCurveCtrl,
+    this.leftStrokeX3UnderCurveCtrl,
+    this.leftStrokeY3UnderCurveCtrl,
+    this.rightStrokeX1UnderCurveCtrl,
+    this.rightStrokeY1UnderCurveCtrl,
+    this.rightStrokeX2UnderCurveCtrl,
+    this.rightStrokeY2UnderCurveCtrl,
+    this.rightStrokeX3UnderCurveCtrl,
+    this.rightStrokeY3UnderCurveCtrl,
     //
 
     this.badgeData,
@@ -401,13 +467,18 @@ class UltimateBottomNavBarState extends State<UltimateBottomNavBar> with TickerP
         widget.foregroundColor, 
         Directionality.of(context),
         widget.underCurveWidth,
-        widget.underCurveHeight,
-        widget.underTopCurveRadiusLeft,
-        widget.underTopCurveRadiusRight,
-        widget.underMidCurveWidthLeft,
-        widget.underMidCurveWidthRight,
-        widget.underBottomCurveRadiusLeft,
-        widget.underBottomCurveRadiusRight
+        widget.leftX1UnderCurveCtrl,
+        widget.leftY1UnderCurveCtrl,
+        widget.leftX2UnderCurveCtrl,
+        widget.leftY2UnderCurveCtrl,
+        widget.leftX3UnderCurveCtrl,
+        widget.leftY3UnderCurveCtrl,
+        widget.rightX1UnderCurveCtrl,
+        widget.rightY1UnderCurveCtrl,
+        widget.rightX2UnderCurveCtrl,
+        widget.rightY2UnderCurveCtrl,
+        widget.rightX3UnderCurveCtrl,
+        widget.rightY3UnderCurveCtrl,
       )
       :NavForeGroundCurvePainterUpperStatic(
         _pos, 
@@ -417,7 +488,18 @@ class UltimateBottomNavBarState extends State<UltimateBottomNavBar> with TickerP
         widget.foregroundColor, 
         Directionality.of(context),
         widget.upperCurveWidth,
-        widget.upperCurveHeight,
+        widget.leftX1UpperCurveCtrl,
+        widget.leftY1UpperCurveCtrl,
+        widget.leftX2UpperCurveCtrl,
+        widget.leftY2UpperCurveCtrl,
+        widget.leftX3UpperCurveCtrl,
+        widget.leftY3UpperCurveCtrl,
+        widget.rightX1UpperCurveCtrl,
+        widget.rightY1UpperCurveCtrl,
+        widget.rightX2UpperCurveCtrl,
+        widget.rightY2UpperCurveCtrl,
+        widget.rightX3UpperCurveCtrl,
+        widget.rightY3UpperCurveCtrl,
       ),
       foregroundPainter: widget.foregroundStrokeBorderWidth!=0 
       ?widget.underCurve
@@ -431,13 +513,18 @@ class UltimateBottomNavBarState extends State<UltimateBottomNavBar> with TickerP
         widget.foregroundStrokeGradientShader,
         Directionality.of(context),
         widget.underStrokeCurveWidth,
-        widget.underStrokeCurveHeight,
-        widget.underStrokeTopCurveRadiusLeft,
-        widget.underStrokeTopCurveRadiusRight,
-        widget.underStrokeMidCurveWidthLeft,
-        widget.underStrokeMidCurveWidthRight,
-        widget.underStrokeBottomCurveRadiusLeft,
-        widget.underStrokeBottomCurveRadiusRight
+        widget.leftStrokeX1UnderCurveCtrl,
+        widget.leftStrokeY1UnderCurveCtrl,
+        widget.leftStrokeX2UnderCurveCtrl,
+        widget.leftStrokeY2UnderCurveCtrl,
+        widget.leftStrokeX3UnderCurveCtrl,
+        widget.leftStrokeY3UnderCurveCtrl,
+        widget.rightStrokeX1UnderCurveCtrl,
+        widget.rightStrokeY1UnderCurveCtrl,
+        widget.rightStrokeX2UnderCurveCtrl,
+        widget.rightStrokeY2UnderCurveCtrl,
+        widget.rightStrokeX3UnderCurveCtrl,
+        widget.rightStrokeY3UnderCurveCtrl,
       )
       :NavForeGroundUpperStrokeBorderPainterStatic(
         _pos, 
@@ -449,7 +536,18 @@ class UltimateBottomNavBarState extends State<UltimateBottomNavBar> with TickerP
         widget.foregroundStrokeGradientShader,
         Directionality.of(context),
         widget.upperStrokeCurveWidth,
-        widget.upperStrokeCurveHeight
+        widget.leftStrokeX1UpperCurveCtrl,
+        widget.leftStrokeY1UpperCurveCtrl,
+        widget.leftStrokeX2UpperCurveCtrl,
+        widget.leftStrokeY2UpperCurveCtrl,
+        widget.leftStrokeX3UpperCurveCtrl,
+        widget.leftStrokeY3UpperCurveCtrl,
+        widget.rightStrokeX1UpperCurveCtrl,
+        widget.rightStrokeY1UpperCurveCtrl,
+        widget.rightStrokeX2UpperCurveCtrl,
+        widget.rightStrokeY2UpperCurveCtrl,
+        widget.rightStrokeX3UpperCurveCtrl,
+        widget.rightStrokeY3UpperCurveCtrl,
       )
       :null,
       child: Container(
@@ -469,13 +567,18 @@ class UltimateBottomNavBarState extends State<UltimateBottomNavBar> with TickerP
         widget.foregroundColor, 
         Directionality.of(context),
         widget.underCurveWidth,
-        widget.underCurveHeight,
-        widget.underTopCurveRadiusLeft,
-        widget.underTopCurveRadiusRight,
-        widget.underMidCurveWidthLeft,
-        widget.underMidCurveWidthRight,
-        widget.underBottomCurveRadiusLeft,
-        widget.underBottomCurveRadiusRight
+        widget.leftX1UnderCurveCtrl,
+        widget.leftY1UnderCurveCtrl,
+        widget.leftX2UnderCurveCtrl,
+        widget.leftY2UnderCurveCtrl,
+        widget.leftX3UnderCurveCtrl,
+        widget.leftY3UnderCurveCtrl,
+        widget.rightX1UnderCurveCtrl,
+        widget.rightY1UnderCurveCtrl,
+        widget.rightX2UnderCurveCtrl,
+        widget.rightY2UnderCurveCtrl,
+        widget.rightX3UnderCurveCtrl,
+        widget.rightY3UnderCurveCtrl,
       )
       :NavForeGroundCurvePainterUpperDynamic(
         _pos, 
@@ -485,7 +588,18 @@ class UltimateBottomNavBarState extends State<UltimateBottomNavBar> with TickerP
         widget.foregroundColor, 
         Directionality.of(context),
         widget.upperCurveWidth,
-        widget.upperCurveHeight
+        widget.leftX1UpperCurveCtrl,
+        widget.leftY1UpperCurveCtrl,
+        widget.leftX2UpperCurveCtrl,
+        widget.leftY2UpperCurveCtrl,
+        widget.leftX3UpperCurveCtrl,
+        widget.leftY3UpperCurveCtrl,
+        widget.rightX1UpperCurveCtrl,
+        widget.rightY1UpperCurveCtrl,
+        widget.rightX2UpperCurveCtrl,
+        widget.rightY2UpperCurveCtrl,
+        widget.rightX3UpperCurveCtrl,
+        widget.rightY3UpperCurveCtrl,
       ),
       foregroundPainter: widget.foregroundStrokeBorderWidth!=0 
       ?widget.underCurve
@@ -499,13 +613,18 @@ class UltimateBottomNavBarState extends State<UltimateBottomNavBar> with TickerP
         widget.foregroundStrokeGradientShader,
         Directionality.of(context),
         widget.underStrokeCurveWidth,
-        widget.underStrokeCurveHeight,
-        widget.underStrokeTopCurveRadiusLeft,
-        widget.underStrokeTopCurveRadiusRight,
-        widget.underStrokeMidCurveWidthLeft,
-        widget.underStrokeMidCurveWidthRight,
-        widget.underStrokeBottomCurveRadiusLeft,
-        widget.underStrokeBottomCurveRadiusRight
+        widget.leftStrokeX1UnderCurveCtrl,
+        widget.leftStrokeY1UnderCurveCtrl,
+        widget.leftStrokeX2UnderCurveCtrl,
+        widget.leftStrokeY2UnderCurveCtrl,
+        widget.leftStrokeX3UnderCurveCtrl,
+        widget.leftStrokeY3UnderCurveCtrl,
+        widget.rightStrokeX1UnderCurveCtrl,
+        widget.rightStrokeY1UnderCurveCtrl,
+        widget.rightStrokeX2UnderCurveCtrl,
+        widget.rightStrokeY2UnderCurveCtrl,
+        widget.rightStrokeX3UnderCurveCtrl,
+        widget.rightStrokeY3UnderCurveCtrl,
       )
       :NavForeGroundUpperStrokeBorderPainterDynamic(
         _pos, 
@@ -517,7 +636,18 @@ class UltimateBottomNavBarState extends State<UltimateBottomNavBar> with TickerP
         widget.foregroundStrokeGradientShader,
         Directionality.of(context),
         widget.upperStrokeCurveWidth,
-        widget.upperStrokeCurveHeight
+        widget.leftStrokeX1UpperCurveCtrl,
+        widget.leftStrokeY1UpperCurveCtrl,
+        widget.leftStrokeX2UpperCurveCtrl,
+        widget.leftStrokeY2UpperCurveCtrl,
+        widget.leftStrokeX3UpperCurveCtrl,
+        widget.leftStrokeY3UpperCurveCtrl,
+        widget.rightStrokeX1UpperCurveCtrl,
+        widget.rightStrokeY1UpperCurveCtrl,
+        widget.rightStrokeX2UpperCurveCtrl,
+        widget.rightStrokeY2UpperCurveCtrl,
+        widget.rightStrokeX3UpperCurveCtrl,
+        widget.rightStrokeY3UpperCurveCtrl,
       )
       :null,
       child: Container(

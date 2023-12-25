@@ -88,7 +88,7 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
     stops: [0.2, 0.4, 0.5, 0.6, 2.0],
   ).createShader(Rect.fromCenter(center: const Offset(0.0,0.0), height: 200, width: 100));
 
-  int currentIndex                             = 0;
+  int currentIndex                             = 2;
   bool staticCurve                             = false;
   bool useForeGroundGradient                   = false;
   bool showForeGround                          = true;
@@ -99,10 +99,7 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
   bool showForeGroundStrokeAllSide             = false;
   bool showBackGroundStrokeAllSide             = false;
   bool showMidCircleStatic                     = false; 
-  Color backgroundColor                        = blue; 
-  Widget? customSelectedItemDecor;
-  Widget? customUnSelectedItemDecor;
-  Gradient? backgroundGradientColors;
+  Color backgroundColor                        = black.withOpacity(0.5); 
   double backgroundStrokeBorderWidth           = 2.0; 
   double foregroundStrokeBorderWidth           = 2.0;  
   BorderRadiusGeometry? backgroundBorderRadius = BorderRadius.circular(0.0);
@@ -110,33 +107,76 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
   var badgeVal1                                = '5';
   var badgeVal2                                = '55';
   var textDirection                            = TextDirection.ltr;
+  Widget? customSelectedItemDecor;
+  Widget? customUnSelectedItemDecor;
+  Gradient? backgroundGradientColors;
   
-  TextEditingController backgroundStrokeBorderWidthTxtCtrl                   = TextEditingController(text:'2.0');
-  TextEditingController foregroundStrokeBorderWidthTxtCtrl                   = TextEditingController(text:'2.0');
-  TextEditingController stepTxtCtrl                                          = TextEditingController(text:'0.1');
+  TextEditingController backgroundStrokeBorderWidthTxtCtrl = TextEditingController(text:'2.0');
+  TextEditingController foregroundStrokeBorderWidthTxtCtrl = TextEditingController(text:'2.0');
+  TextEditingController stepTxtCtrl                        = TextEditingController(text:'0.1');
 
-  TextEditingController upperCurveWidthTxtCtrl                               = TextEditingController(text:'0.10');
-  TextEditingController upperCurveHeightTxtCtrl                              = TextEditingController(text:'0.15');
-  TextEditingController upperStrokeCurveWidthTxtCtrl                         = TextEditingController(text:'0.10');
-  TextEditingController upperStrokeCurveHeightTxtCtrl                        = TextEditingController(text:'0.15');
+  TextEditingController upperCurveWidthTxtCtrl             = TextEditingController(text:'0.16');
+  TextEditingController leftX1UpperCurveCtrl               = TextEditingController(text:'0.20');
+  TextEditingController leftY1UpperCurveCtrl               = TextEditingController(text:'0.0');
+  TextEditingController leftX2UpperCurveCtrl               = TextEditingController(text:'10');
+  TextEditingController leftY2UpperCurveCtrl               = TextEditingController(text:'0.12');
+  TextEditingController leftX3UpperCurveCtrl               = TextEditingController(text:'0.5');
+  TextEditingController leftY3UpperCurveCtrl               = TextEditingController(text:'0.12');
+  TextEditingController rightX1UpperCurveCtrl              = TextEditingController(text:'10');
+  TextEditingController rightY1UpperCurveCtrl              = TextEditingController(text:'0.12');
+  TextEditingController rightX2UpperCurveCtrl              = TextEditingController(text:'0.20');
+  TextEditingController rightY2UpperCurveCtrl              = TextEditingController(text:'0.0');
+  TextEditingController rightX3UpperCurveCtrl              = TextEditingController(text:'0');
+  TextEditingController rightY3UpperCurveCtrl              = TextEditingController(text:'0');
 
-  TextEditingController underCurveWidthTxtCtrl                               = TextEditingController(text:'0.12');
-  TextEditingController underCurveHeightTxtCtrl                              = TextEditingController(text:'0.60');
-  TextEditingController underTopCurveRadiusLeftTxtCtrl                       = TextEditingController(text:'0.60');
-  TextEditingController underTopCurveRadiusRightTxtCtrl                      = TextEditingController(text:'0.60');
-  TextEditingController underMidCurveWidthLeftTxtCtrl                        = TextEditingController(text:'18');
-  TextEditingController underMidCurveWidthRightTxtCtrl                       = TextEditingController(text:'18');
-  TextEditingController underBottomCurveRadiusLeftTxtCtrl                    = TextEditingController(text:'0.05');
-  TextEditingController underBottomCurveRadiusRightTxtCtrl                   = TextEditingController(text:'0.05');
+  TextEditingController upperStrokeCurveWidthTxtCtrl       = TextEditingController(text:'0.16');
+  TextEditingController leftStrokeX1UpperCurveCtrl         = TextEditingController(text:'0.20');
+  TextEditingController leftStrokeY1UpperCurveCtrl         = TextEditingController(text:'0.0');
+  TextEditingController leftStrokeX2UpperCurveCtrl         = TextEditingController(text:'10');
+  TextEditingController leftStrokeY2UpperCurveCtrl         = TextEditingController(text:'0.12');
+  TextEditingController leftStrokeX3UpperCurveCtrl         = TextEditingController(text:'0.5');
+  TextEditingController leftStrokeY3UpperCurveCtrl         = TextEditingController(text:'0.12');
+  TextEditingController rightStrokeX1UpperCurveCtrl        = TextEditingController(text:'10');
+  TextEditingController rightStrokeY1UpperCurveCtrl        = TextEditingController(text:'0.12');
+  TextEditingController rightStrokeX2UpperCurveCtrl        = TextEditingController(text:'0.20');
+  TextEditingController rightStrokeY2UpperCurveCtrl        = TextEditingController(text:'0.0');
+  TextEditingController rightStrokeX3UpperCurveCtrl        = TextEditingController(text:'0');
+  TextEditingController rightStrokeY3UpperCurveCtrl        = TextEditingController(text:'0');
 
-  TextEditingController underStrokeCurveWidthTxtCtrl                         = TextEditingController(text:'0.12');
-  TextEditingController underStrokeCurveHeightTxtCtrl                        = TextEditingController(text:'0.60');
-  TextEditingController underStrokeTopCurveRadiusLeftTxtCtrl                 = TextEditingController(text:'0.60');
-  TextEditingController underStrokeTopCurveRadiusRightTxtCtrl                = TextEditingController(text:'0.60');
-  TextEditingController underStrokeMidCurveWidthLeftTxtCtrl                  = TextEditingController(text:'18');
-  TextEditingController underStrokeMidCurveWidthRightTxtCtrl                 = TextEditingController(text:'18');
-  TextEditingController underStrokeBottomCurveRadiusLeftTxtCtrl              = TextEditingController(text:'0.05');
-  TextEditingController underStrokeBottomCurveRadiusRightTxtCtrl             = TextEditingController(text:'0.05');
+  TextEditingController underCurveWidthTxtCtrl             = TextEditingController(text:'0.18');
+  TextEditingController leftX1UnderCurveCtrl               = TextEditingController(text:'0.50');
+  TextEditingController leftY1UnderCurveCtrl               = TextEditingController(text:'0.05');
+  TextEditingController leftX2UnderCurveCtrl               = TextEditingController(text:'8');
+  TextEditingController leftY2UnderCurveCtrl               = TextEditingController(text:'0.66');
+  TextEditingController leftX3UnderCurveCtrl               = TextEditingController(text:'0.50');
+  TextEditingController leftY3UnderCurveCtrl               = TextEditingController(text:'0.66');
+  TextEditingController rightX1UnderCurveCtrl              = TextEditingController(text:'8');
+  TextEditingController rightY1UnderCurveCtrl              = TextEditingController(text:'0.66');
+  TextEditingController rightX2UnderCurveCtrl              = TextEditingController(text:'0.50');
+  TextEditingController rightY2UnderCurveCtrl              = TextEditingController(text:'0.05');
+  TextEditingController rightX3UnderCurveCtrl              = TextEditingController(text:'0');
+  TextEditingController rightY3UnderCurveCtrl              = TextEditingController(text:'0');
+
+  TextEditingController underStrokeCurveWidthTxtCtrl       = TextEditingController(text:'0.18');
+  TextEditingController leftStrokeX1UnderCurveCtrl         = TextEditingController(text:'0.50');
+  TextEditingController leftStrokeY1UnderCurveCtrl         = TextEditingController(text:'0.05');
+  TextEditingController leftStrokeX2UnderCurveCtrl         = TextEditingController(text:'8');
+  TextEditingController leftStrokeY2UnderCurveCtrl         = TextEditingController(text:'0.66');
+  TextEditingController leftStrokeX3UnderCurveCtrl         = TextEditingController(text:'0.50');
+  TextEditingController leftStrokeY3UnderCurveCtrl         = TextEditingController(text:'0.66');
+  TextEditingController rightStrokeX1UnderCurveCtrl        = TextEditingController(text:'8');
+  TextEditingController rightStrokeY1UnderCurveCtrl        = TextEditingController(text:'0.66');
+  TextEditingController rightStrokeX2UnderCurveCtrl        = TextEditingController(text:'0.50');
+  TextEditingController rightStrokeY2UnderCurveCtrl        = TextEditingController(text:'0.05');
+  TextEditingController rightStrokeX3UnderCurveCtrl        = TextEditingController(text:'0');
+  TextEditingController rightStrokeY3UnderCurveCtrl        = TextEditingController(text:'0');
+
+
+  @override
+  void initState() {
+    super.initState();
+    setData();
+  }
 
   final List<String> title = [
     "",
@@ -162,6 +202,9 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
     const Page5(),
   ];
   
+  List<Map<String, dynamic>> upperCurveData = [];
+
+  List<Map<String, dynamic>> underCurveData = [];
 
   @override
   Widget build(BuildContext context) {
@@ -503,6 +546,7 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Card(
+                              color: white.withOpacity(0.6),
                               child: Stack(
                                 alignment : Alignment.center,
                                 children: [
@@ -779,6 +823,7 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Card(
+                              color: white.withOpacity(0.6),
                               child: Stack(
                                 alignment : Alignment.center,
                                 children: [
@@ -887,6 +932,7 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Card(
+                              color: white.withOpacity(0.6),
                               child: Stack(
                                 alignment : Alignment.center,
                                 children: [
@@ -939,2114 +985,42 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
                         Text('Upper Curve Controls',style: heading1Style,textAlign: TextAlign.center),
                         const Divider(thickness: 2),
 
-                        //upperCurveWidth
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Card(
-                              child: Stack(
-                                alignment: Alignment.center,
-                                children: [
-                                  Container(
-                                    padding: const EdgeInsets.symmetric(horizontal:40.0,vertical:5.0),
-                                    width: double.infinity,
-                                    child: const Text(
-                                      'Upper Curve Width',
-                                      style: TextStyle(color: black,fontSize:16),
-                                      textAlign: TextAlign.center,
-                                    )
-                                  ),
-                                  Align(
-                                    alignment : Alignment.centerRight,
-                                    child:IconButton(
-                                      padding : EdgeInsets.zero,
-                                      icon: Container(
-                                        padding: const EdgeInsets.all(2),
-                                        decoration:BoxDecoration(
-                                          borderRadius: BorderRadius.circular(10),
-                                          color: red
-                                        ),
-                                        child: const Icon(Icons.refresh)
-                                      ),
-                                      onPressed : (){
-                                        setState(() {
-                                          upperCurveWidthTxtCtrl.text = '0.10';
-                                        });
-                                      }
-                                    )
-                                  )
-                                ],
-                              )
-                            ),
-                            Card(
-                              child: Stack(
-                                children: [
-                                  TextField(
-                                    // readOnly: true,
-                                    keyboardType: const TextInputType.numberWithOptions(decimal: true),
-                                    controller: upperCurveWidthTxtCtrl,
-                                    textAlign: TextAlign.center,
-                                    style: const TextStyle(fontSize: 20),
-                                    decoration: const InputDecoration(
-                                      hintText: 'Upper Curve Width',
-                                    ),
-                                  ),
-                                  Align(
-                                    alignment: Alignment.centerLeft,
-                                    child: IconButton(
-                                      padding: EdgeInsets.zero,
-                                      onPressed: () {
-                                        double currentValue = double.tryParse(upperCurveWidthTxtCtrl.text) ?? 0.0;
-                                        double newValue = currentValue - (double.tryParse(stepTxtCtrl.text)??0.0);
-                                        // Update the TextField with the new value
-                                        upperCurveWidthTxtCtrl.text = newValue.toStringAsFixed(2);
-                                        // Optionally, you can also update the state if needed
-                                        setState(() {
-                                        });
-                                      },
-                                      icon: Container(
-                                        padding: const EdgeInsets.all(2),
-                                        decoration:BoxDecoration(
-                                          borderRadius: BorderRadius.circular(10),
-                                          color: red
-                                        ),
-                                        child: const Icon(Icons.remove)
-                                      ),
-                                    ),
-                                  ),
-                                  Align(
-                                    alignment: Alignment.centerRight,
-                                    child: IconButton(
-                                      padding: EdgeInsets.zero,
-                                      onPressed: () {
-                                        double currentValue = double.tryParse(upperCurveWidthTxtCtrl.text) ?? 0.0;
-                                        double newValue = currentValue + (double.tryParse(stepTxtCtrl.text)??0.0);
-                                        // Update the TextField with the new value
-                                        upperCurveWidthTxtCtrl.text = newValue.toStringAsFixed(2);
-                                        // Optionally, you can also update the state if needed
-                                        setState(() {
-                                        });
-                                      },
-                                      icon: Container(
-                                        padding: const EdgeInsets.all(2),
-                                        decoration:BoxDecoration(
-                                          borderRadius: BorderRadius.circular(10),
-                                          color: red
-                                        ),
-                                        child: const Icon(Icons.add)
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                        const Divider(thickness: 2),
-                        //upperCurveHeight
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Card(
-                              child: Stack(
-                                alignment: Alignment.center,
-                                children: [
-                                  Container(
-                                    padding: const EdgeInsets.symmetric(horizontal:40.0,vertical:5.0),
-                                    width: double.infinity,
-                                    child: const Text(
-                                      'Upper Curve Height',
-                                      style: TextStyle(color: black,fontSize:16),
-                                      textAlign: TextAlign.center,
-                                    )
-                                  ),
-                                  Align(
-                                    alignment : Alignment.centerRight,
-                                    child:IconButton(
-                                      padding : EdgeInsets.zero,
-                                      icon: Container(
-                                        padding: const EdgeInsets.all(2),
-                                        decoration:BoxDecoration(
-                                          borderRadius: BorderRadius.circular(10),
-                                          color: red
-                                        ),
-                                        child: const Icon(Icons.refresh)
-                                      ),
-                                      onPressed : (){
-                                        setState(() {
-                                          upperCurveHeightTxtCtrl.text = '0.15';
-                                        });
-                                      }
-                                    )
-                                  )
-                                ],
-                              )
-                            ),
-                            Card(
-                              child: Stack(
-                                children: [
-                                  TextField(
-                                    // readOnly: true,
-                                    keyboardType: const TextInputType.numberWithOptions(decimal: true),
-                                    controller: upperCurveHeightTxtCtrl,
-                                    textAlign: TextAlign.center,
-                                    style: const TextStyle(fontSize: 20),
-                                    decoration: const InputDecoration(
-                                      hintText: 'Upper Curve Height',
-                                    ),
-                                  ),
-                                  Align(
-                                    alignment: Alignment.centerLeft,
-                                    child: IconButton(
-                                      padding: EdgeInsets.zero,
-                                      onPressed: () {
-                                        double currentValue = double.tryParse(upperCurveHeightTxtCtrl.text) ?? 0.0;
-                                        double newValue = currentValue - (double.tryParse(stepTxtCtrl.text)??0.0);
-                                        // Update the TextField with the new value
-                                        upperCurveHeightTxtCtrl.text = newValue.toStringAsFixed(2);
-                                        // Optionally, you can also update the state if needed
-                                        setState(() {
-                                        });
-                                      },
-                                      icon: Container(
-                                        padding: const EdgeInsets.all(2),
-                                        decoration:BoxDecoration(
-                                          borderRadius: BorderRadius.circular(10),
-                                          color: red
-                                        ),
-                                        child: const Icon(Icons.remove)
-                                      ),
-                                    ),
-                                  ),
-                                  Align(
-                                    alignment: Alignment.centerRight,
-                                    child: IconButton(
-                                      padding: EdgeInsets.zero,
-                                      onPressed: () {
-                                        double currentValue = double.tryParse(upperCurveHeightTxtCtrl.text) ?? 0.0;
-                                        double newValue = currentValue + (double.tryParse(stepTxtCtrl.text)??0.0);
-                                        // Update the TextField with the new value
-                                        upperCurveHeightTxtCtrl.text = newValue.toStringAsFixed(2);
-                                        // Optionally, you can also update the state if needed
-                                        setState(() {
-                                        });
-                                      },
-                                      icon: Container(
-                                        padding: const EdgeInsets.all(2),
-                                        decoration:BoxDecoration(
-                                          borderRadius: BorderRadius.circular(10),
-                                          color: red
-                                        ),
-                                        child: const Icon(Icons.add)
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                        const Divider(thickness: 2),
-                        //upperStrokeCurveWidth
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Card(
-                              child: Stack(
-                                alignment: Alignment.center,
-                                children: [
-                                  Container(
-                                    padding: const EdgeInsets.symmetric(horizontal:40.0,vertical:5.0),
-                                    width: double.infinity,
-                                    child: const Text(
-                                      'Upper Stroke Curve Width',
-                                      style: TextStyle(color: black,fontSize:16),
-                                      textAlign: TextAlign.center,
-                                    )
-                                  ),
-                                  Align(
-                                    alignment : Alignment.centerRight,
-                                    child:IconButton(
-                                      padding : EdgeInsets.zero,
-                                      icon: Container(
-                                        padding: const EdgeInsets.all(2),
-                                        decoration:BoxDecoration(
-                                          borderRadius: BorderRadius.circular(10),
-                                          color: red
-                                        ),
-                                        child: const Icon(Icons.refresh)
-                                      ),
-                                      onPressed : (){
-                                        setState(() {
-                                          upperStrokeCurveWidthTxtCtrl.text = '0.15';
-                                        });
-                                      }
-                                    )
-                                  )
-                                ],
-                              )
-                            ),
-                            Card(
-                              child: Stack(
-                                children: [
-                                  TextField(
-                                    // readOnly: true,
-                                    keyboardType: const TextInputType.numberWithOptions(decimal: true),
-                                    controller: upperStrokeCurveWidthTxtCtrl,
-                                    textAlign: TextAlign.center,
-                                    style: const TextStyle(fontSize: 20),
-                                    decoration: const InputDecoration(
-                                      hintText: 'Upper Stroke Curve Width',
-                                    ),
-                                  ),
-                                  Align(
-                                    alignment: Alignment.centerLeft,
-                                    child: IconButton(
-                                      padding: EdgeInsets.zero,
-                                      onPressed: () {
-                                        double currentValue = double.tryParse(upperStrokeCurveWidthTxtCtrl.text) ?? 0.0;
-                                        double newValue = currentValue - (double.tryParse(stepTxtCtrl.text)??0.0);
-                                        // Update the TextField with the new value
-                                        upperStrokeCurveWidthTxtCtrl.text = newValue.toStringAsFixed(2);
-                                        // Optionally, you can also update the state if needed
-                                        setState(() {
-                                        });
-                                      },
-                                      icon: Container(
-                                        padding: const EdgeInsets.all(2),
-                                        decoration:BoxDecoration(
-                                          borderRadius: BorderRadius.circular(10),
-                                          color: red
-                                        ),
-                                        child: const Icon(Icons.remove)
-                                      ),
-                                    ),
-                                  ),
-                                  Align(
-                                    alignment: Alignment.centerRight,
-                                    child: IconButton(
-                                      padding: EdgeInsets.zero,
-                                      onPressed: () {
-                                        double currentValue = double.tryParse(upperStrokeCurveWidthTxtCtrl.text) ?? 0.0;
-                                        double newValue = currentValue + (double.tryParse(stepTxtCtrl.text)??0.0);
-                                        // Update the TextField with the new value
-                                        upperStrokeCurveWidthTxtCtrl.text = newValue.toStringAsFixed(2);
-                                        // Optionally, you can also update the state if needed
-                                        setState(() {
-                                        });
-                                      },
-                                      icon: Container(
-                                        padding: const EdgeInsets.all(2),
-                                        decoration:BoxDecoration(
-                                          borderRadius: BorderRadius.circular(10),
-                                          color: red
-                                        ),
-                                        child: const Icon(Icons.add)
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                        const Divider(thickness: 2),
-                        //upperStrokeCurveHeight
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Card(
-                              child: Stack(
-                                alignment: Alignment.center,
-                                children: [
-                                  Container(
-                                    padding: const EdgeInsets.symmetric(horizontal:40.0,vertical:5.0),
-                                    width: double.infinity,
-                                    child: const Text(
-                                      'Upper Stroke Curve Height',
-                                      style: TextStyle(color: black,fontSize:16),
-                                      textAlign: TextAlign.center,
-                                    )
-                                  ),
-                                  Align(
-                                    alignment : Alignment.centerRight,
-                                    child:IconButton(
-                                      padding : EdgeInsets.zero,
-                                      icon: Container(
-                                        padding: const EdgeInsets.all(2),
-                                        decoration:BoxDecoration(
-                                          borderRadius: BorderRadius.circular(10),
-                                          color: red
-                                        ),
-                                        child: const Icon(Icons.refresh)
-                                      ),
-                                      onPressed : (){
-                                        setState(() {
-                                          upperStrokeCurveHeightTxtCtrl.text = '0.15';
-                                        });
-                                      }
-                                    )
-                                  )
-                                ],
-                              )
-                            ),
-                            Card(
-                              child: Stack(
-                                children: [
-                                  TextField(
-                                    // readOnly: true,
-                                    keyboardType: const TextInputType.numberWithOptions(decimal: true),
-                                    controller: upperStrokeCurveHeightTxtCtrl,
-                                    textAlign: TextAlign.center,
-                                    style: const TextStyle(fontSize: 20),
-                                    decoration: const InputDecoration(
-                                      hintText: 'Upper Stroke Curve Height',
-                                    ),
-                                  ),
-                                  Align(
-                                    alignment: Alignment.centerLeft,
-                                    child: IconButton(
-                                      padding: EdgeInsets.zero,
-                                      onPressed: () {
-                                        double currentValue = double.tryParse(upperStrokeCurveHeightTxtCtrl.text) ?? 0.0;
-                                        double newValue = currentValue - (double.tryParse(stepTxtCtrl.text)??0.0);
-                                        // Update the TextField with the new value
-                                        upperStrokeCurveHeightTxtCtrl.text = newValue.toStringAsFixed(2);
-                                        // Optionally, you can also update the state if needed
-                                        setState(() {
-                                        });
-                                      },
-                                      icon: Container(
-                                        padding: const EdgeInsets.all(2),
-                                        decoration:BoxDecoration(
-                                          borderRadius: BorderRadius.circular(10),
-                                          color: red
-                                        ),
-                                        child: const Icon(Icons.remove)
-                                      ),
-                                    ),
-                                  ),
-                                  Align(
-                                    alignment: Alignment.centerRight,
-                                    child: IconButton(
-                                      padding: EdgeInsets.zero,
-                                      onPressed: () {
-                                        double currentValue = double.tryParse(upperStrokeCurveHeightTxtCtrl.text) ?? 0.0;
-                                        double newValue = currentValue + (double.tryParse(stepTxtCtrl.text)??0.0);
-                                        // Update the TextField with the new value
-                                        upperStrokeCurveHeightTxtCtrl.text = newValue.toStringAsFixed(2);
-                                        // Optionally, you can also update the state if needed
-                                        setState(() {
-                                        });
-                                      },
-                                      icon: Container(
-                                        padding: const EdgeInsets.all(2),
-                                        decoration:BoxDecoration(
-                                          borderRadius: BorderRadius.circular(10),
-                                          color: red
-                                        ),
-                                        child: const Icon(Icons.add)
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
+                        ListView.builder(
+                          shrinkWrap: true,
+                          itemCount: upperCurveData.length,
+                          physics: const NeverScrollableScrollPhysics(),
+                          padding: EdgeInsets.zero,
+                          itemBuilder: (context, index) {
+                            return curveControlTextFieldWidget(
+                              upperCurveData[index]['title'],
+                              upperCurveData[index]['textController'],
+                              upperCurveData[index]['defaultValue'],
+                              upperCurveData[index]['hintText'],
+                            );
+                          },
                         ),
 
-                        //Under Curve Controls
+                        //Upper Curve Controls
                         const Divider(thickness: 2),
                         Text('Under Curve Controls',style: heading1Style,textAlign: TextAlign.center),
                         const Divider(thickness: 2),
-                        
-                        //underCurveWidth
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Card(
-                              child: Stack(
-                                alignment : Alignment.center,
-                                children: [
-                                  Container(
-                                    padding: const EdgeInsets.symmetric(horizontal:40.0,vertical:5.0),
-                                    width: double.infinity,
-                                    child: const Text(
-                                      'Under Curve Width',
-                                      style: TextStyle(color: black,fontSize:16),
-                                      textAlign: TextAlign.center,
-                                    )
-                                  ),
-                                  Align(
-                                    alignment : Alignment.centerRight,
-                                    child:IconButton(
-                                      padding : EdgeInsets.zero,
-                                      icon: Container(
-                                        padding: const EdgeInsets.all(2),
-                                        decoration:BoxDecoration(
-                                          borderRadius: BorderRadius.circular(10),
-                                          color: red
-                                        ),
-                                        child: const Icon(Icons.refresh)
-                                      ),
-                                      onPressed : (){
-                                        setState(() {
-                                          underCurveWidthTxtCtrl.text = '0.12';
-                                        });
-                                      }
-                                    )
-                                  )
-                                ],
-                              )
-                            ),
-                            Card(
-                              child: Stack(
-                                children: [
-                                  TextField(
-                                    // readOnly: true,
-                                    keyboardType: const TextInputType.numberWithOptions(decimal: true),
-                                    controller: underCurveWidthTxtCtrl,
-                                    textAlign: TextAlign.center,
-                                    style: const TextStyle(fontSize: 20),
-                                    decoration: const InputDecoration(
-                                      hintText: 'Under Curve Width',
-                                    ),
-                                  ),
-                                  Align(
-                                    alignment: Alignment.centerLeft,
-                                    child: IconButton(
-                                      padding: EdgeInsets.zero,
-                                      onPressed: () {
-                                        double currentValue = double.tryParse(underCurveWidthTxtCtrl.text) ?? 0.0;
-                                        double newValue = currentValue - (double.tryParse(stepTxtCtrl.text)??0.0);
-                                        // Update the TextField with the new value
-                                        underCurveWidthTxtCtrl.text = newValue.toStringAsFixed(2);
-                                        // Optionally, you can also update the state if needed
-                                        setState(() {
-                                        });
-                                      },
-                                      icon: Container(
-                                        padding: const EdgeInsets.all(2),
-                                        decoration:BoxDecoration(
-                                          borderRadius: BorderRadius.circular(10),
-                                          color: red
-                                        ),
-                                        child: const Icon(Icons.remove)
-                                      ),
-                                    ),
-                                  ),
-                                  Align(
-                                    alignment: Alignment.centerRight,
-                                    child: IconButton(
-                                      padding: EdgeInsets.zero,
-                                      onPressed: () {
-                                        double currentValue = double.tryParse(underCurveWidthTxtCtrl.text) ?? 0.0;
-                                        double newValue = currentValue + (double.tryParse(stepTxtCtrl.text)??0.0);
-                                        // Update the TextField with the new value
-                                        underCurveWidthTxtCtrl.text = newValue.toStringAsFixed(2);
-                                        // Optionally, you can also update the state if needed
-                                        setState(() {
-                                        });
-                                      },
-                                      icon: Container(
-                                        padding: const EdgeInsets.all(2),
-                                        decoration:BoxDecoration(
-                                          borderRadius: BorderRadius.circular(10),
-                                          color: red
-                                        ),
-                                        child: const Icon(Icons.add)
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                        const Divider(thickness: 2),
-                        //underCurveHeight
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Card(
-                              child: Stack(
-                                alignment: Alignment.center,
-                                children: [
-                                  Container(
-                                    padding: const EdgeInsets.symmetric(horizontal:40.0,vertical:5.0),
-                                    width: double.infinity,
-                                    child: const Text(
-                                      'Under Curve Height',
-                                      style: TextStyle(color: black,fontSize:16),
-                                      textAlign: TextAlign.center,
-                                    )
-                                  ),
-                                  Align(
-                                    alignment : Alignment.centerRight,
-                                    child:IconButton(
-                                      padding : EdgeInsets.zero,
-                                      icon: Container(
-                                        padding: const EdgeInsets.all(2),
-                                        decoration:BoxDecoration(
-                                          borderRadius: BorderRadius.circular(10),
-                                          color: red
-                                        ),
-                                        child: const Icon(Icons.refresh)
-                                      ),
-                                      onPressed : (){
-                                        setState(() {
-                                          underCurveHeightTxtCtrl.text = '0.60';
-                                        });
-                                      }
-                                    )
-                                  )
-                                ],
-                              )
-                            ),
-                            Card(
-                              child: Stack(
-                                children: [
-                                  TextField(
-                                    // readOnly: true,
-                                    keyboardType: const TextInputType.numberWithOptions(decimal: true),
-                                    controller: underCurveHeightTxtCtrl,
-                                    textAlign: TextAlign.center,
-                                    style: const TextStyle(fontSize: 20),
-                                    decoration: const InputDecoration(
-                                      hintText: 'Under Curve Height',
-                                    ),
-                                  ),
-                                  Align(
-                                    alignment: Alignment.centerLeft,
-                                    child: IconButton(
-                                      padding: EdgeInsets.zero,
-                                      onPressed: () {
-                                        double currentValue = double.tryParse(underCurveHeightTxtCtrl.text) ?? 0.0;
-                                        double newValue = currentValue - (double.tryParse(stepTxtCtrl.text)??0.0);
-                                        // Update the TextField with the new value
-                                        underCurveHeightTxtCtrl.text = newValue.toStringAsFixed(2);
-                                        // Optionally, you can also update the state if needed
-                                        setState(() {
-                                        });
-                                      },
-                                      icon: Container(
-                                        padding: const EdgeInsets.all(2),
-                                        decoration:BoxDecoration(
-                                          borderRadius: BorderRadius.circular(10),
-                                          color: red
-                                        ),
-                                        child: const Icon(Icons.remove)
-                                      ),
-                                    ),
-                                  ),
-                                  Align(
-                                    alignment: Alignment.centerRight,
-                                    child: IconButton(
-                                      padding: EdgeInsets.zero,
-                                      onPressed: () {
-                                        double currentValue = double.tryParse(underCurveHeightTxtCtrl.text) ?? 0.0;
-                                        double newValue = currentValue + (double.tryParse(stepTxtCtrl.text)??0.0);
-                                        // Update the TextField with the new value
-                                        underCurveHeightTxtCtrl.text = newValue.toStringAsFixed(2);
-                                        // Optionally, you can also update the state if needed
-                                        setState(() {
-                                        });
-                                      },
-                                      icon: Container(
-                                        padding: const EdgeInsets.all(2),
-                                        decoration:BoxDecoration(
-                                          borderRadius: BorderRadius.circular(10),
-                                          color: red
-                                        ),
-                                        child: const Icon(Icons.add)
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                        const Divider(thickness: 2),
-                        //underTopCurveRadiusLeft
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Card(
-                              child: Stack(
-                                alignment: Alignment.center,
-                                children: [
-                                  Container(
-                                    padding: const EdgeInsets.symmetric(horizontal:40.0,vertical:5.0),
-                                    width: double.infinity,
-                                    child: const Text(
-                                      'Under Curve Top Radius Left',
-                                      style: TextStyle(color: black,fontSize:16),
-                                      textAlign: TextAlign.center,
-                                    )
-                                  ),
-                                  Align(
-                                    alignment : Alignment.centerRight,
-                                    child:IconButton(
-                                      padding : EdgeInsets.zero,
-                                      icon: Container(
-                                        padding: const EdgeInsets.all(2),
-                                        decoration:BoxDecoration(
-                                          borderRadius: BorderRadius.circular(10),
-                                          color: red
-                                        ),
-                                        child: const Icon(Icons.refresh)
-                                      ),
-                                      onPressed : (){
-                                        setState(() {
-                                          underTopCurveRadiusLeftTxtCtrl.text = '0.60';
-                                        });
-                                      }
-                                    )
-                                  )
-                                ],
-                              )
-                            ),
-                            Card(
-                              child: Stack(
-                                children: [
-                                  TextField(
-                                    // readOnly: true,
-                                    keyboardType: const TextInputType.numberWithOptions(decimal: true),
-                                    controller: underTopCurveRadiusLeftTxtCtrl,
-                                    textAlign: TextAlign.center,
-                                    style: const TextStyle(fontSize: 20),
-                                    decoration: const InputDecoration(
-                                      hintText: 'Under Curve Top Radius Left',
-                                    ),
-                                  ),
-                                  Align(
-                                    alignment: Alignment.centerLeft,
-                                    child: IconButton(
-                                      padding: EdgeInsets.zero,
-                                      onPressed: () {
-                                        double currentValue = double.tryParse(underTopCurveRadiusLeftTxtCtrl.text) ?? 0.0;
-                                        double newValue = currentValue - (double.tryParse(stepTxtCtrl.text)??0.0);
-                                        // Update the TextField with the new value
-                                        underTopCurveRadiusLeftTxtCtrl.text = newValue.toStringAsFixed(2);
-                                        // Optionally, you can also update the state if needed
-                                        setState(() {
-                                        });
-                                      },
-                                      icon: Container(
-                                        padding: const EdgeInsets.all(2),
-                                        decoration:BoxDecoration(
-                                          borderRadius: BorderRadius.circular(10),
-                                          color: red
-                                        ),
-                                        child: const Icon(Icons.remove)
-                                      ),
-                                    ),
-                                  ),
-                                  Align(
-                                    alignment: Alignment.centerRight,
-                                    child: IconButton(
-                                      padding: EdgeInsets.zero,
-                                      onPressed: () {
-                                        double currentValue = double.tryParse(underTopCurveRadiusLeftTxtCtrl.text) ?? 0.0;
-                                        double newValue = currentValue + (double.tryParse(stepTxtCtrl.text)??0.0);
-                                        // Update the TextField with the new value
-                                        underTopCurveRadiusLeftTxtCtrl.text = newValue.toStringAsFixed(2);
-                                        // Optionally, you can also update the state if needed
-                                        setState(() {
-                                        });
-                                      },
-                                      icon: Container(
-                                        padding: const EdgeInsets.all(2),
-                                        decoration:BoxDecoration(
-                                          borderRadius: BorderRadius.circular(10),
-                                          color: red
-                                        ),
-                                        child: const Icon(Icons.add)
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                        const Divider(thickness: 2),
-                        //underTopCurveRadiusRight
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Card(
-                              child: Stack(
-                                alignment: Alignment.center,
-                                children: [
-                                  Container(
-                                    padding: const EdgeInsets.symmetric(horizontal:40.0,vertical:5.0),
-                                    width: double.infinity,
-                                    child: const Text(
-                                      'Under Curve Top Radius Right',
-                                      style: TextStyle(color: black,fontSize:16),
-                                      textAlign: TextAlign.center,
-                                    )
-                                  ),
-                                  Align(
-                                    alignment : Alignment.centerRight,
-                                    child:IconButton(
-                                      padding : EdgeInsets.zero,
-                                      icon: Container(
-                                        padding: const EdgeInsets.all(2),
-                                        decoration:BoxDecoration(
-                                          borderRadius: BorderRadius.circular(10),
-                                          color: red
-                                        ),
-                                        child: const Icon(Icons.refresh)
-                                      ),
-                                      onPressed : (){
-                                        setState(() {
-                                          underTopCurveRadiusRightTxtCtrl.text = '0.60';
-                                        });
-                                      }
-                                    )
-                                  )
-                                ],
-                              )
-                            ),
-                            Card(
-                              child: Stack(
-                                children: [
-                                  TextField(
-                                    // readOnly: true,
-                                    keyboardType: const TextInputType.numberWithOptions(decimal: true),
-                                    controller: underTopCurveRadiusRightTxtCtrl,
-                                    textAlign: TextAlign.center,
-                                    style: const TextStyle(fontSize: 20),
-                                    decoration: const InputDecoration(
-                                      hintText: 'Under Curve Top Radius Right',
-                                    ),
-                                  ),
-                                  Align(
-                                    alignment: Alignment.centerLeft,
-                                    child: IconButton(
-                                      padding: EdgeInsets.zero,
-                                      onPressed: () {
-                                        double currentValue = double.tryParse(underTopCurveRadiusRightTxtCtrl.text) ?? 0.0;
-                                        double newValue = currentValue - (double.tryParse(stepTxtCtrl.text)??0.0);
-                                        // Update the TextField with the new value
-                                        underTopCurveRadiusRightTxtCtrl.text = newValue.toStringAsFixed(2);
-                                        // Optionally, you can also update the state if needed
-                                        setState(() {
-                                        });
-                                      },
-                                      icon: Container(
-                                        padding: const EdgeInsets.all(2),
-                                        decoration:BoxDecoration(
-                                          borderRadius: BorderRadius.circular(10),
-                                          color: red
-                                        ),
-                                        child: const Icon(Icons.remove)
-                                      ),
-                                    ),
-                                  ),
-                                  Align(
-                                    alignment: Alignment.centerRight,
-                                    child: IconButton(
-                                      padding: EdgeInsets.zero,
-                                      onPressed: () {
-                                        double currentValue = double.tryParse(underTopCurveRadiusRightTxtCtrl.text) ?? 0.0;
-                                        double newValue = currentValue + (double.tryParse(stepTxtCtrl.text)??0.0);
-                                        // Update the TextField with the new value
-                                        underTopCurveRadiusRightTxtCtrl.text = newValue.toStringAsFixed(2);
-                                        // Optionally, you can also update the state if needed
-                                        setState(() {
-                                        });
-                                      },
-                                      icon: Container(
-                                        padding: const EdgeInsets.all(2),
-                                        decoration:BoxDecoration(
-                                          borderRadius: BorderRadius.circular(10),
-                                          color: red
-                                        ),
-                                        child: const Icon(Icons.add)
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                        const Divider(thickness: 2),
-                        //underMidCurveWidthLeft
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Card(
-                              child: Stack(
-                                alignment: Alignment.center,
-                                children: [
-                                  Container(
-                                    padding: const EdgeInsets.symmetric(horizontal:40.0,vertical:5.0),
-                                    width: double.infinity,
-                                    child: const Text(
-                                      'Under Mid Curve Width Left',
-                                      style: TextStyle(color: black,fontSize:16),
-                                      textAlign: TextAlign.center,
-                                    )
-                                  ),
-                                  Align(
-                                    alignment : Alignment.centerRight,
-                                    child:IconButton(
-                                      padding : EdgeInsets.zero,
-                                      icon: Container(
-                                        padding: const EdgeInsets.all(2),
-                                        decoration:BoxDecoration(
-                                          borderRadius: BorderRadius.circular(10),
-                                          color: red
-                                        ),
-                                        child: const Icon(Icons.refresh)
-                                      ),
-                                      onPressed : (){
-                                        setState(() {
-                                          underMidCurveWidthLeftTxtCtrl.text = '18';
-                                        });
-                                      }
-                                    )
-                                  )
-                                ],
-                              )
-                            ),
-                            Card(
-                              child: Stack(
-                                children: [
-                                  TextField(
-                                    // readOnly: true,
-                                    keyboardType: const TextInputType.numberWithOptions(decimal: true),
-                                    controller: underMidCurveWidthLeftTxtCtrl,
-                                    textAlign: TextAlign.center,
-                                    style: const TextStyle(fontSize: 20),
-                                    decoration: const InputDecoration(
-                                      hintText: 'Under Mid Curve Width Left',
-                                    ),
-                                  ),
-                                  Align(
-                                    alignment: Alignment.centerLeft,
-                                    child: IconButton(
-                                      padding: EdgeInsets.zero,
-                                      onPressed: () {
-                                        double currentValue = double.tryParse(underMidCurveWidthLeftTxtCtrl.text) ?? 0.0;
-                                        double newValue = currentValue - (double.tryParse(stepTxtCtrl.text)??0.0);
-                                        // Update the TextField with the new value
-                                        underMidCurveWidthLeftTxtCtrl.text = newValue.toStringAsFixed(2);
-                                        // Optionally, you can also update the state if needed
-                                        setState(() {
-                                        });
-                                      },
-                                      icon: Container(
-                                        padding: const EdgeInsets.all(2),
-                                        decoration:BoxDecoration(
-                                          borderRadius: BorderRadius.circular(10),
-                                          color: red
-                                        ),
-                                        child: const Icon(Icons.remove)
-                                      ),
-                                    ),
-                                  ),
-                                  Align(
-                                    alignment: Alignment.centerRight,
-                                    child: IconButton(
-                                      padding: EdgeInsets.zero,
-                                      onPressed: () {
-                                        double currentValue = double.tryParse(underMidCurveWidthLeftTxtCtrl.text) ?? 0.0;
-                                        double newValue = currentValue + (double.tryParse(stepTxtCtrl.text)??0.0);
-                                        // Update the TextField with the new value
-                                        underMidCurveWidthLeftTxtCtrl.text = newValue.toStringAsFixed(2);
-                                        // Optionally, you can also update the state if needed
-                                        setState(() {
-                                        });
-                                      },
-                                      icon: Container(
-                                        padding: const EdgeInsets.all(2),
-                                        decoration:BoxDecoration(
-                                          borderRadius: BorderRadius.circular(10),
-                                          color: red
-                                        ),
-                                        child: const Icon(Icons.add)
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                        const Divider(thickness: 2),
-                        //underMidCurveWidthRight
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Card(
-                              child: Stack(
-                                alignment: Alignment.center,
-                                children: [
-                                  Container(
-                                    padding: const EdgeInsets.symmetric(horizontal:40.0,vertical:5.0),
-                                    width: double.infinity,
-                                    child: const Text(
-                                      'Under Mid Curve Width Right',
-                                      style: TextStyle(color: black,fontSize:16),
-                                      textAlign: TextAlign.center,
-                                    )
-                                  ),
-                                  Align(
-                                    alignment : Alignment.centerRight,
-                                    child:IconButton(
-                                      padding : EdgeInsets.zero,
-                                      icon: Container(
-                                        padding: const EdgeInsets.all(2),
-                                        decoration:BoxDecoration(
-                                          borderRadius: BorderRadius.circular(10),
-                                          color: red
-                                        ),
-                                        child: const Icon(Icons.refresh)
-                                      ),
-                                      onPressed : (){
-                                        setState(() {
-                                          underMidCurveWidthRightTxtCtrl.text = '18';
-                                        });
-                                      }
-                                    )
-                                  )
-                                ],
-                              )
-                            ),
-                            Card(
-                              child: Stack(
-                                children: [
-                                  TextField(
-                                    // readOnly: true,
-                                    keyboardType: const TextInputType.numberWithOptions(decimal: true),
-                                    controller: underMidCurveWidthRightTxtCtrl,
-                                    textAlign: TextAlign.center,
-                                    style: const TextStyle(fontSize: 20),
-                                    decoration: const InputDecoration(
-                                      hintText: 'Under Mid Curve Width Right',
-                                    ),
-                                  ),
-                                  Align(
-                                    alignment: Alignment.centerLeft,
-                                    child: IconButton(
-                                      padding: EdgeInsets.zero,
-                                      onPressed: () {
-                                        double currentValue = double.tryParse(underMidCurveWidthRightTxtCtrl.text) ?? 0.0;
-                                        double newValue = currentValue - (double.tryParse(stepTxtCtrl.text)??0.0);
-                                        // Update the TextField with the new value
-                                        underMidCurveWidthRightTxtCtrl.text = newValue.toStringAsFixed(2);
-                                        // Optionally, you can also update the state if needed
-                                        setState(() {
-                                        });
-                                      },
-                                      icon: Container(
-                                        padding: const EdgeInsets.all(2),
-                                        decoration:BoxDecoration(
-                                          borderRadius: BorderRadius.circular(10),
-                                          color: red
-                                        ),
-                                        child: const Icon(Icons.remove)
-                                      ),
-                                    ),
-                                  ),
-                                  Align(
-                                    alignment: Alignment.centerRight,
-                                    child: IconButton(
-                                      padding: EdgeInsets.zero,
-                                      onPressed: () {
-                                        double currentValue = double.tryParse(underMidCurveWidthRightTxtCtrl.text) ?? 0.0;
-                                        double newValue = currentValue + (double.tryParse(stepTxtCtrl.text)??0.0);
-                                        // Update the TextField with the new value
-                                        underMidCurveWidthRightTxtCtrl.text = newValue.toStringAsFixed(2);
-                                        // Optionally, you can also update the state if needed
-                                        setState(() {
-                                        });
-                                      },
-                                      icon: Container(
-                                        padding: const EdgeInsets.all(2),
-                                        decoration:BoxDecoration(
-                                          borderRadius: BorderRadius.circular(10),
-                                          color: red
-                                        ),
-                                        child: const Icon(Icons.add)
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                        const Divider(thickness: 2),
-                        //underBottomCurveRadiusLeft
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Card(
-                              child: Stack(
-                                alignment: Alignment.center,
-                                children: [
-                                  Container(
-                                    padding: const EdgeInsets.symmetric(horizontal:40.0,vertical:5.0),
-                                    width: double.infinity,
-                                    child: const Text(
-                                      'Under Bottom Curve Radius Left',
-                                      style: TextStyle(color: black,fontSize:16),
-                                      textAlign: TextAlign.center,
-                                    )
-                                  ),
-                                  Align(
-                                    alignment : Alignment.centerRight,
-                                    child:IconButton(
-                                      padding : EdgeInsets.zero,
-                                      icon: Container(
-                                        padding: const EdgeInsets.all(2),
-                                        decoration:BoxDecoration(
-                                          borderRadius: BorderRadius.circular(10),
-                                          color: red
-                                        ),
-                                        child: const Icon(Icons.refresh)
-                                      ),
-                                      onPressed : (){
-                                        setState(() {
-                                          underBottomCurveRadiusLeftTxtCtrl.text = '0.05';
-                                        });
-                                      }
-                                    )
-                                  )
-                                ],
-                              )
-                            ),
-                            Card(
-                              child: Stack(
-                                children: [
-                                  TextField(
-                                    // readOnly: true,
-                                    keyboardType: const TextInputType.numberWithOptions(decimal: true),
-                                    controller: underBottomCurveRadiusLeftTxtCtrl,
-                                    textAlign: TextAlign.center,
-                                    style: const TextStyle(fontSize: 20),
-                                    decoration: const InputDecoration(
-                                      hintText: 'Under Bottom Curve Radius Left',
-                                    ),
-                                  ),
-                                  Align(
-                                    alignment: Alignment.centerLeft,
-                                    child: IconButton(
-                                      padding: EdgeInsets.zero,
-                                      onPressed: () {
-                                        double currentValue = double.tryParse(underBottomCurveRadiusLeftTxtCtrl.text) ?? 0.0;
-                                        double newValue = currentValue - (double.tryParse(stepTxtCtrl.text)??0.0);
-                                        // Update the TextField with the new value
-                                        underBottomCurveRadiusLeftTxtCtrl.text = newValue.toStringAsFixed(2);
-                                        // Optionally, you can also update the state if needed
-                                        setState(() {
-                                        });
-                                      },
-                                      icon: Container(
-                                        padding: const EdgeInsets.all(2),
-                                        decoration:BoxDecoration(
-                                          borderRadius: BorderRadius.circular(10),
-                                          color: red
-                                        ),
-                                        child: const Icon(Icons.remove)
-                                      ),
-                                    ),
-                                  ),
-                                  Align(
-                                    alignment: Alignment.centerRight,
-                                    child: IconButton(
-                                      padding: EdgeInsets.zero,
-                                      onPressed: () {
-                                        double currentValue = double.tryParse(underBottomCurveRadiusLeftTxtCtrl.text) ?? 0.0;
-                                        double newValue = currentValue + (double.tryParse(stepTxtCtrl.text)??0.0);
-                                        // Update the TextField with the new value
-                                        underBottomCurveRadiusLeftTxtCtrl.text = newValue.toStringAsFixed(2);
-                                        // Optionally, you can also update the state if needed
-                                        setState(() {
-                                        });
-                                      },
-                                      icon: Container(
-                                        padding: const EdgeInsets.all(2),
-                                        decoration:BoxDecoration(
-                                          borderRadius: BorderRadius.circular(10),
-                                          color: red
-                                        ),
-                                        child: const Icon(Icons.add)
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                        const Divider(thickness: 2),
-                        //underBottomCurveRadiusRight
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Card(
-                              child: Stack(
-                                alignment: Alignment.center,
-                                children: [
-                                  Container(
-                                    padding: const EdgeInsets.symmetric(horizontal:40.0,vertical:5.0),
-                                    width: double.infinity,
-                                    child: const Text(
-                                      'Under Bottom Curve Radius Right',
-                                      style: TextStyle(color: black,fontSize:16),
-                                      textAlign: TextAlign.center,
-                                    )
-                                  ),
-                                  Align(
-                                    alignment : Alignment.centerRight,
-                                    child:IconButton(
-                                      padding : EdgeInsets.zero,
-                                      icon: Container(
-                                        padding: const EdgeInsets.all(2),
-                                        decoration:BoxDecoration(
-                                          borderRadius: BorderRadius.circular(10),
-                                          color: red
-                                        ),
-                                        child: const Icon(Icons.refresh)
-                                      ),
-                                      onPressed : (){
-                                        setState(() {
-                                          underBottomCurveRadiusRightTxtCtrl.text = '0.05';
-                                        });
-                                      }
-                                    )
-                                  )
-                                ],
-                              )
-                            ),
-                            Card(
-                              child: Stack(
-                                children: [
-                                  TextField(
-                                    // readOnly: true,
-                                    keyboardType: const TextInputType.numberWithOptions(decimal: true),
-                                    controller: underBottomCurveRadiusRightTxtCtrl,
-                                    textAlign: TextAlign.center,
-                                    style: const TextStyle(fontSize: 20),
-                                    decoration: const InputDecoration(
-                                      hintText: 'Under Bottom Curve Radius Right',
-                                    ),
-                                  ),
-                                  Align(
-                                    alignment: Alignment.centerLeft,
-                                    child: IconButton(
-                                      padding: EdgeInsets.zero,
-                                      onPressed: () {
-                                        double currentValue = double.tryParse(underBottomCurveRadiusRightTxtCtrl.text) ?? 0.0;
-                                        double newValue = currentValue - (double.tryParse(stepTxtCtrl.text)??0.0);
-                                        // Update the TextField with the new value
-                                        underBottomCurveRadiusRightTxtCtrl.text = newValue.toStringAsFixed(2);
-                                        // Optionally, you can also update the state if needed
-                                        setState(() {
-                                        });
-                                      },
-                                      icon: Container(
-                                        padding: const EdgeInsets.all(2),
-                                        decoration:BoxDecoration(
-                                          borderRadius: BorderRadius.circular(10),
-                                          color: red
-                                        ),
-                                        child: const Icon(Icons.remove)
-                                      ),
-                                    ),
-                                  ),
-                                  Align(
-                                    alignment: Alignment.centerRight,
-                                    child: IconButton(
-                                      padding: EdgeInsets.zero,
-                                      onPressed: () {
-                                        double currentValue = double.tryParse(underBottomCurveRadiusRightTxtCtrl.text) ?? 0.0;
-                                        double newValue = currentValue + (double.tryParse(stepTxtCtrl.text)??0.0);
-                                        // Update the TextField with the new value
-                                        underBottomCurveRadiusRightTxtCtrl.text = newValue.toStringAsFixed(2);
-                                        // Optionally, you can also update the state if needed
-                                        setState(() {
-                                        });
-                                      },
-                                      icon: Container(
-                                        padding: const EdgeInsets.all(2),
-                                        decoration:BoxDecoration(
-                                          borderRadius: BorderRadius.circular(10),
-                                          color: red
-                                        ),
-                                        child: const Icon(Icons.add)
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                        const Divider(thickness: 2),
 
-                        //underStrokeCurveWidth
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Card(
-                              child: Stack(
-                                alignment: Alignment.center,
-                                children: [
-                                  Container(
-                                    padding: const EdgeInsets.symmetric(horizontal:40.0,vertical:5.0),
-                                    width: double.infinity,
-                                    child: const Text(
-                                      'Under Stroke Curve Width',
-                                      style: TextStyle(color: black,fontSize:16),
-                                      textAlign: TextAlign.center,
-                                    )
-                                  ),
-                                  Align(
-                                    alignment : Alignment.centerRight,
-                                    child:IconButton(
-                                      padding : EdgeInsets.zero,
-                                      icon: Container(
-                                        padding: const EdgeInsets.all(2),
-                                        decoration:BoxDecoration(
-                                          borderRadius: BorderRadius.circular(10),
-                                          color: red
-                                        ),
-                                        child: const Icon(Icons.refresh)
-                                      ),
-                                      onPressed : (){
-                                        setState(() {
-                                          underStrokeCurveWidthTxtCtrl.text = '0.12';
-                                        });
-                                      }
-                                    )
-                                  )
-                                ],
-                              )
-                            ),
-                            Card(
-                              child: Stack(
-                                children: [
-                                  TextField(
-                                    // readOnly: true,
-                                    keyboardType: const TextInputType.numberWithOptions(decimal: true),
-                                    controller: underStrokeCurveWidthTxtCtrl,
-                                    textAlign: TextAlign.center,
-                                    style: const TextStyle(fontSize: 20),
-                                    decoration: const InputDecoration(
-                                      hintText: 'Under Stroke Curve Width',
-                                    ),
-                                  ),
-                                  Align(
-                                    alignment: Alignment.centerLeft,
-                                    child: IconButton(
-                                      padding: EdgeInsets.zero,
-                                      onPressed: () {
-                                        double currentValue = double.tryParse(underStrokeCurveWidthTxtCtrl.text) ?? 0.0;
-                                        double newValue = currentValue - (double.tryParse(stepTxtCtrl.text)??0.0);
-                                        // Update the TextField with the new value
-                                        underStrokeCurveWidthTxtCtrl.text = newValue.toStringAsFixed(2);
-                                        // Optionally, you can also update the state if needed
-                                        setState(() {
-                                        });
-                                      },
-                                      icon: Container(
-                                        padding: const EdgeInsets.all(2),
-                                        decoration:BoxDecoration(
-                                          borderRadius: BorderRadius.circular(10),
-                                          color: red
-                                        ),
-                                        child: const Icon(Icons.remove)
-                                      ),
-                                    ),
-                                  ),
-                                  Align(
-                                    alignment: Alignment.centerRight,
-                                    child: IconButton(
-                                      padding: EdgeInsets.zero,
-                                      onPressed: () {
-                                        double currentValue = double.tryParse(underStrokeCurveWidthTxtCtrl.text) ?? 0.0;
-                                        double newValue = currentValue + (double.tryParse(stepTxtCtrl.text)??0.0);
-                                        // Update the TextField with the new value
-                                        underStrokeCurveWidthTxtCtrl.text = newValue.toStringAsFixed(2);
-                                        // Optionally, you can also update the state if needed
-                                        setState(() {
-                                        });
-                                      },
-                                      icon: Container(
-                                        padding: const EdgeInsets.all(2),
-                                        decoration:BoxDecoration(
-                                          borderRadius: BorderRadius.circular(10),
-                                          color: red
-                                        ),
-                                        child: const Icon(Icons.add)
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                        const Divider(thickness: 2),
-                        //underStrokeCurveHeight
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Card(
-                              child: Stack(
-                                alignment: Alignment.center,
-                                children: [
-                                  Container(
-                                    padding: const EdgeInsets.symmetric(horizontal:40.0,vertical:5.0),
-                                    width: double.infinity,
-                                    child: const Text(
-                                      'Under Stroke Curve Height',
-                                      style: TextStyle(color: black,fontSize:16),
-                                      textAlign: TextAlign.center,
-                                    )
-                                  ),
-                                  Align(
-                                    alignment : Alignment.centerRight,
-                                    child:IconButton(
-                                      padding : EdgeInsets.zero,
-                                      icon: Container(
-                                        padding: const EdgeInsets.all(2),
-                                        decoration:BoxDecoration(
-                                          borderRadius: BorderRadius.circular(10),
-                                          color: red
-                                        ),
-                                        child: const Icon(Icons.refresh)
-                                      ),
-                                      onPressed : (){
-                                        setState(() {
-                                          underStrokeCurveHeightTxtCtrl.text = '0.60';
-                                        });
-                                      }
-                                    )
-                                  )
-                                ],
-                              )
-                            ),
-                            Card(
-                              child: Stack(
-                                children: [
-                                  TextField(
-                                    // readOnly: true,
-                                    keyboardType: const TextInputType.numberWithOptions(decimal: true),
-                                    controller: underStrokeCurveHeightTxtCtrl,
-                                    textAlign: TextAlign.center,
-                                    style: const TextStyle(fontSize: 20),
-                                    decoration: const InputDecoration(
-                                      hintText: 'Under Stroke Curve Height',
-                                    ),
-                                  ),
-                                  Align(
-                                    alignment: Alignment.centerLeft,
-                                    child: IconButton(
-                                      padding: EdgeInsets.zero,
-                                      onPressed: () {
-                                        double currentValue = double.tryParse(underStrokeCurveHeightTxtCtrl.text) ?? 0.0;
-                                        double newValue = currentValue - (double.tryParse(stepTxtCtrl.text)??0.0);
-                                        // Update the TextField with the new value
-                                        underStrokeCurveHeightTxtCtrl.text = newValue.toStringAsFixed(2);
-                                        // Optionally, you can also update the state if needed
-                                        setState(() {
-                                        });
-                                      },
-                                      icon: Container(
-                                        padding: const EdgeInsets.all(2),
-                                        decoration:BoxDecoration(
-                                          borderRadius: BorderRadius.circular(10),
-                                          color: red
-                                        ),
-                                        child: const Icon(Icons.remove)
-                                      ),
-                                    ),
-                                  ),
-                                  Align(
-                                    alignment: Alignment.centerRight,
-                                    child: IconButton(
-                                      padding: EdgeInsets.zero,
-                                      onPressed: () {
-                                        double currentValue = double.tryParse(underStrokeCurveHeightTxtCtrl.text) ?? 0.0;
-                                        double newValue = currentValue + (double.tryParse(stepTxtCtrl.text)??0.0);
-                                        // Update the TextField with the new value
-                                        underStrokeCurveHeightTxtCtrl.text = newValue.toStringAsFixed(2);
-                                        // Optionally, you can also update the state if needed
-                                        setState(() {
-                                        });
-                                      },
-                                      icon: Container(
-                                        padding: const EdgeInsets.all(2),
-                                        decoration:BoxDecoration(
-                                          borderRadius: BorderRadius.circular(10),
-                                          color: red
-                                        ),
-                                        child: const Icon(Icons.add)
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                        const Divider(thickness: 2),
-                        //underStrokeTopCurveRadiusLeft
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Card(
-                              child: Stack(
-                                alignment : Alignment.center,
-                                children: [
-                                  Container(
-                                    padding: const EdgeInsets.symmetric(horizontal:40.0,vertical:5.0),
-                                    width: double.infinity,
-                                    child: const Text(
-                                      'Under Stroke Top Curve Radius Left',
-                                      style: TextStyle(color: black,fontSize:16),
-                                      textAlign: TextAlign.center,
-                                    )
-                                  ),
-                                  Align(
-                                    alignment : Alignment.centerRight,
-                                    child:IconButton(
-                                      padding : EdgeInsets.zero,
-                                      icon: Container(
-                                        padding: const EdgeInsets.all(2),
-                                        decoration:BoxDecoration(
-                                          borderRadius: BorderRadius.circular(10),
-                                          color: red
-                                        ),
-                                        child: const Icon(Icons.refresh)
-                                      ),
-                                      onPressed : (){
-                                        setState(() {
-                                          underStrokeTopCurveRadiusLeftTxtCtrl.text = '0.60';
-                                        });
-                                      }
-                                    )
-                                  )
-                                ],
-                              )
-                            ),
-                            Card(
-                              child: Stack(
-                                children: [
-                                  TextField(
-                                    // readOnly: true,
-                                    keyboardType: const TextInputType.numberWithOptions(decimal: true),
-                                    controller: underStrokeTopCurveRadiusLeftTxtCtrl,
-                                    textAlign: TextAlign.center,
-                                    style: const TextStyle(fontSize: 20),
-                                    decoration: const InputDecoration(
-                                      hintText: 'Under Stroke Top Curve Radius Left',
-                                    ),
-                                  ),
-                                  Align(
-                                    alignment: Alignment.centerLeft,
-                                    child: IconButton(
-                                      padding: EdgeInsets.zero,
-                                      onPressed: () {
-                                        double currentValue = double.tryParse(underStrokeTopCurveRadiusLeftTxtCtrl.text) ?? 0.0;
-                                        double newValue = currentValue - (double.tryParse(stepTxtCtrl.text)??0.0);
-                                        // Update the TextField with the new value
-                                        underStrokeTopCurveRadiusLeftTxtCtrl.text = newValue.toStringAsFixed(2);
-                                        // Optionally, you can also update the state if needed
-                                        setState(() {
-                                        });
-                                      },
-                                      icon: Container(
-                                        padding: const EdgeInsets.all(2),
-                                        decoration:BoxDecoration(
-                                          borderRadius: BorderRadius.circular(10),
-                                          color: red
-                                        ),
-                                        child: const Icon(Icons.remove)
-                                      ),
-                                    ),
-                                  ),
-                                  Align(
-                                    alignment: Alignment.centerRight,
-                                    child: IconButton(
-                                      padding: EdgeInsets.zero,
-                                      onPressed: () {
-                                        double currentValue = double.tryParse(underStrokeTopCurveRadiusLeftTxtCtrl.text) ?? 0.0;
-                                        double newValue = currentValue + (double.tryParse(stepTxtCtrl.text)??0.0);
-                                        // Update the TextField with the new value
-                                        underStrokeTopCurveRadiusLeftTxtCtrl.text = newValue.toStringAsFixed(2);
-                                        // Optionally, you can also update the state if needed
-                                        setState(() {
-                                        });
-                                      },
-                                      icon: Container(
-                                        padding: const EdgeInsets.all(2),
-                                        decoration:BoxDecoration(
-                                          borderRadius: BorderRadius.circular(10),
-                                          color: red
-                                        ),
-                                        child: const Icon(Icons.add)
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                        const Divider(thickness: 2),
-                        //underStrokeTopCurveRadiusRight
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Card(
-                              child: Stack(
-                                alignment: Alignment.center,
-                                children: [
-                                  Container(
-                                    padding: const EdgeInsets.symmetric(horizontal:40.0,vertical:5.0),
-                                    width: double.infinity,
-                                    child: const Text(
-                                      'Under Stroke Top Curve Radius Right',
-                                      style: TextStyle(color: black,fontSize:16),
-                                      textAlign: TextAlign.center,
-                                    )
-                                  ),
-                                  Align(
-                                    alignment : Alignment.centerRight,
-                                    child:IconButton(
-                                      padding : EdgeInsets.zero,
-                                      icon: Container(
-                                        padding: const EdgeInsets.all(2),
-                                        decoration:BoxDecoration(
-                                          borderRadius: BorderRadius.circular(10),
-                                          color: red
-                                        ),
-                                        child: const Icon(Icons.refresh)
-                                      ),
-                                      onPressed : (){
-                                        setState(() {
-                                          underStrokeTopCurveRadiusRightTxtCtrl.text = '0.60';
-                                        });
-                                      }
-                                    )
-                                  )
-                                ],
-                              )
-                            ),
-                            Card(
-                              child: Stack(
-                                children: [
-                                  TextField(
-                                    // readOnly: true,
-                                    keyboardType: const TextInputType.numberWithOptions(decimal: true),
-                                    controller: underStrokeTopCurveRadiusRightTxtCtrl,
-                                    textAlign: TextAlign.center,
-                                    style: const TextStyle(fontSize: 20),
-                                    decoration: const InputDecoration(
-                                      hintText: 'Under Stroke Top Curve Radius Right',
-                                    ),
-                                  ),
-                                  Align(
-                                    alignment: Alignment.centerLeft,
-                                    child: IconButton(
-                                      padding: EdgeInsets.zero,
-                                      onPressed: () {
-                                        double currentValue = double.tryParse(underStrokeTopCurveRadiusRightTxtCtrl.text) ?? 0.0;
-                                        double newValue = currentValue - (double.tryParse(stepTxtCtrl.text)??0.0);
-                                        // Update the TextField with the new value
-                                        underStrokeTopCurveRadiusRightTxtCtrl.text = newValue.toStringAsFixed(2);
-                                        // Optionally, you can also update the state if needed
-                                        setState(() {
-                                        });
-                                      },
-                                      icon: Container(
-                                        padding: const EdgeInsets.all(2),
-                                        decoration:BoxDecoration(
-                                          borderRadius: BorderRadius.circular(10),
-                                          color: red
-                                        ),
-                                        child: const Icon(Icons.remove)
-                                      ),
-                                    ),
-                                  ),
-                                  Align(
-                                    alignment: Alignment.centerRight,
-                                    child: IconButton(
-                                      padding: EdgeInsets.zero,
-                                      onPressed: () {
-                                        double currentValue = double.tryParse(underStrokeTopCurveRadiusRightTxtCtrl.text) ?? 0.0;
-                                        double newValue = currentValue + (double.tryParse(stepTxtCtrl.text)??0.0);
-                                        // Update the TextField with the new value
-                                        underStrokeTopCurveRadiusRightTxtCtrl.text = newValue.toStringAsFixed(2);
-                                        // Optionally, you can also update the state if needed
-                                        setState(() {
-                                        });
-                                      },
-                                      icon: Container(
-                                        padding: const EdgeInsets.all(2),
-                                        decoration:BoxDecoration(
-                                          borderRadius: BorderRadius.circular(10),
-                                          color: red
-                                        ),
-                                        child: const Icon(Icons.add)
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                        const Divider(thickness: 2),
-                        //underStrokeMidCurveWidthLeft
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Card(
-                              child: Stack(
-                                alignment: Alignment.center,
-                                children: [
-                                  Container(
-                                    padding:const EdgeInsets.symmetric(horizontal:40.0,vertical:5.0),
-                                    width: double.infinity,
-                                    child: const Text(
-                                      'Under Stroke Mid Curve Width Left',
-                                      style: TextStyle(color: black,fontSize:16),
-                                      textAlign: TextAlign.center,
-                                    )
-                                  ),
-                                  Align(
-                                    alignment : Alignment.centerRight,
-                                    child:IconButton(
-                                      padding : EdgeInsets.zero,
-                                      icon: Container(
-                                        padding: const EdgeInsets.all(2),
-                                        decoration:BoxDecoration(
-                                          borderRadius: BorderRadius.circular(10),
-                                          color: red
-                                        ),
-                                        child: const Icon(Icons.refresh)
-                                      ),
-                                      onPressed : (){
-                                        setState(() {
-                                          underStrokeMidCurveWidthLeftTxtCtrl.text = '18';
-                                        });
-                                      }
-                                    )
-                                  )
-                                ],
-                              )
-                            ),
-                            Card(
-                              child: Stack(
-                                children: [
-                                  TextField(
-                                    // readOnly: true,
-                                    keyboardType: const TextInputType.numberWithOptions(decimal: true),
-                                    controller: underStrokeMidCurveWidthLeftTxtCtrl,
-                                    textAlign: TextAlign.center,
-                                    style: const TextStyle(fontSize: 20),
-                                    decoration: const InputDecoration(
-                                      hintText: 'Under Stroke Mid Curve Width Left',
-                                    ),
-                                  ),
-                                  Align(
-                                    alignment: Alignment.centerLeft,
-                                    child: IconButton(
-                                      padding: EdgeInsets.zero,
-                                      onPressed: () {
-                                        double currentValue = double.tryParse(underStrokeMidCurveWidthLeftTxtCtrl.text) ?? 0.0;
-                                        double newValue = currentValue - (double.tryParse(stepTxtCtrl.text)??0.0);
-                                        // Update the TextField with the new value
-                                        underStrokeMidCurveWidthLeftTxtCtrl.text = newValue.toStringAsFixed(2);
-                                        // Optionally, you can also update the state if needed
-                                        setState(() {
-                                        });
-                                      },
-                                      icon: Container(
-                                        padding: const EdgeInsets.all(2),
-                                        decoration:BoxDecoration(
-                                          borderRadius: BorderRadius.circular(10),
-                                          color: red
-                                        ),
-                                        child: const Icon(Icons.remove)
-                                      ),
-                                    ),
-                                  ),
-                                  Align(
-                                    alignment: Alignment.centerRight,
-                                    child: IconButton(
-                                      padding: EdgeInsets.zero,
-                                      onPressed: () {
-                                        double currentValue = double.tryParse(underStrokeMidCurveWidthLeftTxtCtrl.text) ?? 0.0;
-                                        double newValue = currentValue + (double.tryParse(stepTxtCtrl.text)??0.0);
-                                        // Update the TextField with the new value
-                                        underStrokeMidCurveWidthLeftTxtCtrl.text = newValue.toStringAsFixed(2);
-                                        // Optionally, you can also update the state if needed
-                                        setState(() {
-                                        });
-                                      },
-                                      icon: Container(
-                                        padding: const EdgeInsets.all(2),
-                                        decoration:BoxDecoration(
-                                          borderRadius: BorderRadius.circular(10),
-                                          color: red
-                                        ),
-                                        child: const Icon(Icons.add)
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                        const Divider(thickness: 2),
-                        //underStrokeMidCurveWidthRight
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Card(
-                              child: Stack(
-                                alignment: Alignment.center,
-                                children: [
-                                  Container(
-                                    padding:const EdgeInsets.symmetric(horizontal:40.0,vertical:5.0),
-                                    width: double.infinity,
-                                    child: const Text(
-                                      'Under Stroke Mid Curve Width Right',
-                                      style: TextStyle(color: black,fontSize:16),
-                                      textAlign: TextAlign.center,
-                                    )
-                                  ),
-                                  Align(
-                                    alignment : Alignment.centerRight,
-                                    child:IconButton(
-                                      padding : EdgeInsets.zero,
-                                      icon: Container(
-                                        padding: const EdgeInsets.all(2),
-                                        decoration:BoxDecoration(
-                                          borderRadius: BorderRadius.circular(10),
-                                          color: red
-                                        ),
-                                        child: const Icon(Icons.refresh)
-                                      ),
-                                      onPressed : (){
-                                        setState(() {
-                                          underStrokeMidCurveWidthRightTxtCtrl.text = '18';
-                                        });
-                                      }
-                                    )
-                                  )
-                                ],
-                              )
-                            ),
-                            Card(
-                              child: Stack(
-                                children: [
-                                  TextField(
-                                    // readOnly: true,
-                                    keyboardType: const TextInputType.numberWithOptions(decimal: true),
-                                    controller: underStrokeMidCurveWidthRightTxtCtrl,
-                                    textAlign: TextAlign.center,
-                                    style: const TextStyle(fontSize: 20),
-                                    decoration: const InputDecoration(
-                                      hintText: 'Under Stroke Mid Curve Width Right',
-                                    ),
-                                  ),
-                                  Align(
-                                    alignment: Alignment.centerLeft,
-                                    child: IconButton(
-                                      padding: EdgeInsets.zero,
-                                      onPressed: () {
-                                        double currentValue = double.tryParse(underStrokeMidCurveWidthRightTxtCtrl.text) ?? 0.0;
-                                        double newValue = currentValue - (double.tryParse(stepTxtCtrl.text)??0.0);
-                                        // Update the TextField with the new value
-                                        underStrokeMidCurveWidthRightTxtCtrl.text = newValue.toStringAsFixed(2);
-                                        // Optionally, you can also update the state if needed
-                                        setState(() {
-                                        });
-                                      },
-                                      icon: Container(
-                                        padding: const EdgeInsets.all(2),
-                                        decoration:BoxDecoration(
-                                          borderRadius: BorderRadius.circular(10),
-                                          color: red
-                                        ),
-                                        child: const Icon(Icons.remove)
-                                      ),
-                                    ),
-                                  ),
-                                  Align(
-                                    alignment: Alignment.centerRight,
-                                    child: IconButton(
-                                      padding: EdgeInsets.zero,
-                                      onPressed: () {
-                                        double currentValue = double.tryParse(underStrokeMidCurveWidthRightTxtCtrl.text) ?? 0.0;
-                                        double newValue = currentValue + (double.tryParse(stepTxtCtrl.text)??0.0);
-                                        // Update the TextField with the new value
-                                        underStrokeMidCurveWidthRightTxtCtrl.text = newValue.toStringAsFixed(2);
-                                        // Optionally, you can also update the state if needed
-                                        setState(() {
-                                        });
-                                      },
-                                      icon: Container(
-                                        padding: const EdgeInsets.all(2),
-                                        decoration:BoxDecoration(
-                                          borderRadius: BorderRadius.circular(10),
-                                          color: red
-                                        ),
-                                        child: const Icon(Icons.add)
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                        const Divider(thickness: 2),
-                        //underStrokeBottomCurveRadiusLeft
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Card(
-                              child: Stack(
-                                alignment: Alignment.center,
-                                children: [
-                                  Container(
-                                    padding:const EdgeInsets.symmetric(horizontal:40.0,vertical:5.0),
-                                    width: double.infinity,
-                                    child: const Text(
-                                      'Under Stroke Bottom Curve Radius Left',
-                                      style: TextStyle(color: black,fontSize:16),
-                                      textAlign: TextAlign.center,
-                                    )
-                                  ),
-                                  Align(
-                                    alignment : Alignment.centerRight,
-                                    child:IconButton(
-                                      padding : EdgeInsets.zero,
-                                      icon: Container(
-                                        padding: const EdgeInsets.all(2),
-                                        decoration:BoxDecoration(
-                                          borderRadius: BorderRadius.circular(10),
-                                          color: red
-                                        ),
-                                        child: const Icon(Icons.refresh)
-                                      ),
-                                      onPressed : (){
-                                        setState(() {
-                                          underStrokeBottomCurveRadiusLeftTxtCtrl.text = '0.05';
-                                        });
-                                      }
-                                    )
-                                  )
-                                ],
-                              )
-                            ),
-                            Card(
-                              child: Stack(
-                                children: [
-                                  TextField(
-                                    // readOnly: true,
-                                    keyboardType: const TextInputType.numberWithOptions(decimal: true),
-                                    controller: underStrokeBottomCurveRadiusLeftTxtCtrl,
-                                    textAlign: TextAlign.center,
-                                    style: const TextStyle(fontSize: 20),
-                                    decoration: const InputDecoration(
-                                      hintText: 'Under Stroke Bottom Curve Radius Left',
-                                    ),
-                                  ),
-                                  Align(
-                                    alignment: Alignment.centerLeft,
-                                    child: IconButton(
-                                      padding: EdgeInsets.zero,
-                                      onPressed: () {
-                                        double currentValue = double.tryParse(underStrokeBottomCurveRadiusLeftTxtCtrl.text) ?? 0.0;
-                                        double newValue = currentValue - (double.tryParse(stepTxtCtrl.text)??0.0);
-                                        // Update the TextField with the new value
-                                        underStrokeBottomCurveRadiusLeftTxtCtrl.text = newValue.toStringAsFixed(2);
-                                        // Optionally, you can also update the state if needed
-                                        setState(() {
-                                        });
-                                      },
-                                      icon: Container(
-                                        padding: const EdgeInsets.all(2),
-                                        decoration:BoxDecoration(
-                                          borderRadius: BorderRadius.circular(10),
-                                          color: red
-                                        ),
-                                        child: const Icon(Icons.remove)
-                                      ),
-                                    ),
-                                  ),
-                                  Align(
-                                    alignment: Alignment.centerRight,
-                                    child: IconButton(
-                                      padding: EdgeInsets.zero,
-                                      onPressed: () {
-                                        double currentValue = double.tryParse(underStrokeBottomCurveRadiusLeftTxtCtrl.text) ?? 0.0;
-                                        double newValue = currentValue + (double.tryParse(stepTxtCtrl.text)??0.0);
-                                        // Update the TextField with the new value
-                                        underStrokeBottomCurveRadiusLeftTxtCtrl.text = newValue.toStringAsFixed(2);
-                                        // Optionally, you can also update the state if needed
-                                        setState(() {
-                                        });
-                                      },
-                                      icon: Container(
-                                        padding: const EdgeInsets.all(2),
-                                        decoration:BoxDecoration(
-                                          borderRadius: BorderRadius.circular(10),
-                                          color: red
-                                        ),
-                                        child: const Icon(Icons.add)
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                        const Divider(thickness: 2),
-                        //underStrokeBottomCurveRadiusRight
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Card(
-                              child: Stack(
-                                alignment: Alignment.center,
-                                children: [
-                                  Container(
-                                    padding:const EdgeInsets.symmetric(horizontal:40.0,vertical:5.0),
-                                    width: double.infinity,
-                                    child: const Text(
-                                      'Under Stroke Bottom Curve Radius Right',
-                                      style: TextStyle(color: black,fontSize:16),
-                                      textAlign: TextAlign.center,
-                                    )
-                                  ),
-                                  Align(
-                                    alignment : Alignment.centerRight,
-                                    child:IconButton(
-                                      padding : EdgeInsets.zero,
-                                      icon: Container(
-                                        padding: const EdgeInsets.all(2),
-                                        decoration:BoxDecoration(
-                                          borderRadius: BorderRadius.circular(10),
-                                          color: red
-                                        ),
-                                        child: const Icon(Icons.refresh)
-                                      ),
-                                      onPressed : (){
-                                        setState(() {
-                                          underStrokeBottomCurveRadiusRightTxtCtrl.text = '0.05';
-                                        });
-                                      }
-                                    )
-                                  )
-                                ],
-                              )
-                            ),
-                            Card(
-                              child: Stack(
-                                children: [
-                                  TextField(
-                                    // readOnly: true,
-                                    keyboardType: const TextInputType.numberWithOptions(decimal: true),
-                                    controller: underStrokeBottomCurveRadiusRightTxtCtrl,
-                                    textAlign: TextAlign.center,
-                                    style: const TextStyle(fontSize: 20),
-                                    decoration: const InputDecoration(
-                                      hintText: 'Under Stroke Bottom Curve Radius Right',
-                                    ),
-                                  ),
-                                  Align(
-                                    alignment: Alignment.centerLeft,
-                                    child: IconButton(
-                                      padding: EdgeInsets.zero,
-                                      onPressed: () {
-                                        double currentValue = double.tryParse(underStrokeBottomCurveRadiusRightTxtCtrl.text) ?? 0.0;
-                                        double newValue = currentValue - (double.tryParse(stepTxtCtrl.text)??0.0);
-                                        // Update the TextField with the new value
-                                        underStrokeBottomCurveRadiusRightTxtCtrl.text = newValue.toStringAsFixed(2);
-                                        // Optionally, you can also update the state if needed
-                                        setState(() {
-                                        });
-                                      },
-                                      icon: Container(
-                                        padding: const EdgeInsets.all(2),
-                                        decoration:BoxDecoration(
-                                          borderRadius: BorderRadius.circular(10),
-                                          color: red
-                                        ),
-                                        child: const Icon(Icons.remove)
-                                      ),
-                                    ),
-                                  ),
-                                  Align(
-                                    alignment: Alignment.centerRight,
-                                    child: IconButton(
-                                      padding: EdgeInsets.zero,
-                                      onPressed: () {
-                                        double currentValue = double.tryParse(underStrokeBottomCurveRadiusRightTxtCtrl.text) ?? 0.0;
-                                        double newValue = currentValue + (double.tryParse(stepTxtCtrl.text)??0.0);
-                                        // Update the TextField with the new value
-                                        underStrokeBottomCurveRadiusRightTxtCtrl.text = newValue.toStringAsFixed(2);
-                                        // Optionally, you can also update the state if needed
-                                        setState(() {
-                                        });
-                                      },
-                                      icon: Container(
-                                        padding: const EdgeInsets.all(2),
-                                        decoration:BoxDecoration(
-                                          borderRadius: BorderRadius.circular(10),
-                                          color: red
-                                        ),
-                                        child: const Icon(Icons.add)
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
+                        ListView.builder(
+                          shrinkWrap: true,
+                          itemCount: underCurveData.length,
+                          physics: const NeverScrollableScrollPhysics(),
+                          padding: EdgeInsets.zero,
+                          itemBuilder: (context, index) {
+                            return curveControlTextFieldWidget(
+                              underCurveData[index]['title'],
+                              underCurveData[index]['textController'],
+                              underCurveData[index]['defaultValue'],
+                              underCurveData[index]['hintText'],
+                            );
+                          },
                         ),
 
                         //List Of All Available Properties
-                        const Divider(thickness: 2),
                         Text('Available Properties',style: heading1Style,textAlign: TextAlign.center),
                         const Divider(thickness: 2),
                         const PropertyTable(),
@@ -3064,10 +1038,10 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
             icons                              : icons,                                                                       // Icon list<Widget>
             titles                             : title,                                                                       // Title list<String>
             currentIndex                       : currentIndex,                                                                // Current selected index
-            backgroundColor                    : backgroundColor,                                                             // NavBar BackGround Color [backgroundGradient ovrerides color]
+            backgroundColor                    : white.withOpacity(0.8),                                                             // NavBar BackGround Color [backgroundGradient ovrerides color]
             foregroundColor                    : black,                                                                       // NavBar ForeGround Color with Curve 
-            foregroundStrokeBorderColor        : red,                                                                         // Nav Stroke Border Color [useForegroundShaderStroke = false , strokeBorderWidth != 0]
-            backgroundStrokeBorderColor        : white,                                                                       // nav background stroke color [seems like when border width is 0.0 still shows the color but transparent solves it]
+            foregroundStrokeBorderColor        : red.withOpacity(0.8),                                                                        // Nav Stroke Border Color [useForegroundShaderStroke = false , strokeBorderWidth != 0]
+            backgroundStrokeBorderColor        : red.withOpacity(0.8),                                                                         // nav background stroke color [seems like when border width is 0.0 still shows the color but transparent solves it]
             backgroundStrokeBorderWidth        : double.tryParse(backgroundStrokeBorderWidthTxtCtrl.text)??2.0,               // Nav BackGround Stroke Border Width
             foregroundStrokeBorderWidth        : double.tryParse(foregroundStrokeBorderWidthTxtCtrl.text)??2.0,               // Nav ForeGround Stroke Border Width  
             backgroundGradient                 : backgroundGradientColors,                                                    // Nav background Gradient [No Gradient if Null Overrides backgroundColor if given]
@@ -3117,36 +1091,174 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
             backgroundHeight                   : kBottomNavigationBarHeight,                                                  
             foregroundHeight                   : kBottomNavigationBarHeight,
 
-            animationType                      : Curves.ease,                                                                 // Index change animation curves
-            animationDuration                  : const Duration(milliseconds: 500),                                           // Index Change Animation duration for curve only
+            animationType                      : Curves.bounceOut,                                                            // Index change animation curves
+            animationDuration                  : const Duration(seconds: 1),                                                  // Index Change Animation duration for curve only
             onTap                              : (index) async => onItemTapped(index),                                        // Custom OnTap CallBacks
             //New
-            underCurveWidth                    : double.tryParse(underCurveWidthTxtCtrl.text),                     // Default value is Null when null UnderCurveWidth = 0.18 else as per given value
-            underCurveHeight                   : double.tryParse(underCurveHeightTxtCtrl.text),                    // Default value is Null when null UnderCurveHeight = 0.72 else as per given value
-            underTopCurveRadiusLeft            : double.tryParse(underTopCurveRadiusLeftTxtCtrl.text),             // Default value is Null when null UnderTopCurveRadiusLeft = 0.20 else as per given value
-            underTopCurveRadiusRight           : double.tryParse(underTopCurveRadiusRightTxtCtrl.text),            // Default value is Null when null UnderTopCurveRadiusRight = 0.20 else as per given value
-            underMidCurveWidthLeft             : double.tryParse(underMidCurveWidthLeftTxtCtrl.text),              // Default value is Null when null UnderMidCurveWidthLeft = 10 else as per given value
-            underMidCurveWidthRight            : double.tryParse(underMidCurveWidthRightTxtCtrl.text),             // Default value is Null when null UnderMidCurveWidthRight = 10 else as per given value
-            underBottomCurveRadiusLeft         : double.tryParse(underBottomCurveRadiusLeftTxtCtrl.text),          // Default value is Null when null UnderBottomCurveRadiusLeft = 0.05 else as per given value
-            underBottomCurveRadiusRight        : double.tryParse(underBottomCurveRadiusRightTxtCtrl.text),         // Default value is Null when null UnderBottomCurveRadiusRight = 0.05 else as per given value
-            
-            underStrokeCurveWidth              : double.tryParse(underStrokeCurveWidthTxtCtrl.text),               // Default value is Null when null UnderStrokeCurveWidth = 0.18 else as per given value
-            underStrokeCurveHeight             : double.tryParse(underStrokeCurveHeightTxtCtrl.text),              // Default value is Null when null UnderStrokeCurveHeight = 0.72 else as per given value
-            underStrokeTopCurveRadiusLeft      : double.tryParse(underStrokeTopCurveRadiusLeftTxtCtrl.text),       // Default value is Null when null UnderStrokeTopCurveRadiusLeft = 0.20 else as per given value
-            underStrokeTopCurveRadiusRight     : double.tryParse(underStrokeTopCurveRadiusRightTxtCtrl.text),      // Default value is Null when null UnderStrokeTopCurveRadiusRight = 0.20 else as per given value
-            underStrokeMidCurveWidthLeft       : double.tryParse(underStrokeMidCurveWidthLeftTxtCtrl.text),        // Default value is Null when null UnderMidCurveWidthLeft = 10 else as per given value
-            underStrokeMidCurveWidthRight      : double.tryParse(underStrokeMidCurveWidthRightTxtCtrl.text),       // Default value is Null when null UnderMidCurveWidthRight = 10 else as per given value
-            underStrokeBottomCurveRadiusLeft   : double.tryParse(underStrokeBottomCurveRadiusLeftTxtCtrl.text),    // Default value is Null when null UnderBottomCurveRadiusLeft = 0.05 else as per given value
-            underStrokeBottomCurveRadiusRight  : double.tryParse(underStrokeBottomCurveRadiusRightTxtCtrl.text),   // Default value is Null when null UnderBottomCurveRadiusRight = 0.05 else as per given value
+            upperCurveWidth                    : double.tryParse(upperCurveWidthTxtCtrl.text),                                
+            leftX1UpperCurveCtrl               : double.tryParse(leftX1UpperCurveCtrl.text),
+            leftY1UpperCurveCtrl               : double.tryParse(leftY1UpperCurveCtrl.text),
+            leftX2UpperCurveCtrl               : double.tryParse(leftX2UpperCurveCtrl.text),
+            leftY2UpperCurveCtrl               : double.tryParse(leftY2UpperCurveCtrl.text),
+            leftX3UpperCurveCtrl               : double.tryParse(leftX3UpperCurveCtrl.text),
+            leftY3UpperCurveCtrl               : double.tryParse(leftY3UpperCurveCtrl.text),
+            rightX1UpperCurveCtrl              : double.tryParse(rightX1UpperCurveCtrl.text),
+            rightY1UpperCurveCtrl              : double.tryParse(rightY1UpperCurveCtrl.text),
+            rightX2UpperCurveCtrl              : double.tryParse(rightX2UpperCurveCtrl.text),
+            rightY2UpperCurveCtrl              : double.tryParse(rightY2UpperCurveCtrl.text),
+            rightX3UpperCurveCtrl              : double.tryParse(rightX3UpperCurveCtrl.text),
+            rightY3UpperCurveCtrl              : double.tryParse(rightY3UpperCurveCtrl.text),
+            upperStrokeCurveWidth              : double.tryParse(upperStrokeCurveWidthTxtCtrl.text),
+            leftStrokeX1UpperCurveCtrl         : double.tryParse(leftStrokeX1UpperCurveCtrl.text),
+            leftStrokeY1UpperCurveCtrl         : double.tryParse(leftStrokeY1UpperCurveCtrl.text),
+            leftStrokeX2UpperCurveCtrl         : double.tryParse(leftStrokeX2UpperCurveCtrl.text),
+            leftStrokeY2UpperCurveCtrl         : double.tryParse(leftStrokeY2UpperCurveCtrl.text),
+            leftStrokeX3UpperCurveCtrl         : double.tryParse(leftStrokeX3UpperCurveCtrl.text),
+            leftStrokeY3UpperCurveCtrl         : double.tryParse(leftStrokeY3UpperCurveCtrl.text),
+            rightStrokeX1UpperCurveCtrl        : double.tryParse(rightStrokeX1UpperCurveCtrl.text),
+            rightStrokeY1UpperCurveCtrl        : double.tryParse(rightStrokeY1UpperCurveCtrl.text),
+            rightStrokeX2UpperCurveCtrl        : double.tryParse(rightStrokeX2UpperCurveCtrl.text),
+            rightStrokeY2UpperCurveCtrl        : double.tryParse(rightStrokeY2UpperCurveCtrl.text),
+            rightStrokeX3UpperCurveCtrl        : double.tryParse(rightStrokeX3UpperCurveCtrl.text),
+            rightStrokeY3UpperCurveCtrl        : double.tryParse(rightStrokeY3UpperCurveCtrl.text),
 
-            upperCurveWidth                    : double.tryParse(upperCurveWidthTxtCtrl.text),                     // Default value is Null when null UpperCurveWidth = 0.16 else as per given value
-            upperCurveHeight                   : double.tryParse(upperCurveHeightTxtCtrl.text),                    // Default value is Null when null UpperCurveHeight = 0.12 else as per given value
-            upperStrokeCurveWidth              : double.tryParse(upperStrokeCurveWidthTxtCtrl.text),               // Default value is Null when null UpperStrokeCurveWidth = 0.16 else as per given value
-            upperStrokeCurveHeight             : double.tryParse(upperStrokeCurveHeightTxtCtrl.text),              // Default value is Null when null UpperStrokeCurveHeight = 0.12 else as per given value
-            //
+            underCurveWidth                    : double.tryParse(underCurveWidthTxtCtrl.text),                                
+            leftX1UnderCurveCtrl               : double.tryParse(leftX1UnderCurveCtrl.text),
+            leftY1UnderCurveCtrl               : double.tryParse(leftY1UnderCurveCtrl.text),
+            leftX2UnderCurveCtrl               : double.tryParse(leftX2UnderCurveCtrl.text),
+            leftY2UnderCurveCtrl               : double.tryParse(leftY2UnderCurveCtrl.text),
+            leftX3UnderCurveCtrl               : double.tryParse(leftX3UnderCurveCtrl.text),
+            leftY3UnderCurveCtrl               : double.tryParse(leftY3UnderCurveCtrl.text),
+            rightX1UnderCurveCtrl              : double.tryParse(rightX1UnderCurveCtrl.text),
+            rightY1UnderCurveCtrl              : double.tryParse(rightY1UnderCurveCtrl.text),
+            rightX2UnderCurveCtrl              : double.tryParse(rightX2UnderCurveCtrl.text),
+            rightY2UnderCurveCtrl              : double.tryParse(rightY2UnderCurveCtrl.text),
+            rightX3UnderCurveCtrl              : double.tryParse(rightX3UnderCurveCtrl.text),
+            rightY3UnderCurveCtrl              : double.tryParse(rightY3UnderCurveCtrl.text),
+            underStrokeCurveWidth              : double.tryParse(underStrokeCurveWidthTxtCtrl.text),
+            leftStrokeX1UnderCurveCtrl         : double.tryParse(leftStrokeX1UnderCurveCtrl.text),
+            leftStrokeY1UnderCurveCtrl         : double.tryParse(leftStrokeY1UnderCurveCtrl.text),
+            leftStrokeX2UnderCurveCtrl         : double.tryParse(leftStrokeX2UnderCurveCtrl.text),
+            leftStrokeY2UnderCurveCtrl         : double.tryParse(leftStrokeY2UnderCurveCtrl.text),
+            leftStrokeX3UnderCurveCtrl         : double.tryParse(leftStrokeX3UnderCurveCtrl.text),
+            leftStrokeY3UnderCurveCtrl         : double.tryParse(leftStrokeY3UnderCurveCtrl.text),
+            rightStrokeX1UnderCurveCtrl        : double.tryParse(rightStrokeX1UnderCurveCtrl.text),
+            rightStrokeY1UnderCurveCtrl        : double.tryParse(rightStrokeY1UnderCurveCtrl.text),
+            rightStrokeX2UnderCurveCtrl        : double.tryParse(rightStrokeX2UnderCurveCtrl.text),
+            rightStrokeY2UnderCurveCtrl        : double.tryParse(rightStrokeY2UnderCurveCtrl.text),
+            rightStrokeX3UnderCurveCtrl        : double.tryParse(rightStrokeX3UnderCurveCtrl.text),
+            rightStrokeY3UnderCurveCtrl        : double.tryParse(rightStrokeY3UnderCurveCtrl.text),
           ),
         ),
       )
+    );
+  }
+
+  Widget curveControlTextFieldWidget(String title,TextEditingController textController,dynamic defaultValue,String hintText) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Card(
+          color: white.withOpacity(0.6),
+          child: Stack(
+            alignment: Alignment.center,
+            children: [
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal:40.0,vertical:5.0),
+                width: double.infinity,
+                child: Text(
+                  title,
+                  style: const TextStyle(color: black,fontSize:16),
+                  textAlign: TextAlign.center,
+                )
+              ),
+              Align(
+                alignment : Alignment.centerRight,
+                child:IconButton(
+                  padding : EdgeInsets.zero,
+                  icon: Container(
+                    padding: const EdgeInsets.all(2),
+                    decoration:BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: red
+                    ),
+                    child: const Icon(Icons.refresh)
+                  ),
+                  onPressed : (){
+                    setState(() {
+                      textController.text = defaultValue;
+                    });
+                  }
+                )
+              )
+            ],
+          )
+        ),
+        Card(
+          child: Stack(
+            children: [
+              TextField(
+                // readOnly: true,
+                keyboardType: const TextInputType.numberWithOptions(decimal: true),
+                controller: textController,
+                textAlign: TextAlign.center,
+                style: const TextStyle(fontSize: 20),
+                decoration: InputDecoration(
+                  hintText: hintText,
+                ),
+              ),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: IconButton(
+                  padding: EdgeInsets.zero,
+                  onPressed: () {
+                    double currentValue = double.tryParse(textController.text) ?? 0.0;
+                    double newValue = currentValue - (double.tryParse(stepTxtCtrl.text)??0.0);
+                    // Update the TextField with the new value
+                    textController.text = newValue.toStringAsFixed(2);
+                    // Optionally, you can also update the state if needed
+                    setState(() {
+                    });
+                  },
+                  icon: Container(
+                    padding: const EdgeInsets.all(2),
+                    decoration:BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: red
+                    ),
+                    child: const Icon(Icons.remove)
+                  ),
+                ),
+              ),
+              Align(
+                alignment: Alignment.centerRight,
+                child: IconButton(
+                  padding: EdgeInsets.zero,
+                  onPressed: () {
+                    double currentValue = double.tryParse(textController.text) ?? 0.0;
+                    double newValue = currentValue + (double.tryParse(stepTxtCtrl.text)??0.0);
+                    // Update the TextField with the new value
+                    textController.text = newValue.toStringAsFixed(2);
+                    // Optionally, you can also update the state if needed
+                    setState(() {
+                    });
+                  },
+                  icon: Container(
+                    padding: const EdgeInsets.all(2),
+                    decoration:BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: red
+                    ),
+                    child: const Icon(Icons.add)
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+        const Divider()
+      ],
     );
   }
 
@@ -3182,5 +1294,333 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
       //   badgeVal1='0';
       // }
     });
+  }
+
+  setData(){
+    upperCurveData = [
+      //UPPER CURVE CONTROLS
+      {
+        'title': 'upperCurveWidthTxtCtrl',
+        'textController': upperCurveWidthTxtCtrl,
+        'defaultValue': '0.16',
+        'hintText': 'upperCurveWidthTxtCtrl',
+      },
+      {
+        'title': 'leftX1UpperCurveCtrl',
+        'textController' : leftX1UpperCurveCtrl,
+        'defaultValue': '0.20',
+        'hintText': 'leftX1UpperCurveCtrl',
+      },
+      {
+        'title': 'leftY1UpperCurveCtrl',
+        'textController' : leftY1UpperCurveCtrl,
+        'defaultValue': '0.0',
+        'hintText': 'leftY1UpperCurveCtrl',         
+      },
+      {
+        'title': 'leftX2UpperCurveCtrl',
+        'textController' : leftX2UpperCurveCtrl,
+        'defaultValue': '10',
+        'hintText': 'leftX2UpperCurveCtrl',         
+      },
+      {
+        'title': 'leftY2UpperCurveCtrl',
+        'textController' : leftY2UpperCurveCtrl,
+        'defaultValue': '0.12',
+        'hintText': 'leftY2UpperCurveCtrl',         
+      },
+      {
+        'title': 'leftX3UpperCurveCtrl',
+        'textController' : leftX3UpperCurveCtrl,
+        'defaultValue': '0.5',
+        'hintText': 'leftX3UpperCurveCtrl',         
+      },  
+      {
+        'title': 'leftY3UpperCurveCtrl',
+        'textController' : leftY3UpperCurveCtrl,
+        'defaultValue': '0.12',
+        'hintText': 'leftY3UpperCurveCtrl',         
+      },  
+      {
+        'title': 'rightX1UpperCurveCtrl',
+        'textController' : rightX1UpperCurveCtrl,
+        'defaultValue': '10',
+        'hintText': 'rightX1UpperCurveCtrl',         
+      },
+      {
+        'title': 'rightY1UpperCurveCtrl',
+        'textController' : rightY1UpperCurveCtrl,
+        'defaultValue': '0.12',
+        'hintText': 'rightY1UpperCurveCtrl',         
+      }, 
+      {
+        'title': 'rightX2UpperCurveCtrl',
+        'textController' : rightX2UpperCurveCtrl,
+        'defaultValue': '0.20',
+        'hintText': 'rightX2UpperCurveCtrl',         
+      }, 
+      {
+        'title': 'rightY2UpperCurveCtrl',
+        'textController' : rightY2UpperCurveCtrl,
+        'defaultValue': '0.0',
+        'hintText': 'rightY2UpperCurveCtrl',         
+      }, 
+      {
+        'title': 'rightX3UpperCurveCtrl',
+        'textController' : rightX3UpperCurveCtrl,
+        'defaultValue': '0',
+        'hintText': 'rightX3UpperCurveCtrl',         
+      }, 
+      {
+        'title': 'rightY3UpperCurveCtrl',
+        'textController' : rightY3UpperCurveCtrl,
+        'defaultValue': '0',
+        'hintText': 'rightY3UpperCurveCtrl',         
+      },  
+
+      //UPPER STROKE CURVE CONTROL
+
+      {
+        'title': 'upperStrokeCurveWidthTxtCtrl',
+        'textController': upperStrokeCurveWidthTxtCtrl,
+        'defaultValue': '0.16',
+        'hintText': 'upperStrokeCurveWidthTxtCtrl',
+      },
+      {
+        'title': 'leftStrokeX1UpperCurveCtrl',
+        'textController' : leftStrokeX1UpperCurveCtrl,
+        'defaultValue': '0.20',
+        'hintText': 'leftStrokeX1UpperCurveCtrl',
+      },
+      {
+        'title': 'leftStrokeY1UpperCurveCtrl',
+        'textController' : leftStrokeY1UpperCurveCtrl,
+        'defaultValue': '0.0',
+        'hintText': 'leftStrokeY1UpperCurveCtrl',         
+      },
+      {
+        'title': 'leftStrokeX2UpperCurveCtrl',
+        'textController' : leftStrokeX2UpperCurveCtrl,
+        'defaultValue': '10',
+        'hintText': 'leftStrokeX2UpperCurveCtrl',         
+      },
+      {
+        'title': 'leftStrokeY2UpperCurveCtrl',
+        'textController' : leftStrokeY2UpperCurveCtrl,
+        'defaultValue': '0.12',
+        'hintText': 'leftStrokeY2UpperCurveCtrl',         
+      },
+      {
+        'title': 'leftStrokeX3UpperCurveCtrl',
+        'textController' : leftStrokeX3UpperCurveCtrl,
+        'defaultValue': '0.5',
+        'hintText': 'leftStrokeX3UpperCurveCtrl',         
+      },  
+      {
+        'title': 'leftStrokeY3UpperCurveCtrl',
+        'textController' : leftStrokeY3UpperCurveCtrl,
+        'defaultValue': '0.12',
+        'hintText': 'leftStrokeY3UpperCurveCtrl',         
+      },  
+      {
+        'title': 'rightStrokeX1UpperCurveCtrl',
+        'textController' : rightStrokeX1UpperCurveCtrl,
+        'defaultValue': '10',
+        'hintText': 'rightStrokeX1UpperCurveCtrl',         
+      },
+      {
+        'title': 'rightStrokeY1UpperCurveCtrl',
+        'textController' : rightStrokeY1UpperCurveCtrl,
+        'defaultValue': '0.12',
+        'hintText': 'rightStrokeY1UpperCurveCtrl',         
+      }, 
+      {
+        'title': 'rightStrokeX2UpperCurveCtrl',
+        'textController' : rightStrokeX2UpperCurveCtrl,
+        'defaultValue': '0.20',
+        'hintText': 'rightStrokeX2UpperCurveCtrl',         
+      }, 
+      {
+        'title': 'rightStrokeY2UpperCurveCtrl',
+        'textController' : rightStrokeY2UpperCurveCtrl,
+        'defaultValue': '0.0',
+        'hintText': 'rightStrokeY2UpperCurveCtrl',         
+      }, 
+      {
+        'title': 'rightStrokeX3UpperCurveCtrl',
+        'textController' : rightStrokeX3UpperCurveCtrl,
+        'defaultValue': '0',
+        'hintText': 'rightStrokeX3UpperCurveCtrl',         
+      }, 
+      {
+        'title': 'rightStrokeY3UpperCurveCtrl',
+        'textController' : rightStrokeY3UpperCurveCtrl,
+        'defaultValue': '0',
+        'hintText': 'rightStrokeY3UpperCurveCtrl',         
+      },            
+    ];
+
+    underCurveData = [
+      //UNDER CURVE CONTROLS
+      {
+        'title': 'underCurveWidthTxtCtrl',
+        'textController': underCurveWidthTxtCtrl,
+        'defaultValue': '0.18',
+        'hintText': 'underCurveWidthTxtCtrl',
+      },
+      {
+        'title': 'leftX1UnderCurveCtrl',
+        'textController' : leftX1UnderCurveCtrl,
+        'defaultValue': '0.50',
+        'hintText': 'leftX1UnderCurveCtrl',
+      },
+      {
+        'title': 'leftY1UnderCurveCtrl',
+        'textController' : leftY1UnderCurveCtrl,
+        'defaultValue': '0.05',
+        'hintText': 'leftY1UnderCurveCtrl',         
+      },
+      {
+        'title': 'leftX2UnderCurveCtrl',
+        'textController' : leftX2UnderCurveCtrl,
+        'defaultValue': '8',
+        'hintText': 'leftX2UnderCurveCtrl',         
+      },
+      {
+        'title': 'leftY2UnderCurveCtrl',
+        'textController' : leftY2UnderCurveCtrl,
+        'defaultValue': '0.66',
+        'hintText': 'leftY2UnderCurveCtrl',         
+      },
+      {
+        'title': 'leftX3UnderCurveCtrl',
+        'textController' : leftX3UnderCurveCtrl,
+        'defaultValue': '0.50',
+        'hintText': 'leftX3UnderCurveCtrl',         
+      },  
+      {
+        'title': 'leftY3UnderCurveCtrl',
+        'textController' : leftY3UnderCurveCtrl,
+        'defaultValue': '0.66',
+        'hintText': 'leftY3UnderCurveCtrl',         
+      },  
+      {
+        'title': 'rightX1UnderCurveCtrl',
+        'textController' : rightX1UnderCurveCtrl,
+        'defaultValue': '8',
+        'hintText': 'rightX1UnderCurveCtrl',         
+      },
+      {
+        'title': 'rightY1UnderCurveCtrl',
+        'textController' : rightY1UnderCurveCtrl,
+        'defaultValue': '0.66',
+        'hintText': 'rightY1UnderCurveCtrl',         
+      }, 
+      {
+        'title': 'rightX2UnderCurveCtrl',
+        'textController' : rightX2UnderCurveCtrl,
+        'defaultValue': '0.50',
+        'hintText': 'rightX2UnderCurveCtrl',         
+      }, 
+      {
+        'title': 'rightY2UnderCurveCtrl',
+        'textController' : rightY2UnderCurveCtrl,
+        'defaultValue': '0.05',
+        'hintText': 'rightY2UnderCurveCtrl',         
+      }, 
+      {
+        'title': 'rightX3UnderCurveCtrl',
+        'textController' : rightX3UnderCurveCtrl,
+        'defaultValue': '0',
+        'hintText': 'rightX3UnderCurveCtrl',         
+      }, 
+      {
+        'title': 'rightY3UnderCurveCtrl',
+        'textController' : rightY3UnderCurveCtrl,
+        'defaultValue': '0',
+        'hintText': 'rightY3UnderCurveCtrl',         
+      },  
+
+      //UNDER STROKE CURVE CONTROL
+
+      {
+        'title': 'underStrokeCurveWidthTxtCtrl',
+        'textController': underStrokeCurveWidthTxtCtrl,
+        'defaultValue': '0.18',
+        'hintText': 'underStrokeCurveWidthTxtCtrl',
+      },
+      {
+        'title': 'leftStrokeX1UnderCurveCtrl',
+        'textController' : leftStrokeX1UnderCurveCtrl,
+        'defaultValue': '0.50',
+        'hintText': 'leftStrokeX1UnderCurveCtrl',
+      },
+      {
+        'title': 'leftStrokeY1UnderCurveCtrl',
+        'textController' : leftStrokeY1UnderCurveCtrl,
+        'defaultValue': '0.05',
+        'hintText': 'leftStrokeY1UnderCurveCtrl',         
+      },
+      {
+        'title': 'leftStrokeX2UnderCurveCtrl',
+        'textController' : leftStrokeX2UnderCurveCtrl,
+        'defaultValue': '8',
+        'hintText': 'leftStrokeX2UnderCurveCtrl',         
+      },
+      {
+        'title': 'leftStrokeY2UnderCurveCtrl',
+        'textController' : leftStrokeY2UnderCurveCtrl,
+        'defaultValue': '0.66',
+        'hintText': 'leftStrokeY2UnderCurveCtrl',         
+      },
+      {
+        'title': 'leftStrokeX3UnderCurveCtrl',
+        'textController' : leftStrokeX3UnderCurveCtrl,
+        'defaultValue': '0.50',
+        'hintText': 'leftStrokeX3UnderCurveCtrl',         
+      },  
+      {
+        'title': 'leftStrokeY3UnderCurveCtrl',
+        'textController' : leftStrokeY3UnderCurveCtrl,
+        'defaultValue': '0.66',
+        'hintText': 'leftStrokeY3UnderCurveCtrl',         
+      },  
+      {
+        'title': 'rightStrokeX1UnderCurveCtrl',
+        'textController' : rightStrokeX1UnderCurveCtrl,
+        'defaultValue': '8',
+        'hintText': 'rightStrokeX1UnderCurveCtrl',         
+      },
+      {
+        'title': 'rightStrokeY1UnderCurveCtrl',
+        'textController' : rightStrokeY1UnderCurveCtrl,
+        'defaultValue': '0.66',
+        'hintText': 'rightStrokeY1UnderCurveCtrl',         
+      }, 
+      {
+        'title': 'rightStrokeX2UnderCurveCtrl',
+        'textController' : rightStrokeX2UnderCurveCtrl,
+        'defaultValue': '0.50',
+        'hintText': 'rightStrokeX2UnderCurveCtrl',         
+      }, 
+      {
+        'title': 'rightStrokeY2UnderCurveCtrl',
+        'textController' : rightStrokeY2UnderCurveCtrl,
+        'defaultValue': '0.05',
+        'hintText': 'rightStrokeY2UnderCurveCtrl',         
+      }, 
+      {
+        'title': 'rightStrokeX3UnderCurveCtrl',
+        'textController' : rightStrokeX3UnderCurveCtrl,
+        'defaultValue': '0',
+        'hintText': 'rightStrokeX3UnderCurveCtrl',         
+      }, 
+      {
+        'title': 'rightStrokeY3UnderCurveCtrl',
+        'textController' : rightStrokeY3UnderCurveCtrl,
+        'defaultValue': '0',
+        'hintText': 'rightStrokeY3UnderCurveCtrl',         
+      },     
+    ];
   }
 }

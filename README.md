@@ -100,15 +100,15 @@ Directionality(
 
 ## Controls For Upper And Under Curve And Stroke Borders
 
--Upper Curves:
+- Upper Curves:
 
-  -Control the width and shape of the upper curves using various X and Y control points.
-  -Adjust stroke properties for the upper curves, such as width and control points.
+- Control the width and shape of the upper curves using various X and Y control points.
+- Adjust stroke properties for the upper curves, such as width and control points.
 
--Under Curves:
+- Under Curves:
 
-  -Manage the width and shape of the under curves with specific X and Y control points.
-  -Modify stroke properties for the under curves, including width and control points.
+- Manage the width and shape of the under curves with specific X and Y control points.
+- Modify stroke properties for the under curves, including width and control points.
   
 These properties collectively allow users to finely control the appearance of upper and under curves, as well as stroke borders, providing flexibility in customizing the graphical elements of the interface.
 

@@ -1,4 +1,5 @@
 import 'package:example/widgets/property_table_widget.dart';
+import 'package:fast_color_picker/fast_color_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:ultimate_bottom_navbar/ultimate_bottom_navbar.dart';
 import 'BottomNavPages/page_1.dart';
@@ -33,17 +34,22 @@ class BottomNavigationPage extends StatefulWidget {
 
 class _BottomNavigationPageState extends State<BottomNavigationPage> {
 
-  final backgroundGradientColor = LinearGradient(
+  final backgroundGradientColor = const LinearGradient(
     begin: Alignment.topCenter,
     end: Alignment.bottomCenter,
     colors: [
-      black,     // Black
-      darkGrey,  // Dark Gray
-      grey,      // Gray
-      lightGrey, // Light Gray
-      white,     // White
+      // black,     // Black
+      // darkGrey,  // Dark Gray
+      // grey,      // Gray
+      // lightGrey, // Light Gray
+      // white,     // White
+      green,
+      yellow,
+      blue,
+      red,
+      lightBlue,
     ],
-    stops: const [0.0, 0.25, 0.5, 0.75, 1.0],
+    stops: [0.0, 0.25, 0.5, 0.75, 1.0],
     tileMode: TileMode.mirror,
   );
 
@@ -61,17 +67,22 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
     tileMode: TileMode.repeated,
   ).createShader(Rect.fromCenter(center: const Offset(0.0, 0.0), height: 1.0, width: 100.0));
 
-  Shader foreGroundGradientShader = LinearGradient(
+  Shader foreGroundGradientShader = const LinearGradient(
     begin: Alignment.topCenter,
     end: Alignment.bottomCenter,
     colors: [
-      white,     // White
-      lightGrey, // Light Gray
-      grey,      // Gray
-      darkGrey,  // Dark Gray
-      black,     // Black
+      // white,     // White
+      // lightGrey, // Light Gray
+      // grey,      // Gray
+      // darkGrey,  // Dark Gray
+      // black,     // Black
+      green,
+      yellow,
+      blue,
+      yellow,
+      lightBlue,
     ],
-    stops: const [0.0, 0.25, 0.5, 0.75, 1.0],
+    stops: [0.0, 0.25, 0.5, 0.75, 1.0],
     tileMode: TileMode.mirror,
   ).createShader(Rect.fromCenter(center: const Offset(0.0,0.0), height: 200, width: 100));
 
@@ -79,11 +90,11 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
     begin: Alignment.topCenter,
     end: Alignment.bottomCenter,
     colors: [
+      green,
+      yellow,
       blue,
-      blue,
-      red,
-      blue,
-      blue,
+      white,
+      green,
     ],
     stops: [0.2, 0.4, 0.5, 0.6, 2.0],
   ).createShader(Rect.fromCenter(center: const Offset(0.0,0.0), height: 200, width: 100));
@@ -100,8 +111,12 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
   bool showBackGroundStrokeAllSide             = false;
   bool showMidCircleStatic                     = false; 
   Color backgroundColor                        = black.withOpacity(0.5); 
-  double backgroundStrokeBorderWidth           = 2.0; 
-  double foregroundStrokeBorderWidth           = 2.0;  
+  Color foregroundColor                        = Colors.pink;
+  Color selectedIconColor                      = black;
+  Color unselectedIconColor                    = white;
+  Color backgroundStrokeBorderColor            = red.withOpacity(0.8);
+  Color foregroundStrokeBorderColor            = white.withOpacity(0.8);
+
   BorderRadiusGeometry? backgroundBorderRadius = BorderRadius.circular(0.0);
   EdgeInsetsGeometry? navBarMargin             = const EdgeInsets.only(left: 0.0,right: 0.0,bottom: 0.0);
   var badgeVal1                                = '5';
@@ -110,8 +125,8 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
   Widget? customSelectedItemDecor;
   Widget? customUnSelectedItemDecor;
   Gradient? backgroundGradientColors;
-  
-  TextEditingController backgroundStrokeBorderWidthTxtCtrl = TextEditingController(text:'2.0');
+    
+  TextEditingController backgroundStrokeBorderWidthTxtCtrl = TextEditingController(text:'0.0');
   TextEditingController foregroundStrokeBorderWidthTxtCtrl = TextEditingController(text:'2.0');
   TextEditingController stepTxtCtrl                        = TextEditingController(text:'0.1');
 
@@ -201,10 +216,22 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
     const Page4(),
     const Page5(),
   ];
-  
-  List<Map<String, dynamic>> upperCurveData = [];
 
-  List<Map<String, dynamic>> underCurveData = [];
+
+  List<Map<String, dynamic>> upperCurveAndStrokeWidthData  = [];
+  List<Map<String, dynamic>> underCurveAndStrokeWidthData  = [];
+
+  List<Map<String, dynamic>> upperCurveLeftData            = [];
+  List<Map<String, dynamic>> upperCurveRightData           = [];
+
+  List<Map<String, dynamic>> upperCurveLeftStrokeData      = [];
+  List<Map<String, dynamic>> upperCurveRightStrokeData     = [];
+
+  List<Map<String, dynamic>> underCurveLeftData            = [];
+  List<Map<String, dynamic>> underCurveRightData           = [];
+
+  List<Map<String, dynamic>> underCurveLeftStrokeData      = [];
+  List<Map<String, dynamic>> underCurveRightStrokeData     = [];
 
   @override
   Widget build(BuildContext context) {
@@ -232,9 +259,8 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
                   padding: const EdgeInsets.only(top:kBottomNavigationBarHeight),
                   child: pages[currentIndex],
                 ),
-                Container(
+                SizedBox(
                   height: MediaQuery.of(context).size.height-kBottomNavigationBarHeight-kBottomNavigationBarHeight+10,
-                  padding: const EdgeInsets.only(left:10.0,right:10.0),
                   child: SingleChildScrollView(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -417,10 +443,94 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
                             child: Text('Reset Badge value 2',style: buttonTextStyle,textAlign: TextAlign.center)
                           ),
                         ),
+                        //Selected Icon Color
+                        Column(
+                          children: [
+                            Card(
+                              child: Container(
+                                width: double.infinity,
+                                alignment: Alignment.center,
+                                padding: const EdgeInsets.symmetric(vertical: 4.0),
+                                child: const Text('Selected icon Colors')
+                              )
+                            ),
+                            FastColorPicker(
+                              selectedColor: selectedIconColor,
+                              onColorSelected: (color) {
+                                setState(() {
+                                  selectedIconColor = color;
+                                });
+                              },
+                            ),
+                          ],
+                        ),
+                        //UnSelected Icon Color
+                        Column(
+                          children: [
+                            Card(
+                              child: Container(
+                                width: double.infinity,
+                                alignment: Alignment.center,
+                                padding: const EdgeInsets.symmetric(vertical: 4.0),
+                                child: const Text('UnSelected icon Colors')
+                              )
+                            ),
+                            FastColorPicker(
+                              selectedColor: unselectedIconColor,
+                              onColorSelected: (color) {
+                                setState(() {
+                                  unselectedIconColor = color;
+                                });
+                              },
+                            ),
+                          ],
+                        ),
                         const Divider(thickness: 2),
                         //BackGround Properties
                         Text('Back Ground Properties',style: heading1Style,textAlign: TextAlign.center),
                         const Divider(thickness: 2),
+                        //Select Background Solid Border Colors
+                        Column(
+                          children: [
+                            Card(
+                              child: Container(
+                                width: double.infinity,
+                                alignment: Alignment.center,
+                                padding: const EdgeInsets.symmetric(vertical: 4.0),
+                                child: const Text('Background Solid Colors')
+                              )
+                            ),
+                            FastColorPicker(
+                              selectedColor: backgroundColor,
+                              onColorSelected: (color) {
+                                setState(() {
+                                  backgroundColor = color;
+                                });
+                              },
+                            ),
+                          ],
+                        ),
+                        //Select Background Solid Stroke Colors
+                        Column(
+                          children: [
+                            Card(
+                              child: Container(
+                                width: double.infinity,
+                                alignment: Alignment.center,
+                                padding: const EdgeInsets.symmetric(vertical: 4.0),
+                                child: const Text('Background Solid Stroke Border Colors')
+                              )
+                            ),
+                            FastColorPicker(
+                              selectedColor: backgroundStrokeBorderColor,
+                              onColorSelected: (color) {
+                                setState(() {
+                                  backgroundStrokeBorderColor = color;
+                                });
+                              },
+                            ),
+                          ],
+                        ),
                         //Background Gradient or Solid Color
                         Padding(
                           padding: const EdgeInsets.symmetric(vertical :8.0),
@@ -443,29 +553,6 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
                               });
                             }, 
                             child: Text(backgroundGradientColors==null?'Show Background Gradient Color':'Show Background Solid Color',style: buttonTextStyle,textAlign: TextAlign.center)
-                          ),
-                        ),
-                        //Show Hide Background Stroke
-                        Padding(
-                          padding: const EdgeInsets.symmetric(vertical :8.0),
-                          child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              primary: black,
-                              minimumSize: const Size.fromHeight(50),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10), // Set the desired radius here
-                              ),
-                            ),
-                            onPressed: ()async{
-                              setState(() {
-                                if(backgroundStrokeBorderWidth==0.0){
-                                  backgroundStrokeBorderWidth=2.0;
-                                }else{
-                                  backgroundStrokeBorderWidth=0.0;
-                                }
-                              });
-                            }, 
-                            child: Text(backgroundStrokeBorderWidth==0.0?'Show Background Stroke':'Hide Background Stroke',style: buttonTextStyle,textAlign: TextAlign.center)
                           ),
                         ),
                         //Background Shader Stroke or Solid Color Stroke
@@ -573,7 +660,7 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
                                       ),
                                       onPressed : (){
                                         setState(() {
-                                          backgroundStrokeBorderWidthTxtCtrl.text = '2.0';
+                                          backgroundStrokeBorderWidthTxtCtrl.text = '0.0';
                                         });
                                       }
                                     )
@@ -649,6 +736,48 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
                         //ForeGround Properties
                         Text('Fore Ground Properties',style: heading1Style,textAlign: TextAlign.center),
                         const Divider(thickness: 2),
+                        //Select Forground Solid Colors
+                        Column(
+                          children: [
+                            Card(
+                              child: Container(
+                                width: double.infinity,
+                                alignment: Alignment.center,
+                                padding: const EdgeInsets.symmetric(vertical: 4.0),
+                                child: const Text('ForeGround Solid Colors')
+                              )
+                            ),
+                            FastColorPicker(
+                              selectedColor: foregroundColor,
+                              onColorSelected: (color) {
+                                setState(() {
+                                  foregroundColor = color;
+                                });
+                              },
+                            ),
+                          ],
+                        ),
+                        //Select Foreground Solid Stroke Border Colors
+                        Column(
+                          children: [
+                            Card(
+                              child: Container(
+                                width: double.infinity,
+                                alignment: Alignment.center,
+                                padding: const EdgeInsets.symmetric(vertical: 4.0),
+                                child: const Text('Foreground Solid Stroke Border Colors')
+                              )
+                            ),
+                            FastColorPicker(
+                              selectedColor: foregroundStrokeBorderColor,
+                              onColorSelected: (color) {
+                                setState(() {
+                                  foregroundStrokeBorderColor = color;
+                                });
+                              },
+                            ),
+                          ],
+                        ),
                         //Show Hide ForeGround
                         Padding(
                           padding: const EdgeInsets.symmetric(vertical :8.0),
@@ -980,44 +1109,272 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
                           ],
                         ),
 
-                        //Upper Curve Controls
+                        //Upper Curve And Stroke Controls
                         const Divider(thickness: 2),
-                        Text('Upper Curve Controls',style: heading1Style,textAlign: TextAlign.center),
+                        Text('Upper Curve And Stroke Controls',style: heading1Style,textAlign: TextAlign.center),
                         const Divider(thickness: 2),
-
-                        ListView.builder(
+                        GridView.builder(
                           shrinkWrap: true,
-                          itemCount: upperCurveData.length,
+                          itemCount: upperCurveAndStrokeWidthData.length,
                           physics: const NeverScrollableScrollPhysics(),
                           padding: EdgeInsets.zero,
+                          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
+                            crossAxisSpacing: 1.0, // Adjust the spacing between items
+                            mainAxisSpacing: 1.0,
+                            childAspectRatio: 1.3
+                          ),
                           itemBuilder: (context, index) {
                             return curveControlTextFieldWidget(
-                              upperCurveData[index]['title'],
-                              upperCurveData[index]['textController'],
-                              upperCurveData[index]['defaultValue'],
-                              upperCurveData[index]['hintText'],
+                              upperCurveAndStrokeWidthData[index]['title'],
+                              upperCurveAndStrokeWidthData[index]['textController'],
+                              upperCurveAndStrokeWidthData[index]['defaultValue'],
+                              upperCurveAndStrokeWidthData[index]['hintText'],
                             );
                           },
                         ),
 
-                        //Upper Curve Controls
-                        const Divider(thickness: 2),
-                        Text('Under Curve Controls',style: heading1Style,textAlign: TextAlign.center),
-                        const Divider(thickness: 2),
+                        //Upper Left and Right Controls
+                        Row(
+                          children: [
+                            Flexible(
+                              child: Column(
+                                children: [
+                                  //Upper Curve Left Controls
+                                  const Divider(thickness: 2),
+                                  Text('Upper Curve LEFT Controls',style: heading1Style,textAlign: TextAlign.center),
+                                  const Divider(thickness: 2),
+                                  ListView.builder(
+                                    shrinkWrap: true,
+                                    itemCount: upperCurveLeftData.length,
+                                    physics: const NeverScrollableScrollPhysics(),
+                                    padding: EdgeInsets.zero,
+                                    itemBuilder: (context, index) {
+                                      return curveControlTextFieldWidget(
+                                        upperCurveLeftData[index]['title'],
+                                        upperCurveLeftData[index]['textController'],
+                                        upperCurveLeftData[index]['defaultValue'],
+                                        upperCurveLeftData[index]['hintText'],
+                                      );
+                                    },
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Flexible(
+                              child: Column(
+                                children: [
+                                  //Upper Curve Right Controls
+                                  const Divider(thickness: 2),
+                                  Text('Upper Curve RIGHT Controls',style: heading1Style,textAlign: TextAlign.center),
+                                  const Divider(thickness: 2),
+                                  ListView.builder(
+                                    shrinkWrap: true,
+                                    itemCount: upperCurveRightData.length,
+                                    physics: const NeverScrollableScrollPhysics(),
+                                    padding: EdgeInsets.zero,
+                                    itemBuilder: (context, index) {
+                                      return curveControlTextFieldWidget(
+                                        upperCurveRightData[index]['title'],
+                                        upperCurveRightData[index]['textController'],
+                                        upperCurveRightData[index]['defaultValue'],
+                                        upperCurveRightData[index]['hintText'],
+                                      );
+                                    },
+                                  ),
+                                ],
+                              ),
+                            )
+                          ],
+                        ),
 
-                        ListView.builder(
+                        //Upper Left and Right Stroke Controls
+                        Row(
+                          children: [
+                            Flexible(
+                              child: Column(
+                                children: [
+                                  //Upper Curve Left Stroke Controls
+                                  const Divider(thickness: 2),
+                                  Text('Upper Curve LEFT Stroke Controls',style: heading1Style,textAlign: TextAlign.center),
+                                  const Divider(thickness: 2),
+                                  ListView.builder(
+                                    shrinkWrap: true,
+                                    itemCount: upperCurveLeftStrokeData.length,
+                                    physics: const NeverScrollableScrollPhysics(),
+                                    padding: EdgeInsets.zero,
+                                    itemBuilder: (context, index) {
+                                      return curveControlTextFieldWidget(
+                                        upperCurveLeftStrokeData[index]['title'],
+                                        upperCurveLeftStrokeData[index]['textController'],
+                                        upperCurveLeftStrokeData[index]['defaultValue'],
+                                        upperCurveLeftStrokeData[index]['hintText'],
+                                      );
+                                    },
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Flexible(
+                              child: Column(
+                                children: [
+                                  //Upper Curve Right Stroke Controls
+                                  const Divider(thickness: 2),
+                                  Text('Upper Curve RIGHT Stroke Controls',style: heading1Style,textAlign: TextAlign.center),
+                                  const Divider(thickness: 2),
+                                  ListView.builder(
+                                    shrinkWrap: true,
+                                    itemCount: upperCurveRightStrokeData.length,
+                                    physics: const NeverScrollableScrollPhysics(),
+                                    padding: EdgeInsets.zero,
+                                    itemBuilder: (context, index) {
+                                      return curveControlTextFieldWidget(
+                                        upperCurveRightStrokeData[index]['title'],
+                                        upperCurveRightStrokeData[index]['textController'],
+                                        upperCurveRightStrokeData[index]['defaultValue'],
+                                        upperCurveRightStrokeData[index]['hintText'],
+                                      );
+                                    },
+                                  ),
+                                ],
+                              ),
+                            )
+                          ],
+                        ),
+
+                        //====================================================//
+
+                        //Under Curve And Stroke Controls
+                        const Divider(thickness: 2),
+                        Text('Under Curve And Stroke Controls',style: heading1Style,textAlign: TextAlign.center),
+                        const Divider(thickness: 2),
+                        GridView.builder(
                           shrinkWrap: true,
-                          itemCount: underCurveData.length,
+                          itemCount: underCurveAndStrokeWidthData.length,
                           physics: const NeverScrollableScrollPhysics(),
                           padding: EdgeInsets.zero,
+                          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
+                            crossAxisSpacing: 1.0, // Adjust the spacing between items
+                            mainAxisSpacing: 1.0,
+                            childAspectRatio: 1.3
+                          ),
                           itemBuilder: (context, index) {
                             return curveControlTextFieldWidget(
-                              underCurveData[index]['title'],
-                              underCurveData[index]['textController'],
-                              underCurveData[index]['defaultValue'],
-                              underCurveData[index]['hintText'],
+                              underCurveAndStrokeWidthData[index]['title'],
+                              underCurveAndStrokeWidthData[index]['textController'],
+                              underCurveAndStrokeWidthData[index]['defaultValue'],
+                              underCurveAndStrokeWidthData[index]['hintText'],
                             );
                           },
+                        ),
+
+                        //Under Left and Right Controls
+                        Row(
+                          children: [
+                            Flexible(
+                              child: Column(
+                                children: [
+                                  //Under Curve Left Controls
+                                  const Divider(thickness: 2),
+                                  Text('Under Curve LEFT Controls',style: heading1Style,textAlign: TextAlign.center),
+                                  const Divider(thickness: 2),
+                                  ListView.builder(
+                                    shrinkWrap: true,
+                                    itemCount: underCurveLeftData.length,
+                                    physics: const NeverScrollableScrollPhysics(),
+                                    padding: EdgeInsets.zero,
+                                    itemBuilder: (context, index) {
+                                      return curveControlTextFieldWidget(
+                                        underCurveLeftData[index]['title'],
+                                        underCurveLeftData[index]['textController'],
+                                        underCurveLeftData[index]['defaultValue'],
+                                        underCurveLeftData[index]['hintText'],
+                                      );
+                                    },
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Flexible(
+                              child: Column(
+                                children: [
+                                  //Under Curve Right Controls
+                                  const Divider(thickness: 2),
+                                  Text('Under Curve RIGHT Controls',style: heading1Style,textAlign: TextAlign.center),
+                                  const Divider(thickness: 2),
+                                  ListView.builder(
+                                    shrinkWrap: true,
+                                    itemCount: underCurveRightData.length,
+                                    physics: const NeverScrollableScrollPhysics(),
+                                    padding: EdgeInsets.zero,
+                                    itemBuilder: (context, index) {
+                                      return curveControlTextFieldWidget(
+                                        underCurveRightData[index]['title'],
+                                        underCurveRightData[index]['textController'],
+                                        underCurveRightData[index]['defaultValue'],
+                                        underCurveRightData[index]['hintText'],
+                                      );
+                                    },
+                                  ),
+                                ],
+                              ),
+                            )
+                          ],
+                        ),
+
+                        //Under Left and Right Stroke Controls
+                        Row(
+                          children: [
+                            Flexible(
+                              child: Column(
+                                children: [
+                                  //Under Curve Left Stroke Controls
+                                  const Divider(thickness: 2),
+                                  Text('Under Curve LEFT Stroke Controls',style: heading1Style,textAlign: TextAlign.center),
+                                  const Divider(thickness: 2),
+                                  ListView.builder(
+                                    shrinkWrap: true,
+                                    itemCount: underCurveLeftStrokeData.length,
+                                    physics: const NeverScrollableScrollPhysics(),
+                                    padding: EdgeInsets.zero,
+                                    itemBuilder: (context, index) {
+                                      return curveControlTextFieldWidget(
+                                        underCurveLeftStrokeData[index]['title'],
+                                        underCurveLeftStrokeData[index]['textController'],
+                                        underCurveLeftStrokeData[index]['defaultValue'],
+                                        underCurveLeftStrokeData[index]['hintText'],
+                                      );
+                                    },
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Flexible(
+                              child: Column(
+                                children: [
+                                  //Under Curve Right Stroke Controls
+                                  const Divider(thickness: 2),
+                                  Text('Under Curve RIGHT Stroke Controls',style: heading1Style,textAlign: TextAlign.center),
+                                  const Divider(thickness: 2),
+                                  ListView.builder(
+                                    shrinkWrap: true,
+                                    itemCount: underCurveRightStrokeData.length,
+                                    physics: const NeverScrollableScrollPhysics(),
+                                    padding: EdgeInsets.zero,
+                                    itemBuilder: (context, index) {
+                                      return curveControlTextFieldWidget(
+                                        underCurveRightStrokeData[index]['title'],
+                                        underCurveRightStrokeData[index]['textController'],
+                                        underCurveRightStrokeData[index]['defaultValue'],
+                                        underCurveRightStrokeData[index]['hintText'],
+                                      );
+                                    },
+                                  ),
+                                ],
+                              ),
+                            )
+                          ],
                         ),
 
                         //List Of All Available Properties
@@ -1038,11 +1395,11 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
             icons                              : icons,                                                                       // Icon list<Widget>
             titles                             : title,                                                                       // Title list<String>
             currentIndex                       : currentIndex,                                                                // Current selected index
-            backgroundColor                    : white.withOpacity(0.8),                                                      // NavBar BackGround Color [backgroundGradient ovrerides color]
-            foregroundColor                    : black,                                                                       // NavBar ForeGround Color with Curve 
-            foregroundStrokeBorderColor        : red.withOpacity(0.8),                                                        // Nav Stroke Border Color [useForegroundShaderStroke = false , strokeBorderWidth != 0]
-            backgroundStrokeBorderColor        : red.withOpacity(0.8),                                                        // nav background stroke color [seems like when border width is 0.0 still shows the color but transparent solves it]
-            backgroundStrokeBorderWidth        : double.tryParse(backgroundStrokeBorderWidthTxtCtrl.text)??2.0,               // Nav BackGround Stroke Border Width
+            backgroundColor                    : backgroundColor,                                                             // NavBar BackGround Color [backgroundGradient ovrerides color]
+            foregroundColor                    : foregroundColor,                                                             // NavBar ForeGround Color with Curve 
+            foregroundStrokeBorderColor        : foregroundStrokeBorderColor,                                                 // Nav Stroke Border Color [useForegroundShaderStroke = false , strokeBorderWidth != 0]
+            backgroundStrokeBorderColor        : backgroundStrokeBorderColor,                                                 // nav background stroke color [seems like when border width is 0.0 still shows the color but transparent solves it]
+            backgroundStrokeBorderWidth        : double.tryParse(backgroundStrokeBorderWidthTxtCtrl.text)??0.0,               // Nav BackGround Stroke Border Width
             foregroundStrokeBorderWidth        : double.tryParse(foregroundStrokeBorderWidthTxtCtrl.text)??2.0,               // Nav ForeGround Stroke Border Width  
             backgroundGradient                 : backgroundGradientColors,                                                    // Nav background Gradient [No Gradient if Null Overrides backgroundColor if given]
             foreGroundGradientShader           : foreGroundGradientShader,                                                    // Nav ForeGround Gradient Shader [foregroundColor or foreGroundGradientShader determined by Bool useForeGroundGradient]
@@ -1052,11 +1409,11 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
             navMargin                          : navBarMargin,                                                                // Nav Margin
             backgroundBorderRadius             : backgroundBorderRadius,                                                      // Nav Background Border Radius
 
-            selectedIconColor                  : red,                                                                         // Selected Item Icon Color
+            selectedIconColor                  : selectedIconColor,                                                                         // Selected Item Icon Color
             selectedIconSize                   : 25,                                                                          // Selected Item Icon Size
             selectedTextSize                   : 10,                                                                          // Selected Item Text Size
-            selectedTextColor                  : red,                                                                         // Selected Item Text Color
-            unselectedIconColor                : white,                                                                       // UnSelected Item Icon Color
+            selectedTextColor                  : white,                                                                         // Selected Item Text Color
+            unselectedIconColor                : unselectedIconColor,                                                                       // UnSelected Item Icon Color
             unselectedIconSize                 : 25,                                                                          // UnSelected Item Icon Size
             unselectedTextSize                 : 10,                                                                          // UnSelected Item Text Size
             unselectedTextColor                : white,                                                                       // UnSelected Item Text Color
@@ -1161,36 +1518,34 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
       children: [
         Card(
           color: white.withOpacity(0.6),
-          child: Stack(
-            alignment: Alignment.center,
+          child: Row(
             children: [
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal:40.0,vertical:5.0),
-                width: double.infinity,
-                child: Text(
-                  title,
-                  style: const TextStyle(color: black,fontSize:16),
-                  textAlign: TextAlign.center,
-                )
-              ),
-              Align(
-                alignment : Alignment.centerRight,
-                child:IconButton(
-                  padding : EdgeInsets.zero,
-                  icon: Container(
-                    padding: const EdgeInsets.all(2),
-                    decoration:BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: red
-                    ),
-                    child: const Icon(Icons.refresh)
+              Flexible(
+                child: Padding(
+                  padding: const EdgeInsets.only(left:10.0),
+                  child: Text(
+                    title,
+                    style: const TextStyle(color: black,fontSize:16),
+                    textAlign: TextAlign.center,
                   ),
-                  onPressed : (){
-                    setState(() {
-                      textController.text = defaultValue;
-                    });
-                  }
-                )
+                ),
+              ),
+              IconButton(
+                constraints: const BoxConstraints(),
+                padding : const EdgeInsets.symmetric(horizontal: 4.0),
+                icon: Container(
+                  padding: const EdgeInsets.all(0),
+                  decoration:BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: red
+                  ),
+                  child: const Icon(Icons.refresh)
+                ),
+                onPressed : (){
+                  setState(() {
+                    textController.text = defaultValue;
+                  });
+                }
               )
             ],
           )
@@ -1265,10 +1620,10 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
   customSelecteditem() {
     return const CircleAvatar(
       backgroundColor: red,
-      radius: 22.0,
+      radius: 18.0,
       child: CircleAvatar(
-        backgroundColor: black,
-        radius: 20.0,
+        backgroundColor: white,
+        radius: 16.0,
         child: SizedBox()
       )
     );
@@ -1277,10 +1632,10 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
   customUnselectedItem() {
     return const CircleAvatar(
       backgroundColor: white,
-      radius: 22.0,
+      radius: 18.0,
       child: CircleAvatar(
         backgroundColor: black,
-        radius: 20.0,
+        radius: 16.0,
         child: SizedBox()
       )
     );
@@ -1297,14 +1652,24 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
   }
 
   setData(){
-    upperCurveData = [
-      //UPPER CURVE CONTROLS
+    //========================================================================//
+    //UPPER Curve And STROKE CONTROL
+    upperCurveAndStrokeWidthData = [
       {
-        'title': 'upperCurveWidthTxtCtrl',
+        'title': 'upperCurveWidthCtrl',
         'textController': upperCurveWidthTxtCtrl,
         'defaultValue': '0.16',
-        'hintText': 'upperCurveWidthTxtCtrl',
+        'hintText': 'upperCurveWidthCtrl',
       },
+      {
+        'title': 'upperStrokeCurveWidthCtrl',
+        'textController': upperStrokeCurveWidthTxtCtrl,
+        'defaultValue': '0.16',
+        'hintText': 'upperStrokeCurveWidthCtrl',
+      },
+    ];
+    //UPPER CURVE LEFT CONTROL
+    upperCurveLeftData = [
       {
         'title': 'leftX1UpperCurveCtrl',
         'textController' : leftX1UpperCurveCtrl,
@@ -1340,7 +1705,10 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
         'textController' : leftY3UpperCurveCtrl,
         'defaultValue': '0.12',
         'hintText': 'leftY3UpperCurveCtrl',         
-      },  
+      },            
+    ];
+    //UPPER CURVE RIGHT CONTROL
+    upperCurveRightData = [
       {
         'title': 'rightX1UpperCurveCtrl',
         'textController' : rightX1UpperCurveCtrl,
@@ -1376,16 +1744,10 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
         'textController' : rightY3UpperCurveCtrl,
         'defaultValue': '0',
         'hintText': 'rightY3UpperCurveCtrl',         
-      },  
-
-      //UPPER STROKE CURVE CONTROL
-
-      {
-        'title': 'upperStrokeCurveWidthTxtCtrl',
-        'textController': upperStrokeCurveWidthTxtCtrl,
-        'defaultValue': '0.16',
-        'hintText': 'upperStrokeCurveWidthTxtCtrl',
       },
+    ];
+    //UPPER CURVE LEFT STROKE CONTROL
+    upperCurveLeftStrokeData = [
       {
         'title': 'leftStrokeX1UpperCurveCtrl',
         'textController' : leftStrokeX1UpperCurveCtrl,
@@ -1421,7 +1783,10 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
         'textController' : leftStrokeY3UpperCurveCtrl,
         'defaultValue': '0.12',
         'hintText': 'leftStrokeY3UpperCurveCtrl',         
-      },  
+      }, 
+    ];
+    //UPPER CURVE RIGHT STROKE CONTROL
+    upperCurveRightStrokeData = [
       {
         'title': 'rightStrokeX1UpperCurveCtrl',
         'textController' : rightStrokeX1UpperCurveCtrl,
@@ -1457,17 +1822,27 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
         'textController' : rightStrokeY3UpperCurveCtrl,
         'defaultValue': '0',
         'hintText': 'rightStrokeY3UpperCurveCtrl',         
-      },            
+      }, 
     ];
 
-    underCurveData = [
-      //UNDER CURVE CONTROLS
+    //========================================================================//
+    //UNDER Curve And STROKE CONTROL
+    underCurveAndStrokeWidthData = [
       {
         'title': 'underCurveWidthTxtCtrl',
         'textController': underCurveWidthTxtCtrl,
         'defaultValue': '0.18',
         'hintText': 'underCurveWidthTxtCtrl',
       },
+      {
+        'title': 'underStrokeCurveWidthTxtCtrl',
+        'textController': underStrokeCurveWidthTxtCtrl,
+        'defaultValue': '0.18',
+        'hintText': 'underStrokeCurveWidthTxtCtrl',
+      },
+    ];
+    //UNDER CURVE LEFT CONTROL
+    underCurveLeftData = [
       {
         'title': 'leftX1UnderCurveCtrl',
         'textController' : leftX1UnderCurveCtrl,
@@ -1503,7 +1878,10 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
         'textController' : leftY3UnderCurveCtrl,
         'defaultValue': '0.66',
         'hintText': 'leftY3UnderCurveCtrl',         
-      },  
+      },
+    ];
+    //UNDER CURVE RIGHT CONTROL
+    underCurveRightData = [
       {
         'title': 'rightX1UnderCurveCtrl',
         'textController' : rightX1UnderCurveCtrl,
@@ -1539,16 +1917,10 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
         'textController' : rightY3UnderCurveCtrl,
         'defaultValue': '0',
         'hintText': 'rightY3UnderCurveCtrl',         
-      },  
-
-      //UNDER STROKE CURVE CONTROL
-
-      {
-        'title': 'underStrokeCurveWidthTxtCtrl',
-        'textController': underStrokeCurveWidthTxtCtrl,
-        'defaultValue': '0.18',
-        'hintText': 'underStrokeCurveWidthTxtCtrl',
       },
+    ];
+    //UNDER CURVE LEFT STROKE CONTROL
+    underCurveLeftStrokeData = [
       {
         'title': 'leftStrokeX1UnderCurveCtrl',
         'textController' : leftStrokeX1UnderCurveCtrl,
@@ -1584,7 +1956,10 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
         'textController' : leftStrokeY3UnderCurveCtrl,
         'defaultValue': '0.66',
         'hintText': 'leftStrokeY3UnderCurveCtrl',         
-      },  
+      },
+    ];
+    //UNDER CURVE RIGHT STROKE CONTROL
+    underCurveRightStrokeData = [
       {
         'title': 'rightStrokeX1UnderCurveCtrl',
         'textController' : rightStrokeX1UnderCurveCtrl,
@@ -1620,7 +1995,7 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
         'textController' : rightStrokeY3UnderCurveCtrl,
         'defaultValue': '0',
         'hintText': 'rightStrokeY3UnderCurveCtrl',         
-      },     
+      },
     ];
   }
 }

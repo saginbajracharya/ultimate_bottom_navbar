@@ -4,29 +4,29 @@ Ultimate Bottom Navigation Bar is a customizable bottom navigation bar for your 
 
 ## Under Curve
 
-![](doc/image-2.png)
+![Under Curve](doc/image-2.png)
 
 ## Upper Curve
 
-![](doc/image-3.png)
+![Upper Curve](doc/image-3.png)
 
 ## No Curve
 
-![](doc/image-1.png)
+![No Curve](doc/image-1.png)
 
 ## Static Curve
 
-![](doc/image-4.png)
-![](doc/image-15.png)
+![Static Upper Curve](doc/image-4.png)
+![Static Under Curve](doc/image-15.png)
 
 ## Dynamic Curve
 
-![](doc/image-13.png)
-![](doc/image-14.png)
+![Dynamic Upper Curve](doc/image-13.png)
+![Dynamic Under Curve](doc/image-14.png)
 
 ## Other Customiztions
 
-![](doc/customizations.png)
+![Customizaions](doc/customizations.png)
 
 ## How To Use
 

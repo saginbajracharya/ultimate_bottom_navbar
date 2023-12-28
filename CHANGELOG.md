@@ -21,3 +21,7 @@
 ## [0.0.6]
 
 * Added backgroundHeight & foreGroundHeight
+
+## [0.0.7]
+
+* Added Controls For Upper And Under Curve And Stroke Borders

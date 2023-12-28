@@ -141,10 +141,12 @@ Directionality(
 ## Controls For Upper And Under Curve And Stroke Borders
 
 Upper Curves:
+
   Control the width and shape of the upper curves using various X and Y control points.
   Adjust stroke properties for the upper curves, such as width and control points.
 
 Under Curves:
+
   Manage the width and shape of the under curves with specific X and Y control points.
   Modify stroke properties for the under curves, including width and control points.
   

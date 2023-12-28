@@ -26,47 +26,7 @@ Ultimate Bottom Navigation Bar is a customizable bottom navigation bar for your 
 
 ## Other Customiztions
 
-![](doc/custom1.png)
-![](doc/custom2.png)
-![](doc/custom3.png)
-![](doc/custom4.png)
-![](doc/custom5.png)
-![](doc/custom6.png)
-![](doc/custom7.png)
-![](doc/custom8.png)
-![](doc/custom9.png)
-![](doc/custom10.png)
-![](doc/custom11.png)
-![](doc/custom12.png)
-![](doc/custom13.png)
-![](doc/custom14.png)
-![](doc/custom15.png)
-![](doc/custom16.png)
-![](doc/custom17.png)
-![](doc/custom18.png)
-![](doc/custom19.png)
-![](doc/custom20.png)
-![](doc/custom21.png)
-![](doc/custom22.png)
-![](doc/custom23.png)
-![](doc/custom24.png)
-![](doc/custom25.png)
-![](doc/custom26.png)
-![](doc/custom27.png)
-![](doc/custom28.png)
-![](doc/custom29.png)
-![](doc/custom30.png)
-![](doc/custom31.png)
-![](doc/custom32.png)
-![](doc/custom33.png)
-![](doc/custom34.png)
-![](doc/custom35.png)
-![](doc/image-6.png)
-![](doc/image-7.png)
-![](doc/image-8.png)
-![](doc/image-10.png)
-![](doc/image-11.png)
-![](doc/image-12.png)
+![](doc/customizations.png)
 
 ## How To Use
 
@@ -140,19 +100,17 @@ Directionality(
 
 ## Controls For Upper And Under Curve And Stroke Borders
 
-Upper Curves:
+-Upper Curves:
 
-  Control the width and shape of the upper curves using various X and Y control points.
-  Adjust stroke properties for the upper curves, such as width and control points.
+  -Control the width and shape of the upper curves using various X and Y control points.
+  -Adjust stroke properties for the upper curves, such as width and control points.
 
-Under Curves:
+-Under Curves:
 
-  Manage the width and shape of the under curves with specific X and Y control points.
-  Modify stroke properties for the under curves, including width and control points.
+  -Manage the width and shape of the under curves with specific X and Y control points.
+  -Modify stroke properties for the under curves, including width and control points.
   
 These properties collectively allow users to finely control the appearance of upper and under curves, as well as stroke borders, providing flexibility in customizing the graphical elements of the interface.
-
-Check Out example project @ [example](example).
 
 ## Properties
 
@@ -262,6 +220,8 @@ Check Out example project @ [example](example).
 | rightStrokeY2UnderCurveCtrl      | Controls the y-coordinate of the right control point 2 for the under stroke.    |
 | rightStrokeX3UnderCurveCtrl      | Controls the x-coordinate of the right control point 3 for the under stroke.    |
 | rightStrokeY3UnderCurveCtrl      | Controls the y-coordinate of the right control point 3 for the under stroke.    |
+
+## Check Out example project @ [example](example)
 
 ## FAQ
 

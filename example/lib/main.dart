@@ -1409,11 +1409,11 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
             navMargin                          : navBarMargin,                                                                // Nav Margin
             backgroundBorderRadius             : backgroundBorderRadius,                                                      // Nav Background Border Radius
 
-            selectedIconColor                  : selectedIconColor,                                                                         // Selected Item Icon Color
+            selectedIconColor                  : selectedIconColor,                                                           // Selected Item Icon Color
             selectedIconSize                   : 25,                                                                          // Selected Item Icon Size
             selectedTextSize                   : 10,                                                                          // Selected Item Text Size
-            selectedTextColor                  : white,                                                                         // Selected Item Text Color
-            unselectedIconColor                : unselectedIconColor,                                                                       // UnSelected Item Icon Color
+            selectedTextColor                  : white,                                                                       // Selected Item Text Color
+            unselectedIconColor                : unselectedIconColor,                                                         // UnSelected Item Icon Color
             unselectedIconSize                 : 25,                                                                          // UnSelected Item Icon Size
             unselectedTextSize                 : 10,                                                                          // UnSelected Item Text Size
             unselectedTextColor                : white,                                                                       // UnSelected Item Text Color
